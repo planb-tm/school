@@ -8,7 +8,7 @@ export const SUCCESS_PLAN_MODULE_ID = 'success-plan-2026';
 
 export const successPlanModuleMeta: LearningModuleMeta = {
   id: SUCCESS_PLAN_MODULE_ID,
-  title: '«План Успеха»',
+  title: 'План Успеха',
   subtitle:
     'Разберись, как устроен маркетинг-план Oriflame, какие показатели влияют на вознаграждение и как применять эти знания на практике',
   path: '/modules/success-plan-2026',
