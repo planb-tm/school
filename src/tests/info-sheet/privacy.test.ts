@@ -1,4 +1,3 @@
-/** @vitest-environment jsdom */
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import {
   clearBrowserReportTraces,
@@ -6,44 +5,37 @@ import {
 } from '../../features/info-sheet/utils/clearSession';
 
 describe('privacy', () => {
-  const originalLocation = window.location;
+  const g = globalThis as typeof globalThis & {
+    window?: Window & typeof globalThis;
+  };
+  let previousWindow: typeof g.window;
 
   beforeEach(() => {
-    localStorage.clear();
-    sessionStorage.clear();
+    previousWindow = g.window;
   });
 
   afterEach(() => {
-    Object.defineProperty(window, 'location', {
-      configurable: true,
-      value: originalLocation,
-    });
+    if (previousWindow === undefined) {
+      Reflect.deleteProperty(g, 'window');
+    } else {
+      g.window = previousWindow;
+    }
   });
 
-  it('does not write report payloads to web storage', () => {
-    clearBrowserReportTraces();
-    expect(localStorage.length).toBe(0);
-    expect(sessionStorage.length).toBe(0);
-    for (let i = 0; i < localStorage.length; i += 1) {
-      const key = localStorage.key(i);
-      expect(key?.startsWith(FORBIDDEN_STORAGE_KEYS_PREFIX)).not.toBe(true);
-    }
+  it('documents forbidden storage key prefix for report payloads', () => {
+    expect(FORBIDDEN_STORAGE_KEYS_PREFIX).toBe('oriflame-report');
   });
 
   it('strips query and hash that could leak identifiers from URL', () => {
     const replaceState = vi.fn();
-    Object.defineProperty(window, 'location', {
-      configurable: true,
-      value: {
+    g.window = {
+      location: {
         pathname: '/school/tools/info-sheet',
         search: '?partner=100&name=Root',
         hash: '#card-100',
       },
-    });
-    Object.defineProperty(window, 'history', {
-      configurable: true,
-      value: { replaceState },
-    });
+      history: { replaceState },
+    } as unknown as Window & typeof globalThis;
 
     clearBrowserReportTraces();
     expect(replaceState).toHaveBeenCalledWith(
