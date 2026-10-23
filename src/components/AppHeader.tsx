@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { BrandMark } from './BrandMark';
+import { InstallAppButton } from './InstallAppButton';
 import { ThemeToggle } from './ThemeToggle';
 
 export function AppHeader() {
@@ -19,6 +20,7 @@ export function AppHeader() {
               Модуль
             </NavLink>
           </nav>
+          <InstallAppButton />
           <ThemeToggle />
         </div>
       </div>

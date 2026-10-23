@@ -30,6 +30,10 @@ npm run preview      # просмотр сборки
 
 Сайт: https://planb-tm.github.io/school/
 
+Приложение можно установить на рабочий экран (PWA): манифест `public/manifest.webmanifest`,
+иконки `public/icons/`, service worker `public/sw.js`. На поддерживаемых браузерах в шапке
+появляется кнопка «Установить».
+
 Один раз в настройках репозитория:
 **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
