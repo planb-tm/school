@@ -9,7 +9,20 @@ const EMBED_HOSTS = new Set([
   'youtu.be',
   'player.vimeo.com',
   'vimeo.com',
+  'vkvideo.ru',
+  'www.vkvideo.ru',
+  'vk.com',
+  'www.vk.com',
 ]);
+
+function vkEmbedSrc(url: URL): string | null {
+  const match = url.pathname.match(/\/video(-?\d+)_(\d+)/i);
+  if (!match) return null;
+  const oid = match[1];
+  const id = match[2];
+  if (!oid || !id) return null;
+  return `https://vkvideo.ru/video_ext.php?oid=${encodeURIComponent(oid)}&id=${encodeURIComponent(id)}&hd=2`;
+}
 
 function parseHttpsUrl(raw: string): URL | null {
   try {
@@ -66,6 +79,10 @@ export function resolveLessonVideoSrc(
 
     if (url.hostname === 'player.vimeo.com') {
       return url.href;
+    }
+
+    if (url.hostname.includes('vk')) {
+      return vkEmbedSrc(url);
     }
   }
 

@@ -1,4 +1,5 @@
 import type { LessonVideo } from '@/types/learning';
+import { invitingLessonMeta } from './inviting';
 import { productsLessonMeta } from './products';
 
 export type LearningCatalogStatus = 'available' | 'soon';
@@ -40,11 +41,11 @@ export const learningCatalog: LearningCatalogItem[] = [
     status: 'soon',
   },
   {
-    id: 'inviting',
-    title: 'Приглашение людей',
-    description:
-      'Как начать разговор, рассказать о возможностях, пригласить на знакомство и ответить на типичные вопросы.',
-    status: 'soon',
+    id: invitingLessonMeta.id,
+    title: invitingLessonMeta.title,
+    description: invitingLessonMeta.catalogDescription,
+    path: invitingLessonMeta.path,
+    status: 'available',
   },
   {
     id: 'clients-partners',

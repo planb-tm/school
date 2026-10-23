@@ -31,4 +31,16 @@ describe('resolveLessonVideoSrc', () => {
       }),
     ).toBe('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0');
   });
+
+  it('builds vkvideo embed urls', () => {
+    expect(
+      resolveLessonVideoSrc({
+        type: 'embed',
+        url: 'https://vkvideo.ru/video-212712920_456239357',
+      }),
+    ).toBe(
+      'https://vkvideo.ru/video_ext.php?oid=-212712920&id=456239357&hd=2',
+    );
+  });
 });
+
