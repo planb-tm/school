@@ -101,6 +101,58 @@ export function IconSun({ className = '', size = 18 }: IconProps) {
   );
 }
 
+export function IconHome({ className = '', size = 22 }: IconProps) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M4.5 10.5 12 4l7.5 6.5V20a1.5 1.5 0 0 1-1.5 1.5h-3.25v-5.25h-5.5V21.5H6A1.5 1.5 0 0 1 4.5 20v-9.5Z"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export function IconLearn({ className = '', size = 22 }: IconProps) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M4 6.5A2.5 2.5 0 0 1 6.5 4H20v14.5a.5.5 0 0 1-.5.5H6.5A2.5 2.5 0 0 0 4 21.5V6.5Z"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 19.25A2.25 2.25 0 0 1 6.25 17H20"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <path
+        d="M8.5 8.5h7.5M8.5 12h5"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function IconMoon({ className = '', size = 18 }: IconProps) {
   return (
     <svg

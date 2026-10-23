@@ -1,5 +1,5 @@
 /* planB service worker - cache shell for installability / offline reopen */
-const CACHE = 'planb-shell-v1';
+const CACHE = 'planb-shell-v2';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
