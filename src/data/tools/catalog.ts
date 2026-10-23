@@ -3,7 +3,7 @@ export type ToolStatus = 'available' | 'soon';
 export type ToolMeta = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   path: string;
   status: ToolStatus;
 };
@@ -11,9 +11,7 @@ export type ToolMeta = {
 export const toolsCatalog: ToolMeta[] = [
   {
     id: 'info-sheet',
-    title: 'Информационный листок',
-    description:
-      'Загрузите Excel-отчёт Oriflame и разберите структуру команды: обзор, поиск партнёров и дерево спонсорских связей. Данные остаются только в браузере.',
+    title: 'Визуализатор информационного листка',
     path: '/tools/info-sheet',
     status: 'available',
   },

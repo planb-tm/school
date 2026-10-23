@@ -7,10 +7,6 @@ export function ToolsPage() {
       <header className="home-intro">
         <p className="eyebrow">Раздел</p>
         <h1 className="home-intro__title">Инструменты</h1>
-        <p className="home-intro__lead">
-          Практические помощники для работы со структурой и отчётами. Каждый
-          инструмент открывается отдельно и не меняет модули обучения.
-        </p>
       </header>
 
       <ul className="tools-catalog">
@@ -20,14 +16,18 @@ export function ToolsPage() {
               <Link to={tool.path} className="tools-card">
                 <p className="eyebrow eyebrow--accent">Доступно</p>
                 <h2 className="tools-card__title">{tool.title}</h2>
-                <p className="tools-card__desc">{tool.description}</p>
+                {tool.description ? (
+                  <p className="tools-card__desc">{tool.description}</p>
+                ) : null}
                 <span className="tools-card__cta">Открыть</span>
               </Link>
             ) : (
               <div className="tools-card tools-card--soon">
                 <p className="eyebrow">Скоро</p>
                 <h2 className="tools-card__title">{tool.title}</h2>
-                <p className="tools-card__desc">{tool.description}</p>
+                {tool.description ? (
+                  <p className="tools-card__desc">{tool.description}</p>
+                ) : null}
               </div>
             )}
           </li>

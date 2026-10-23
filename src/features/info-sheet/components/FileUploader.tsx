@@ -28,11 +28,9 @@ export function FileUploader() {
 
   return (
     <section className={styles.hero}>
-      <h1 className={styles.heroBrand}>Информационный листок</h1>
-      <p className={styles.heroText}>
-        Загрузите Excel-отчёт Oriflame, чтобы разобрать структуру команды локально
-        в браузере.
-      </p>
+      <h1 className={styles.heroBrand}>
+        Визуализатор информационного листка
+      </h1>
 
       <div className={styles.panel}>
         <h2 className={styles.blockTitle}>Как начать</h2>

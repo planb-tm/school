@@ -55,11 +55,9 @@ export function HomePage() {
       <article className="module-teaser module-teaser--compact">
         <div className="module-teaser__body">
           <p className="eyebrow eyebrow--accent">Инструменты</p>
-          <h2 className="module-teaser__title">Информационный листок</h2>
-          <p className="module-teaser__desc">
-            Загрузите Excel-отчёт и разберите структуру команды прямо в
-            браузере. Данные не уходят на сервер.
-          </p>
+          <h2 className="module-teaser__title">
+            Визуализатор информационного листка
+          </h2>
         </div>
         <Link className="btn btn--secondary btn--block" to="/tools">
           Открыть инструменты

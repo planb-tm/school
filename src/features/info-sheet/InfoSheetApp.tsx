@@ -47,7 +47,9 @@ function Dashboard() {
     <div className={styles.dashboard}>
       <aside className={styles.sideNav} aria-label="Разделы">
         <div className={styles.sideBrand}>
-          <div className={styles.sideBrandTitle}>Информационный листок</div>
+          <div className={styles.sideBrandTitle}>
+            Визуализатор информационного листка
+          </div>
           <div className={styles.sideBrandSub}>Анализ · только в браузере</div>
         </div>
         <nav className={styles.navList}>
