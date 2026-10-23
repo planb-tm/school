@@ -1059,6 +1059,18 @@ code {
   color: inherit;
 }
 
+.lesson-video--portrait .lesson-video__poster,
+.lesson-video--portrait .lesson-video__frame {
+  width: min(100%, 18rem);
+  max-height: min(72vh, 32rem);
+  aspect-ratio: 9 / 16;
+  margin-inline: auto;
+}
+
+.lesson-video--portrait .lesson-video__image {
+  object-position: center;
+}
+
 .lesson-video__poster--circle {
   width: 4.5rem;
   height: 4.5rem;

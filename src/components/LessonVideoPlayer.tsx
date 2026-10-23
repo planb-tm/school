@@ -20,14 +20,19 @@ export function LessonVideoPlayer({ video }: Props) {
   const label = video.title ?? 'Видео';
   const description = video.description ?? label;
   const useCircle = Boolean(video.circlePreview && video.poster);
+  const isPortrait = video.aspectRatio === '9:16';
+  const rootClass = [
+    'lesson-video',
+    useCircle ? 'lesson-video--circle' : '',
+    isPortrait ? 'lesson-video--portrait' : '',
+    started ? 'lesson-video--playing' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   if (!started) {
     return (
-      <div
-        className={
-          useCircle ? 'lesson-video lesson-video--circle' : 'lesson-video'
-        }
-      >
+      <div className={rootClass}>
         <button
           type="button"
           className={
@@ -68,7 +73,7 @@ export function LessonVideoPlayer({ video }: Props) {
   }
 
   return (
-    <div className="lesson-video lesson-video--playing">
+    <div className={rootClass}>
       <div className="lesson-video__frame">
         {video.type === 'mp4' ? (
           <video

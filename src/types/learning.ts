@@ -8,6 +8,8 @@ export type VerificationStatus = 'verified' | 'needs_review' | 'outdated';
  */
 export type LessonVideoType = 'embed' | 'mp4';
 
+export type LessonVideoAspect = '16:9' | '9:16';
+
 export interface LessonVideo {
   type: LessonVideoType;
   url: string;
@@ -19,6 +21,8 @@ export interface LessonVideo {
   description?: string;
   /** Compact circular preview that opens the full player. */
   circlePreview?: boolean;
+  /** Preview / player frame ratio. Defaults to 16:9. */
+  aspectRatio?: LessonVideoAspect;
 }
 
 export type KnowledgeCardType =

@@ -136,6 +136,7 @@ export function InvitingPage() {
                   type: 'embed',
                   url: BUSINESS_ESSENCE_VIDEO_URL,
                   poster: BUSINESS_ESSENCE_VIDEO_POSTER,
+                  aspectRatio: '9:16',
                   title: 'Видео о сути бизнеса Oriflame',
                   duration: '~20 мин',
                   description:
