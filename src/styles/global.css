@@ -582,11 +582,12 @@ code {
 }
 
 .page-title {
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: 750;
   max-width: var(--measure);
   overflow-wrap: break-word;
   line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
 }
 
 .section-title {
