@@ -590,16 +590,17 @@ code {
   padding: 0.9rem var(--page-pad) calc(1.1rem + var(--safe-bottom));
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: var(--text-sm);
+  font-size: 0.75rem;
   text-align: center;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .app-footer p {
   margin: 0;
-  max-width: 36rem;
+  max-width: 42rem;
   margin-inline: auto;
   text-align: center;
+  text-wrap: balance;
 }
 
 .app-footer p + p {
