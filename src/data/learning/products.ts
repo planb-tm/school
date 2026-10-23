@@ -55,3 +55,20 @@ export const productCategories: ProductCategory[] = [
       'Разнообразные аксессуары для красоты, ухода за собой и повседневного использования. Ассортимент может меняться.',
   },
 ];
+
+/** Official Oriflame Russia (RU) links — verified against oriflame.ru. */
+export const productsOutro = {
+  text: 'Здесь мы рассмотрели основные категории продукции Oriflame. Подробную информацию о каждом продукте можно найти на официальном сайте компании и в электронном каталоге.',
+  links: [
+    {
+      id: 'official-site',
+      label: 'Официальный сайт Oriflame',
+      href: 'https://oriflame.ru/',
+    },
+    {
+      id: 'digital-catalogue',
+      label: 'Электронный каталог',
+      href: 'https://oriflame.ru/products/digital-catalogue-current',
+    },
+  ],
+} as const;

@@ -3,6 +3,7 @@ import {
   productCategories,
   productsIntro,
   productsLessonMeta,
+  productsOutro,
 } from '@/data/learning/products';
 
 export function ProductsPage() {
@@ -28,6 +29,24 @@ export function ProductsPage() {
             <li key={category.id} className="info-list__item">
               <h2 className="info-list__title">{category.title}</h2>
               <p className="info-list__desc">{category.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="panel panel--soft" aria-label="Где смотреть подробнее">
+        <p className="info-list__desc">{productsOutro.text}</p>
+        <ul className="external-links">
+          {productsOutro.links.map((item) => (
+            <li key={item.id}>
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="external-links__item"
+              >
+                {item.label}
+              </a>
             </li>
           ))}
         </ul>
