@@ -708,21 +708,36 @@ code {
   max-width: var(--measure);
 }
 
+.home-intro__eyebrow {
+  margin: 0 0 0.4rem;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
 .home-intro__title {
   margin: 0 0 0.45rem;
-  font-size: var(--text-2xl);
+  font-size: clamp(1.35rem, 4.2vw, var(--text-2xl));
   font-weight: 750;
   line-height: var(--leading-tight);
   letter-spacing: -0.025em;
-  max-width: 18ch;
+  max-width: 22ch;
+  overflow-wrap: break-word;
 }
 
 .home-intro__lead {
   margin: 0;
   color: var(--muted);
-  font-size: var(--text-md);
-  line-height: var(--leading);
+  font-size: var(--text-sm);
+  line-height: 1.5;
   max-width: var(--measure);
+}
+
+.module-teaser--compact {
+  gap: 0.85rem;
+  padding: 0.95rem 0.9rem 1rem;
 }
 
 .home-section {
@@ -1734,11 +1749,15 @@ code {
   }
 
   .home-intro__title {
-    max-width: 22ch;
+    max-width: 28ch;
   }
 
   .module-teaser {
     padding: 1.15rem 1.1rem;
+  }
+
+  .module-teaser--compact {
+    padding: 1.05rem 1.05rem 1.1rem;
   }
 
   .learning-path {

@@ -1,41 +1,37 @@
-import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  SUCCESS_PLAN_MODULE_ID,
-  successPlanModuleMeta,
-} from '@/data/success-plan-2026/module';
-import { hasLearningProgress, loadProgress } from '@/lib/progress';
+import { successPlanModuleMeta } from '@/data/success-plan-2026/module';
+import { toolsCatalog } from '@/data/tools/catalog';
+
+const infoSheetTool = toolsCatalog.find((tool) => tool.id === 'info-sheet');
 
 export function HomePage() {
-  const continueLearning = useMemo(() => {
-    return hasLearningProgress(loadProgress(SUCCESS_PLAN_MODULE_ID));
-  }, []);
-
   return (
     <div className="home-page">
       <header className="home-intro">
-        <p className="eyebrow">Учебный центр</p>
-        <h1 className="home-intro__title">Обучение и инструменты команды</h1>
+        <p className="home-intro__eyebrow">
+          planB · РАБОЧЕЕ ПРОСТРАНСТВО КОМАНДЫ
+        </p>
+        <h1 className="home-intro__title">Обучение и инструменты</h1>
         <p className="home-intro__lead">
-          Изучай продукты, правила и программы Oriflame, разбирай практические
-          примеры и проверяй свои знания.
+          Материалы и инструменты для работы с продуктами, маркетинг-планом и
+          структурой команды Oriflame.
         </p>
       </header>
 
       <article className="module-teaser module-teaser--compact">
         <div className="module-teaser__body">
           <p className="eyebrow eyebrow--accent">Обучение</p>
-          <h2 className="module-teaser__title">{successPlanModuleMeta.title}</h2>
+          <h2 className="module-teaser__title">План Успеха 2026</h2>
           <p className="module-teaser__desc">
-            Модули по маркетинг-плану и программам Oriflame - с примерами и
-            проверкой знаний.
+            Разбор маркетинг-плана: понятия, условия, принципы расчёта бонусов и
+            практические примеры.
           </p>
         </div>
         <Link
           className="btn btn--primary btn--block"
-          to={continueLearning ? successPlanModuleMeta.path : '/learn'}
+          to={successPlanModuleMeta.path}
         >
-          {continueLearning ? 'Продолжить обучение' : 'Открыть обучение'}
+          Открыть модуль
         </Link>
       </article>
 
@@ -43,11 +39,18 @@ export function HomePage() {
         <div className="module-teaser__body">
           <p className="eyebrow eyebrow--accent">Инструменты</p>
           <h2 className="module-teaser__title">
-            Визуализатор информационного листка
+            {infoSheetTool?.title ?? 'Визуализатор информационного листка'}
           </h2>
+          <p className="module-teaser__desc">
+            Просмотр и анализ структуры команды на основе информационного листка
+            Excel.
+          </p>
         </div>
-        <Link className="btn btn--secondary btn--block" to="/tools">
-          Открыть инструменты
+        <Link
+          className="btn btn--secondary btn--block"
+          to={infoSheetTool?.path ?? '/tools/info-sheet'}
+        >
+          Открыть инструмент
         </Link>
       </article>
     </div>
