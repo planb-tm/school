@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="planB">
-  <rect width="64" height="64" rx="14" fill="#F5F4F2"/>
+  <rect width="64" height="64" rx="14" fill="#C9B8FF"/>
   <text
-    x="32"
-    y="42"
+    x="29"
+    y="44"
     text-anchor="middle"
     font-family="Inter, system-ui, Arial, sans-serif"
-    font-size="28"
-    font-weight="700"
-    fill="#5C212A"
-  >B.</text>
+    font-size="30"
+    font-weight="800"
+    fill="#20212A"
+  >B</text>
+  <circle cx="44" cy="42" r="3.2" fill="#20212A"/>
 </svg>
