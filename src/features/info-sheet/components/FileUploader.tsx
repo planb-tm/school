@@ -28,9 +28,16 @@ export function FileUploader() {
 
   return (
     <section className={styles.hero}>
-      <h1 className={styles.heroBrand}>
-        Визуализатор информационного листка
-      </h1>
+      <header className={styles.heroHeader}>
+        <p className={styles.heroEyebrow}>Инструмент</p>
+        <h1 className={styles.heroBrand}>
+          Визуализатор информационного листка
+        </h1>
+        <p className={styles.heroText}>
+          Просмотр и анализ структуры команды на основе информационного листка
+          Excel.
+        </p>
+      </header>
 
       <div className={styles.panel}>
         <h2 className={styles.blockTitle}>Как начать</h2>
