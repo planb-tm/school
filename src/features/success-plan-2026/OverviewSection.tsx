@@ -7,12 +7,12 @@ export function OverviewSection() {
     <section className="panel" id="overview">
       <header className="panel__header">
         <h2>Введение</h2>
-        <p>Что такое «План Успеха» и зачем сначала освоить основы</p>
+        <p>Что такое План Успеха и зачем сначала освоить основы</p>
       </header>
 
       <div className="stack">
         <div className="callout callout--info">
-          <strong>Роль «Плана Успеха»</strong>
+          <strong>Роль Плана Успеха</strong>
           <p>{overview.rolePlain}</p>
           <p className="muted">
             <em>Официальная формулировка из словаря документа (с.&nbsp;{overview.roleOfficialPage}):</em>{' '}

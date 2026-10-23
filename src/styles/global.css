@@ -202,6 +202,27 @@ h4 {
   hyphens: manual;
 }
 
+/* Shared planB type scale for content headings */
+h1 {
+  font-size: var(--text-xl);
+  font-weight: 750;
+}
+
+h2 {
+  font-size: var(--text-xl);
+  font-weight: 750;
+}
+
+h3 {
+  font-size: var(--text-md);
+  font-weight: 700;
+}
+
+h4 {
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
 p {
   margin: 0 0 0.65rem;
   overflow-wrap: break-word;
@@ -527,7 +548,8 @@ code {
 
 .tools-card__title {
   margin: 0;
-  font-size: var(--text-lg);
+  font-size: var(--text-md);
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: var(--leading-tight);
 }
@@ -591,8 +613,8 @@ code {
 }
 
 .section-title {
-  font-size: var(--text-lg);
-  font-weight: 700;
+  font-size: var(--text-xl);
+  font-weight: 750;
   margin: 0;
 }
 
@@ -780,8 +802,8 @@ code {
 
 .module-teaser__title {
   margin: 0;
-  font-size: var(--text-xl);
-  font-weight: 750;
+  font-size: var(--text-md);
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: var(--leading-tight);
 }
@@ -976,6 +998,12 @@ code {
   max-width: 100%;
 }
 
+.panel__header h2 {
+  font-size: var(--text-xl);
+  font-weight: 750;
+  margin: 0 0 0.35rem;
+}
+
 .panel__header p {
   color: var(--muted);
   margin: 0;
@@ -1098,9 +1126,10 @@ code {
 
 .knowledge-card__title {
   display: block;
-  font-size: var(--text-lg);
-  font-weight: 750;
+  font-size: var(--text-md);
+  font-weight: 700;
   overflow-wrap: anywhere;
+  line-height: var(--leading-tight);
 }
 
 .knowledge-card__body {
@@ -1300,7 +1329,7 @@ code {
 .result-grid strong {
   overflow-wrap: anywhere;
   font-variant-numeric: tabular-nums;
-  font-size: var(--text-lg);
+  font-size: var(--text-md);
 }
 
 .disclaimer,
