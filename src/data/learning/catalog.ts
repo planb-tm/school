@@ -1,4 +1,5 @@
 import type { LessonVideo } from '@/types/learning';
+import { productsLessonMeta } from './products';
 
 export type LearningCatalogStatus = 'available' | 'soon';
 
@@ -25,10 +26,11 @@ export const learningCatalog: LearningCatalogItem[] = [
     status: 'soon',
   },
   {
-    id: 'products-recommendations',
-    title: 'Продукты и рекомендации',
-    description: 'Обзор основной продукции в общих чертах.',
-    status: 'soon',
+    id: productsLessonMeta.id,
+    title: productsLessonMeta.title,
+    description: productsLessonMeta.catalogDescription,
+    path: productsLessonMeta.path,
+    status: 'available',
   },
   {
     id: 'orders',

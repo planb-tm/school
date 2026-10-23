@@ -797,6 +797,56 @@ code {
   font-weight: 650;
 }
 
+.lesson-intro {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.15rem;
+}
+
+.lesson-intro p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  max-width: var(--measure);
+}
+
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.info-list__item {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.info-list__item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.info-list__title {
+  margin: 0;
+  font-size: var(--text-md);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-tight);
+}
+
+.info-list__desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
 .tools-card-stack {
   display: grid;
   gap: 0.65rem;
