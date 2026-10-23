@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CopyTextButton } from '@/components/CopyTextButton';
 import { LessonVideoPlayer } from '@/components/LessonVideoPlayer';
 import {
+  BUSINESS_ESSENCE_VIDEO_POSTER,
   BUSINESS_ESSENCE_VIDEO_URL,
   communicationRules,
   followupTemplates,
@@ -134,6 +135,7 @@ export function InvitingPage() {
                 video={{
                   type: 'embed',
                   url: BUSINESS_ESSENCE_VIDEO_URL,
+                  poster: BUSINESS_ESSENCE_VIDEO_POSTER,
                   title: 'Видео о сути бизнеса Oriflame',
                   duration: '~20 мин',
                   description:

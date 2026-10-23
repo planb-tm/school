@@ -1,4 +1,5 @@
 export {
+  BUSINESS_ESSENCE_VIDEO_POSTER,
   BUSINESS_ESSENCE_VIDEO_URL,
   invitationsIntro,
   invitingIntro,

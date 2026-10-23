@@ -3,6 +3,9 @@ import type { InvitingSectionId } from './types';
 export const BUSINESS_ESSENCE_VIDEO_URL =
   'https://vkvideo.ru/video-212712920_456239357';
 
+/** Static poster so the preview is visible before the embed loads. */
+export const BUSINESS_ESSENCE_VIDEO_POSTER = `${import.meta.env.BASE_URL}media/business-essence-poster.jpg`;
+
 export const invitingLessonMeta = {
   id: 'inviting-objections',
   title: 'Приглашения и возражения',
