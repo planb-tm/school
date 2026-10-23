@@ -21,7 +21,7 @@ export const learningCatalog: LearningCatalogItem[] = [
     id: 'business-essence',
     title: 'Суть бизнеса',
     description:
-      'Участники, клиенты, рекомендации продукции, личная работа и развитие команды.',
+      'Как устроен бизнес Oriflame, зачем нужен товарооборот и как он формируется за счёт заказов клиентов и команды',
     status: 'soon',
   },
   {
