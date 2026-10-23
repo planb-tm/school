@@ -22,7 +22,7 @@ export function readStoredTheme(): ThemeMode | null {
 }
 
 export function resolveTheme(stored: ThemeMode | null = readStoredTheme()): ThemeMode {
-  return stored ?? 'dark';
+  return stored ?? 'light';
 }
 
 export function applyTheme(theme: ThemeMode): void {
@@ -30,7 +30,7 @@ export function applyTheme(theme: ThemeMode): void {
   document.documentElement.style.colorScheme = theme;
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) {
-    meta.setAttribute('content', theme === 'dark' ? '#12131a' : '#f7f5f1');
+    meta.setAttribute('content', theme === 'dark' ? '#16171f' : '#f6f5f2');
   }
 }
 

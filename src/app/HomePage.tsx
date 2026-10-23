@@ -1,66 +1,64 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { BrandMark } from '@/components/BrandMark';
 import {
   plannedModules,
+  SUCCESS_PLAN_MODULE_ID,
   successPlanModuleMeta,
 } from '@/data/success-plan-2026/module';
+import { hasLearningProgress, loadProgress } from '@/lib/progress';
+
+const MODULE_TOPICS = [
+  'Основные понятия',
+  'Принципы расчёта',
+  'Практические примеры',
+  'Проверка знаний',
+] as const;
 
 export function HomePage() {
+  const continueLearning = useMemo(() => {
+    return hasLearningProgress(loadProgress(SUCCESS_PLAN_MODULE_ID));
+  }, []);
+
   return (
     <div className="home-page">
-      <section className="hero-card" aria-labelledby="home-title">
-        <div className="hero-card__brand">
-          <BrandMark size="md" />
-          <div className="hero-card__brand-text">
-            <p id="home-title" className="hero-card__name">
-              planB
-            </p>
-            <p className="hero-card__tag">Обучение. Инструменты. Развитие.</p>
-          </div>
-        </div>
-
-        <div className="hero-card__body">
-          <p className="hero-card__eyebrow">Твой следующий шаг</p>
-          <h1 className="hero-card__title">
-            Разберись. Попробуй. Построй своё.
-          </h1>
-          <p className="hero-card__lead">
-            Понимай правила, осваивай инструменты и шаг за шагом развивай своё
-            дело.
-          </p>
-        </div>
-      </section>
-
-      <section className="home-section">
-        <h2 className="section-title">Первый модуль</h2>
-        <p className="muted">
-          «План Б» - альтернативный путь к свободе и своему делу. Сейчас в
-          приложении доступен разбор «Плана Успеха» Oriflame 2026.
+      <header className="home-intro">
+        <p className="eyebrow">Учебный центр</p>
+        <h1 className="home-intro__title">Обучение и инструменты команды</h1>
+        <p className="home-intro__lead">
+          Изучай продукты, правила и программы Oriflame, разбирай практические
+          примеры и проверяй свои знания.
         </p>
+      </header>
 
-        <article className="module-teaser">
-          <div className="module-teaser__body">
-            <p className="eyebrow">Доступно</p>
-            <h3>{successPlanModuleMeta.title}</h3>
-            <p>{successPlanModuleMeta.subtitle}</p>
-            <ol className="home-steps">
-              <li>Введение: роль «Плана Успеха»</li>
-              <li>Основные понятия</li>
-              <li>Принципы расчёта бонусов</li>
-              <li>Разбор контрольных примеров</li>
-              <li>Самостоятельная практика</li>
-              <li>Тест и источники</li>
-            </ol>
-          </div>
-          <Link className="btn btn--primary btn--block" to={successPlanModuleMeta.path}>
-            Открыть модуль
-          </Link>
-        </article>
-      </section>
+      <article className="module-teaser">
+        <div className="module-teaser__body">
+          <p className="eyebrow eyebrow--accent">Доступно</p>
+          <h2 className="module-teaser__title">{successPlanModuleMeta.title}</h2>
+          <p className="module-teaser__desc">
+            Как устроен маркетинг-план Oriflame: основные понятия, принципы
+            расчёта бонусов и разбор примеров.
+          </p>
+          <ul className="module-teaser__topics">
+            {MODULE_TOPICS.map((topic) => (
+              <li key={topic}>{topic}</li>
+            ))}
+          </ul>
+        </div>
+        <Link
+          className="btn btn--primary btn--block"
+          to={successPlanModuleMeta.path}
+        >
+          {continueLearning ? 'Продолжить обучение' : 'Начать обучение'}
+        </Link>
+      </article>
 
-      <section className="home-section">
-        <h2 className="section-title">В планах</h2>
-        <p className="muted">Эти разделы ещё не готовы - не открываются.</p>
+      <section className="home-section" aria-labelledby="planned-title">
+        <h2 id="planned-title" className="section-title">
+          В планах
+        </h2>
+        <p className="muted home-section__note">
+          Эти разделы ещё не готовы - пока не открываются.
+        </p>
         <ul className="planned-list">
           {plannedModules.map((mod) => (
             <li key={mod.id}>

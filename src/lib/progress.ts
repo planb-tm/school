@@ -18,6 +18,15 @@ export function createEmptyProgress(moduleId: string): LearningProgress {
   };
 }
 
+/** True if the learner already has any saved activity in this module. */
+export function hasLearningProgress(progress: LearningProgress): boolean {
+  return (
+    progress.completedTaskIds.length > 0 ||
+    Object.keys(progress.quizResults).length > 0 ||
+    Object.keys(progress.scenarioResults).length > 0
+  );
+}
+
 export function loadProgress(moduleId: string): LearningProgress {
   try {
     const raw = localStorage.getItem(storageKey(moduleId));

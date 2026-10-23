@@ -15,7 +15,10 @@ export function SuccessPlanHub() {
       <header className="module-hero">
         <p className="eyebrow">Модуль</p>
         <h1 className="page-title">{successPlanModuleMeta.title}</h1>
-        <p className="lead">{successPlanModuleMeta.subtitle}</p>
+        <p className="lead">
+          Как устроен маркетинг-план Oriflame: основные понятия, принципы расчёта
+          бонусов и разбор примеров.
+        </p>
       </header>
 
       <section className="panel" aria-label="Разделы модуля">
