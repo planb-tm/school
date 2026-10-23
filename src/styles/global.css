@@ -405,46 +405,6 @@ code {
   font-size: 1.2rem;
 }
 
-.app-header__nav {
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-}
-
-.app-header__nav .nav-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.35rem 0.6rem;
-  border-radius: var(--radius-pill);
-  color: var(--muted);
-  font-size: 0.8125rem;
-  font-weight: 650;
-  white-space: nowrap;
-  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
-}
-
-/* Logo already goes home - hide duplicate on narrow screens */
-.app-header__nav .nav-link--home {
-  display: none;
-}
-
-.app-header__nav .nav-link.active,
-.app-header__nav .nav-link:hover {
-  background: var(--info-soft);
-  color: var(--ink);
-}
-
-@media (min-width: 640px) {
-  .app-header__nav .nav-link--home {
-    display: inline-flex;
-  }
-
-  .app-header__nav .nav-link {
-    padding: 0.4rem 0.7rem;
-    font-size: var(--text-sm);
-  }
-}
-
 .install-app-btn {
   display: inline-flex;
   align-items: center;

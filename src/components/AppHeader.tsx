@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BrandMark } from './BrandMark';
 import { InstallAppButton } from './InstallAppButton';
 import { ThemeToggle } from './ThemeToggle';
@@ -12,17 +12,6 @@ export function AppHeader() {
           <span className="brand__name">planB</span>
         </Link>
         <div className="app-header__actions">
-          <nav className="app-header__nav" aria-label="Главная навигация">
-            <NavLink to="/" end className="nav-link nav-link--home">
-              Главная
-            </NavLink>
-            <NavLink to="/modules/success-plan-2026" className="nav-link">
-              Модуль
-            </NavLink>
-            <NavLink to="/tools" className="nav-link">
-              Инструменты
-            </NavLink>
-          </nav>
           <InstallAppButton />
           <ThemeToggle />
         </div>
