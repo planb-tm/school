@@ -23,8 +23,15 @@ npm run preview      # просмотр сборки
 
 ## GitHub Pages
 
-По умолчанию Vite `base` = `/school/` — соответствует текущему имени папки/предполагаемому репозиторию `school`.  
-Локального git remote пока нет: перед публикацией сверьте имя репозитория на GitHub и при необходимости переопределите base.
+По умолчанию Vite `base` = `/school/` - соответствует репозиторию [planb-tm/school](https://github.com/planb-tm/school).
+
+Сборка и публикация идут через GitHub Actions (`.github/workflows/ci.yml`):
+на каждый push в `main` - `typecheck` → `test` → `build` → deploy на Pages.
+
+Сайт: https://planb-tm.github.io/school/
+
+Один раз в настройках репозитория:
+**Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
 Если репозиторий называется иначе:
 
@@ -37,9 +44,6 @@ $env:VITE_BASE="/your-repo-name/"; npm run build
 # bash
 VITE_BASE=/your-repo-name/ npm run build
 ```
-
-Затем опубликуйте содержимое `dist/` в GitHub Pages (branch `gh-pages` или Actions).  
-Публикацию и push выполняйте только осознанно — скрипты проекта сами на GitHub ничего не отправляют.
 
 ## Структура
 
