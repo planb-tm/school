@@ -11,9 +11,6 @@ export function AppShell() {
       </main>
       <footer className="app-footer">
         <p>
-          planB - образовательный продукт команды Долиных Сергея и Надежды.
-        </p>
-        <p>
           Материалы не заменяют официальный кабинет Oriflame и актуальные
           правила компании.
         </p>
