@@ -21,7 +21,7 @@ export function HomePage() {
       <article className="module-teaser module-teaser--compact">
         <div className="module-teaser__body">
           <p className="eyebrow eyebrow--accent">Обучение</p>
-          <h2 className="module-teaser__title">План Успеха 2026</h2>
+          <h2 className="module-teaser__title">План Успеха</h2>
           <p className="module-teaser__desc">
             Разбор маркетинг-плана: понятия, условия, принципы расчёта бонусов и
             практические примеры.
