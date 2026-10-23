@@ -1,0 +1,100 @@
+import { useId, useState } from 'react';
+import type { LessonVideo } from '@/types/learning';
+import { resolveLessonVideoSrc } from '@/lib/lessonVideo';
+
+type Props = {
+  video: LessonVideo;
+};
+
+/**
+ * Lazy lesson video: renders only for allowlisted https sources.
+ * Does not autoplay; media loads after the user presses play.
+ */
+export function LessonVideoPlayer({ video }: Props) {
+  const titleId = useId();
+  const src = resolveLessonVideoSrc(video);
+  const [started, setStarted] = useState(false);
+
+  if (!src) return null;
+
+  const label = video.title ?? 'Видео';
+  const description = video.description ?? label;
+  const useCircle = Boolean(video.circlePreview && video.poster);
+
+  if (!started) {
+    return (
+      <div
+        className={
+          useCircle ? 'lesson-video lesson-video--circle' : 'lesson-video'
+        }
+      >
+        <button
+          type="button"
+          className={
+            useCircle
+              ? 'lesson-video__poster lesson-video__poster--circle'
+              : 'lesson-video__poster'
+          }
+          onClick={() => setStarted(true)}
+          aria-describedby={titleId}
+        >
+          {video.poster ? (
+            <img
+              src={video.poster}
+              alt=""
+              className="lesson-video__image"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <span className="lesson-video__placeholder" aria-hidden="true" />
+          )}
+          <span className="lesson-video__play" aria-hidden="true">
+            ▶
+          </span>
+          <span className="sr-only">Воспроизвести: {label}</span>
+        </button>
+        <div className="lesson-video__meta">
+          <p id={titleId} className="lesson-video__title">
+            {label}
+          </p>
+          {video.duration ? (
+            <p className="lesson-video__duration">{video.duration}</p>
+          ) : null}
+          <p className="lesson-video__alt">{description}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="lesson-video lesson-video--playing">
+      <div className="lesson-video__frame">
+        {video.type === 'mp4' ? (
+          <video
+            className="lesson-video__media"
+            src={src}
+            controls
+            playsInline
+            preload="metadata"
+            poster={video.poster}
+            title={label}
+          >
+            {description}
+          </video>
+        ) : (
+          <iframe
+            className="lesson-video__media"
+            src={`${src}${src.includes('?') ? '&' : '?'}autoplay=0`}
+            title={label}
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        )}
+      </div>
+      <p className="lesson-video__alt">{description}</p>
+    </div>
+  );
+}

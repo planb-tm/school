@@ -1,7 +1,4 @@
-import {
-  plannedModules,
-  successPlanModuleMeta,
-} from '@/data/success-plan-2026/module';
+import type { LessonVideo } from '@/types/learning';
 
 export type LearningCatalogStatus = 'available' | 'soon';
 
@@ -9,24 +6,55 @@ export type LearningCatalogItem = {
   id: string;
   title: string;
   description?: string;
-  path: string;
+  path?: string;
   status: LearningCatalogStatus;
+  /** Optional short video; omitted until a real source is chosen. */
+  video?: LessonVideo;
 };
 
+/**
+ * Target learning structure for newcomers.
+ * Content is added only after sources are verified — no invented rules.
+ */
 export const learningCatalog: LearningCatalogItem[] = [
   {
-    id: successPlanModuleMeta.id,
-    title: successPlanModuleMeta.title,
+    id: 'business-essence',
+    title: 'Суть бизнеса',
     description:
-      'Как устроен маркетинг-план Oriflame: основные понятия, принципы расчёта бонусов и разбор примеров.',
-    path: successPlanModuleMeta.path,
-    status: 'available',
+      'Участники, клиенты, рекомендации продукции, личная работа и развитие команды.',
+    status: 'soon',
   },
-  ...plannedModules.map((mod) => ({
-    id: mod.id,
-    title: mod.title,
-    description: mod.subtitle,
-    path: mod.path,
-    status: 'soon' as const,
-  })),
+  {
+    id: 'products-recommendations',
+    title: 'Продукты и рекомендации',
+    description: 'Обзор основной продукции в общих чертах.',
+    status: 'soon',
+  },
+  {
+    id: 'orders',
+    title: 'Работа с заказом',
+    description:
+      'Как выбрать продукты, оформить заказ, выбрать способ доставки и проверить условия.',
+    status: 'soon',
+  },
+  {
+    id: 'inviting',
+    title: 'Приглашение людей',
+    description:
+      'Как начать разговор, рассказать о возможностях, пригласить на знакомство и ответить на типичные вопросы.',
+    status: 'soon',
+  },
+  {
+    id: 'clients-partners',
+    title: 'Работа с клиентами и партнёрами',
+    description: 'Базовые сценарии коммуникации.',
+    status: 'soon',
+  },
+  {
+    id: 'marketing-plan-basics',
+    title: 'Основы маркетинг-плана',
+    description:
+      'Термины и общая логика вознаграждения. Подробный разбор и калькулятор — в разделе «Инструменты».',
+    status: 'soon',
+  },
 ];

@@ -17,7 +17,7 @@ const ITEMS = [
     label: 'Обучение',
     icon: IconLearn,
     isActive: (pathname: string) =>
-      pathname === '/learn' || pathname.startsWith('/modules/'),
+      pathname === '/learn' || pathname.startsWith('/learn/'),
   },
   {
     id: 'tools',
@@ -25,7 +25,8 @@ const ITEMS = [
     end: false,
     label: 'Инструменты',
     icon: IconTools,
-    isActive: (pathname: string) => pathname.startsWith('/tools'),
+    isActive: (pathname: string) =>
+      pathname.startsWith('/tools') || pathname.startsWith('/modules/'),
   },
 ] as const;
 

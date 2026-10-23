@@ -719,6 +719,18 @@ code {
   font-size: 0.95rem;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* --- Home --- */
 .home-page {
   display: grid;
@@ -746,8 +758,158 @@ code {
   font-weight: 750;
   line-height: var(--leading-tight);
   letter-spacing: -0.025em;
-  max-width: 22ch;
+  max-width: 24ch;
   overflow-wrap: break-word;
+}
+
+.home-hub-card {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1rem 0.95rem 1.05rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  transition:
+    border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.home-hub-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  transform: translateY(-1px);
+}
+
+.home-hub-card__desc {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.home-hub-card__note {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 650;
+}
+
+.tools-card-stack {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.lesson-video {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.lesson-video--circle {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.lesson-video__poster {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+}
+
+.lesson-video__poster--circle {
+  width: 4.5rem;
+  height: 4.5rem;
+  aspect-ratio: 1;
+  border-radius: 999px;
+}
+
+.lesson-video__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lesson-video__placeholder {
+  width: 100%;
+  height: 100%;
+  background: color-mix(in srgb, var(--accent) 35%, var(--surface-2));
+}
+
+.lesson-video__play {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 82%, transparent);
+  color: #fff;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.lesson-video__poster--circle .lesson-video__play {
+  width: 1.85rem;
+  height: 1.85rem;
+  font-size: 0.7rem;
+}
+
+.lesson-video__meta {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.lesson-video__title {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.lesson-video__duration {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--muted);
+}
+
+.lesson-video__alt {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.lesson-video__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.lesson-video__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
 }
 
 .home-intro__lead {
@@ -1779,7 +1941,7 @@ code {
   }
 
   .home-intro__title {
-    max-width: 28ch;
+    max-width: 32ch;
   }
 
   .module-teaser {

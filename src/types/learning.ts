@@ -2,6 +2,25 @@
 
 export type VerificationStatus = 'verified' | 'needs_review' | 'outdated';
 
+/**
+ * Optional short lesson video. Omit until a real hosting URL is chosen.
+ * Only https URLs are accepted by the player; embeds are allowlisted.
+ */
+export type LessonVideoType = 'embed' | 'mp4';
+
+export interface LessonVideo {
+  type: LessonVideoType;
+  url: string;
+  poster?: string;
+  title?: string;
+  /** Human-readable duration, e.g. "1:20". */
+  duration?: string;
+  /** Short text alternative / description for accessibility. */
+  description?: string;
+  /** Compact circular preview that opens the full player. */
+  circlePreview?: boolean;
+}
+
 export type KnowledgeCardType =
   | 'concept'
   | 'rule'
