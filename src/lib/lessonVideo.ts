@@ -9,6 +9,8 @@ const EMBED_HOSTS = new Set([
   'youtu.be',
   'player.vimeo.com',
   'vimeo.com',
+  'kinescope.io',
+  'www.kinescope.io',
   'vkvideo.ru',
   'www.vkvideo.ru',
   'vk.com',
@@ -22,10 +24,22 @@ function vkEmbedSrc(url: URL): string | null {
   const id = match[2];
   if (!oid || !id) return null;
   const list = url.searchParams.get('list');
-  const listParam = list
-    ? `&list=${encodeURIComponent(list)}`
-    : '';
+  const listParam = list ? `&list=${encodeURIComponent(list)}` : '';
   return `https://vkvideo.ru/video_ext.php?oid=${encodeURIComponent(oid)}&id=${encodeURIComponent(id)}&hd=2${listParam}`;
+}
+
+function kinescopeEmbedSrc(url: URL): string | null {
+  const parts = url.pathname.split('/').filter(Boolean);
+  if (parts.length === 0) return null;
+
+  if (parts[0] === 'embed' && parts[1]) {
+    if (!/^[\w-]+$/.test(parts[1])) return null;
+    return `https://kinescope.io/embed/${parts[1]}`;
+  }
+
+  const id = parts[0];
+  if (!id || !/^[\w-]+$/.test(id)) return null;
+  return `https://kinescope.io/embed/${id}`;
 }
 
 function parseHttpsUrl(raw: string): URL | null {
@@ -83,6 +97,10 @@ export function resolveLessonVideoSrc(
 
     if (url.hostname === 'player.vimeo.com') {
       return url.href;
+    }
+
+    if (url.hostname.includes('kinescope')) {
+      return kinescopeEmbedSrc(url);
     }
 
     if (url.hostname.includes('vk')) {

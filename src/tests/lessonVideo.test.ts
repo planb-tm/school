@@ -32,15 +32,13 @@ describe('resolveLessonVideoSrc', () => {
     ).toBe('https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?rel=0');
   });
 
-  it('builds vkvideo embed urls', () => {
+  it('builds kinescope embed urls', () => {
     expect(
       resolveLessonVideoSrc({
         type: 'embed',
-        url: 'https://vkvideo.ru/video-212712920_456239357',
+        url: 'https://kinescope.io/87pANSt571Np3CPcvdZc1d',
       }),
-    ).toBe(
-      'https://vkvideo.ru/video_ext.php?oid=-212712920&id=456239357&hd=2',
-    );
+    ).toBe('https://kinescope.io/embed/87pANSt571Np3CPcvdZc1d');
   });
 });
 

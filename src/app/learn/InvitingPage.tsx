@@ -148,7 +148,7 @@ export function InvitingPage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Открыть видео на VK Video
+                Открыть видео
               </a>
             </div>
             <p className="ref-note">
