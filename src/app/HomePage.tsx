@@ -1,18 +1,10 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  plannedModules,
   SUCCESS_PLAN_MODULE_ID,
   successPlanModuleMeta,
 } from '@/data/success-plan-2026/module';
 import { hasLearningProgress, loadProgress } from '@/lib/progress';
-
-const MODULE_TOPICS = [
-  'Основные понятия',
-  'Принципы расчёта',
-  'Практические примеры',
-  'Проверка знаний',
-] as const;
 
 export function HomePage() {
   const continueLearning = useMemo(() => {
@@ -30,25 +22,20 @@ export function HomePage() {
         </p>
       </header>
 
-      <article className="module-teaser">
+      <article className="module-teaser module-teaser--compact">
         <div className="module-teaser__body">
-          <p className="eyebrow eyebrow--accent">Доступно</p>
+          <p className="eyebrow eyebrow--accent">Обучение</p>
           <h2 className="module-teaser__title">{successPlanModuleMeta.title}</h2>
           <p className="module-teaser__desc">
-            Как устроен маркетинг-план Oriflame: основные понятия, принципы
-            расчёта бонусов и разбор примеров.
+            Модули по маркетинг-плану и программам Oriflame - с примерами и
+            проверкой знаний.
           </p>
-          <ul className="module-teaser__topics">
-            {MODULE_TOPICS.map((topic) => (
-              <li key={topic}>{topic}</li>
-            ))}
-          </ul>
         </div>
         <Link
           className="btn btn--primary btn--block"
-          to={successPlanModuleMeta.path}
+          to={continueLearning ? successPlanModuleMeta.path : '/learn'}
         >
-          {continueLearning ? 'Продолжить обучение' : 'Начать обучение'}
+          {continueLearning ? 'Продолжить обучение' : 'Открыть обучение'}
         </Link>
       </article>
 
@@ -63,26 +50,6 @@ export function HomePage() {
           Открыть инструменты
         </Link>
       </article>
-
-      <section className="home-section" aria-labelledby="planned-title">
-        <h2 id="planned-title" className="section-title">
-          В планах
-        </h2>
-        <p className="muted home-section__note">
-          Эти разделы ещё не готовы - пока не открываются.
-        </p>
-        <ul className="planned-list">
-          {plannedModules.map((mod) => (
-            <li key={mod.id}>
-              <span>{mod.title}</span>
-              <span className="status-badge status-badge--needs_review status-badge--compact">
-                <span className="status-badge__dot" aria-hidden="true" />
-                <span className="status-badge__label">Скоро</span>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
     </div>
   );
 }

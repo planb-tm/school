@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { AppShell } from '@/components/AppShell';
 import { HomePage } from './HomePage';
+import { LearnPage } from './LearnPage';
 import { ToolsPage } from './ToolsPage';
 import { InfoSheetPage } from './tools/InfoSheetPage';
 import { SuccessPlanLayout } from '@/features/success-plan-2026/SuccessPlanLayout';
@@ -12,6 +13,7 @@ export function AppRouter() {
     <Routes>
       <Route element={<AppShell />}>
         <Route index element={<HomePage />} />
+        <Route path="learn" element={<LearnPage />} />
         <Route path="tools" element={<ToolsPage />} />
         <Route path="tools/info-sheet" element={<InfoSheetPage />} />
         <Route path="modules/success-plan-2026" element={<SuccessPlanLayout />}>

@@ -12,6 +12,9 @@ export function SuccessPlanHub() {
 
   return (
     <div className="module-page">
+      <Link to="/learn" className="tools-back">
+        ← К обучению
+      </Link>
       <header className="module-hero">
         <p className="eyebrow">Модуль</p>
         <h1 className="page-title">{successPlanModuleMeta.title}</h1>
