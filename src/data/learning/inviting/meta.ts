@@ -1,7 +1,7 @@
 import type { InvitingSectionId } from './types';
 
 export const BUSINESS_ESSENCE_VIDEO_URL =
-  'https://vkvideo.ru/video-212712920_456239357';
+  'https://vkvideo.ru/video-212712920_456239357?list=ln-Wg0l81eCejcW8E3XPu';
 
 export const invitingLessonMeta = {
   id: 'inviting-objections',

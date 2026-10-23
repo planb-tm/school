@@ -21,7 +21,11 @@ function vkEmbedSrc(url: URL): string | null {
   const oid = match[1];
   const id = match[2];
   if (!oid || !id) return null;
-  return `https://vkvideo.ru/video_ext.php?oid=${encodeURIComponent(oid)}&id=${encodeURIComponent(id)}&hd=2`;
+  const list = url.searchParams.get('list');
+  const listParam = list
+    ? `&list=${encodeURIComponent(list)}`
+    : '';
+  return `https://vkvideo.ru/video_ext.php?oid=${encodeURIComponent(oid)}&id=${encodeURIComponent(id)}&hd=2${listParam}`;
 }
 
 function parseHttpsUrl(raw: string): URL | null {

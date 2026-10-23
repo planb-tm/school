@@ -36,10 +36,10 @@ describe('resolveLessonVideoSrc', () => {
     expect(
       resolveLessonVideoSrc({
         type: 'embed',
-        url: 'https://vkvideo.ru/video-212712920_456239357',
+        url: 'https://vkvideo.ru/video-212712920_456239357?list=ln-Wg0l81eCejcW8E3XPu',
       }),
     ).toBe(
-      'https://vkvideo.ru/video_ext.php?oid=-212712920&id=456239357&hd=2',
+      'https://vkvideo.ru/video_ext.php?oid=-212712920&id=456239357&hd=2&list=ln-Wg0l81eCejcW8E3XPu',
     );
   });
 });
