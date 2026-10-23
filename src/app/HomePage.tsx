@@ -52,6 +52,20 @@ export function HomePage() {
         </Link>
       </article>
 
+      <article className="module-teaser module-teaser--compact">
+        <div className="module-teaser__body">
+          <p className="eyebrow eyebrow--accent">Инструменты</p>
+          <h2 className="module-teaser__title">Информационный листок</h2>
+          <p className="module-teaser__desc">
+            Загрузите Excel-отчёт и разберите структуру команды прямо в
+            браузере. Данные не уходят на сервер.
+          </p>
+        </div>
+        <Link className="btn btn--secondary btn--block" to="/tools">
+          Открыть инструменты
+        </Link>
+      </article>
+
       <section className="home-section" aria-labelledby="planned-title">
         <h2 id="planned-title" className="section-title">
           В планах

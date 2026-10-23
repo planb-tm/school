@@ -172,3 +172,29 @@ export function IconMoon({ className = '', size = 18 }: IconProps) {
     </svg>
   );
 }
+
+export function IconTools({ className = '', size = 22 }: IconProps) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3.5 17.5l3 3 5.6-5.6a4 4 0 0 0 5.6-5.6L15.5 11l-2.5-2.5 1.7-2.2Z"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinejoin="round"
+      />
+      <path
+        d="m16.5 3.5 4 4"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}

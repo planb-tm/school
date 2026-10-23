@@ -19,6 +19,9 @@ export function AppHeader() {
             <NavLink to="/modules/success-plan-2026" className="nav-link">
               Модуль
             </NavLink>
+            <NavLink to="/tools" className="nav-link">
+              Инструменты
+            </NavLink>
           </nav>
           <InstallAppButton />
           <ThemeToggle />

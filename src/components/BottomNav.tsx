@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { IconHome, IconLearn } from './Icons';
+import { IconHome, IconLearn, IconTools } from './Icons';
 
 const ITEMS = [
   { to: '/', end: true, label: 'Главная', icon: IconHome },
@@ -9,6 +9,7 @@ const ITEMS = [
     label: 'Обучение',
     icon: IconLearn,
   },
+  { to: '/tools', end: false, label: 'Инструменты', icon: IconTools },
 ] as const;
 
 export function BottomNav() {
