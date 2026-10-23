@@ -25,10 +25,6 @@ export function SuccessPlanHub() {
       </header>
 
       <section className="panel" aria-label="Разделы модуля">
-        <header className="panel__header">
-          <h2>Разделы</h2>
-          <p>Открывай по одному - так проще вернуться к оглавлению модуля.</p>
-        </header>
         <ol className="module-toc">
           {MODULE_SECTIONS.map((section, index) => (
             <li key={section.id}>
