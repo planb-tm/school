@@ -63,7 +63,7 @@ export function PhoneActions({ phone }: Props) {
     }
     openExternal(telegram);
     showToast(
-      'Открываем Telegram. Если чат не найден — номер скрыт или не зарегистрирован.',
+      'Открываем Telegram. Если чат не найден - номер скрыт или не зарегистрирован.',
     );
   };
 
@@ -101,7 +101,7 @@ export function PhoneActions({ phone }: Props) {
       {open ? (
         <div className={styles.phoneMenu} id={menuId} role="menu">
           <p className={styles.phoneMenuNote}>
-            Приложение не проверяет регистрацию в мессенджерах на сервере —
+            Приложение не проверяет регистрацию в мессенджерах на сервере -
             открывается выбранный клиент на вашем устройстве.
           </p>
           <button type="button" className={styles.phoneMenuItem} role="menuitem" onClick={onCall}>

@@ -1,11 +1,5 @@
 import type { InvitingSectionId } from './types';
 
-export const BUSINESS_ESSENCE_VIDEO_URL =
-  'https://kinescope.io/87pANSt571Np3CPcvdZc1d';
-
-/** Static poster so the preview is visible before the embed loads. */
-export const BUSINESS_ESSENCE_VIDEO_POSTER = `${import.meta.env.BASE_URL}media/business-essence-poster.jpg`;
-
 export const invitingLessonMeta = {
   id: 'inviting-objections',
   title: 'Приглашения и возражения',
@@ -43,6 +37,3 @@ export const invitingSections: {
     hint: 'Основные принципы работы с контактами.',
   },
 ];
-
-export const invitationsIntro =
-  'Не нужно сразу рассказывать человеку обо всём бизнесе и отвечать на все возможные вопросы. На первом этапе достаточно предложить посмотреть видео о сути бизнеса, а затем обсудить, что ему интересно.';

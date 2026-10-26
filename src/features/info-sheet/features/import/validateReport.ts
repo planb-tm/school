@@ -132,7 +132,7 @@ export function validateReport(input: ValidateInput): ImportValidation {
     });
   }
 
-  // Критическая ошибка спонсора не блокирует список — только дерево.
+  // Критическая ошибка спонсора не блокирует список - только дерево.
   // Переносим отсутствие спонсора из critical в предупреждение, если остальные поля есть.
   const sponsorCriticalIndex = criticalErrors.findIndex((e) =>
     e.includes('спонсора'),

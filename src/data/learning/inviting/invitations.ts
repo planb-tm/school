@@ -1,4 +1,4 @@
-import { BUSINESS_ESSENCE_VIDEO_URL } from './meta';
+import { BUSINESS_ESSENCE_VIDEO_URL } from '../businessEssence';
 import type { InvitationTemplate } from './types';
 
 const V = BUSINESS_ESSENCE_VIDEO_URL;

@@ -334,7 +334,7 @@ export function PartnerCard() {
               type="button"
               className={styles.btnSoft}
               onClick={() => {
-                // Корень анализа не меняем — открываем структуру с поиском по этому человеку
+                // Корень анализа не меняем - открываем структуру с поиском по этому человеку
                 setTab('structure');
               }}
             >
@@ -346,7 +346,7 @@ export function PartnerCard() {
 
         {!hasSponsorField ? (
           <p className={styles.muted}>
-            Поле спонсора не распознано — список нижестоящих недоступен.
+            Поле спонсора не распознано - список нижестоящих недоступен.
           </p>
         ) : directs.length === 0 ? (
           <p className={styles.muted}>Нет непосредственных партнёров в отчёте.</p>

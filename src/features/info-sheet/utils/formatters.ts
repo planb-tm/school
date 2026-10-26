@@ -3,7 +3,7 @@ export function toPartnerId(value: unknown): string | null {
   if (value === null || value === undefined || value === '') return null;
   if (typeof value === 'number') {
     if (!Number.isFinite(value)) return null;
-    // Excel может отдать число — без научной нотации и без потери целой части
+    // Excel может отдать число - без научной нотации и без потери целой части
     return String(Math.trunc(value));
   }
   const raw = String(value).trim();
@@ -23,7 +23,7 @@ export function toNullableNumber(value: unknown): number | null {
     return Number.isFinite(value) ? value : null;
   }
   let raw = String(value).trim();
-  if (!raw || raw === '-' || raw === '—') return null;
+  if (!raw || raw === '-' || raw === '\u2014') return null;
 
   raw = raw.replace(/\s+/g, '').replace(/\u00a0/g, '');
   // 1 234,56 или 1234.56
@@ -57,7 +57,7 @@ export function formatPartnerLabel(
   number: string,
   name: string | null | undefined,
 ): string {
-  return name ? `${number} — ${name}` : number;
+  return name ? `${number} - ${name}` : number;
 }
 
 export function displayOrEmpty(value: string | null | undefined): string {

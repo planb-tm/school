@@ -1,6 +1,7 @@
 import type { LessonVideo } from '@/types/learning';
+import { businessEssenceMeta } from './businessEssence';
 import { invitingLessonMeta } from './inviting';
-import { productsLessonMeta } from './products';
+import { firstOrderModuleMeta } from './firstOrder';
 
 export type LearningCatalogStatus = 'available' | 'soon';
 
@@ -16,29 +17,22 @@ export type LearningCatalogItem = {
 
 /**
  * Target learning structure for newcomers.
- * Content is added only after sources are verified — no invented rules.
+ * Content is added only after sources are verified - no invented rules.
  */
 export const learningCatalog: LearningCatalogItem[] = [
   {
-    id: 'business-essence',
-    title: 'Суть бизнеса',
-    description:
-      'Как устроен бизнес Oriflame, зачем нужен товарооборот и как он формируется за счёт заказов клиентов и команды',
-    status: 'soon',
-  },
-  {
-    id: productsLessonMeta.id,
-    title: productsLessonMeta.title,
-    description: productsLessonMeta.catalogDescription,
-    path: productsLessonMeta.path,
+    id: businessEssenceMeta.id,
+    title: businessEssenceMeta.title,
+    description: businessEssenceMeta.catalogDescription,
+    path: businessEssenceMeta.path,
     status: 'available',
   },
   {
-    id: 'orders',
-    title: 'Работа с заказом',
-    description:
-      'Как выбрать продукты, оформить заказ, выбрать способ доставки и проверить условия.',
-    status: 'soon',
+    id: firstOrderModuleMeta.id,
+    title: firstOrderModuleMeta.title,
+    description: firstOrderModuleMeta.catalogDescription,
+    path: firstOrderModuleMeta.path,
+    status: 'available',
   },
   {
     id: invitingLessonMeta.id,
@@ -57,7 +51,7 @@ export const learningCatalog: LearningCatalogItem[] = [
     id: 'marketing-plan-basics',
     title: 'Основы маркетинг-плана',
     description:
-      'Термины и общая логика вознаграждения. Подробный разбор и калькулятор — в разделе «Инструменты».',
+      'Термины и общая логика вознаграждения. Подробный разбор и калькулятор - в разделе «Инструменты».',
     status: 'soon',
   },
 ];

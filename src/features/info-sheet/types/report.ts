@@ -106,7 +106,7 @@ export type SessionState = {
   structureSearch: string;
   importError: string | null;
   isParsing: boolean;
-  /** Откуда открыли карточку — для кнопки «Назад» */
+  /** Откуда открыли карточку - для кнопки «Назад» */
   cardReturnTab: DashboardTab | null;
   partnersIntent: PartnersIntent;
   toastMessage: string | null;

@@ -304,7 +304,7 @@ export function OverviewPanel() {
             <li className={styles.infoItem}>
               <div className={styles.infoRowStatic}>
                 <span>Критичных проблем со связями не отмечено</span>
-                <strong>—</strong>
+                <strong>-</strong>
               </div>
             </li>
           )}

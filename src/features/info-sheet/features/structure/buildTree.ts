@@ -35,7 +35,7 @@ export function buildStructureTree(
       missingChildrenSkipped: 0,
       canBuild: false,
       message:
-        'В отчёте нет достоверного поля спонсора — дерево структуры недоступно.',
+        'В отчёте нет достоверного поля спонсора - дерево структуры недоступно.',
     };
   }
 

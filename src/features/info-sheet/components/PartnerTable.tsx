@@ -62,7 +62,7 @@ export function PartnerTable({ hits, onSelect }: Props) {
                     </span>
                   </div>
                 </td>
-                <td>{partner.sponsorNumber ?? '—'}</td>
+                <td>{partner.sponsorNumber ?? '-'}</td>
                 <td>{formatNumber(partner.personalBB)}</td>
                 <td>{formatNumber(partner.groupBB)}</td>
               </tr>
@@ -89,7 +89,7 @@ export function PartnerTable({ hits, onSelect }: Props) {
               </span>
             </div>
             <div className={styles.muted}>
-              Спонсор {partner.sponsorNumber ?? '—'} · ББ{' '}
+              Спонсор {partner.sponsorNumber ?? '-'} · ББ{' '}
               {formatNumber(partner.personalBB)} · ПГ{' '}
               {formatNumber(partner.groupBB)}
             </div>

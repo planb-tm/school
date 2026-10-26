@@ -145,7 +145,7 @@ export function normalizeRows(
     partner.rawFields = rawFields;
 
     if (!partner.partnerNumber) {
-      // Строка без номера — учитывается в валидации как пропуск ключевого поля
+      // Строка без номера - учитывается в валидации как пропуск ключевого поля
       partners.push(partner);
       continue;
     }

@@ -1,14 +1,10 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyTextButton } from '@/components/CopyTextButton';
-import { LessonVideoPlayer } from '@/components/LessonVideoPlayer';
 import {
-  BUSINESS_ESSENCE_VIDEO_POSTER,
-  BUSINESS_ESSENCE_VIDEO_URL,
   communicationRules,
   followupTemplates,
   invitationTemplates,
-  invitationsIntro,
   invitingIntro,
   invitingLessonMeta,
   invitingSections,
@@ -128,36 +124,10 @@ export function InvitingPage() {
 
       {section === 'invitations' ? (
         <section className="stack" aria-label="Первые приглашения">
-          <div className="panel panel--soft">
-            <p className="info-list__desc">{invitationsIntro}</p>
-            <div className="ref-video">
-              <LessonVideoPlayer
-                video={{
-                  type: 'embed',
-                  url: BUSINESS_ESSENCE_VIDEO_URL,
-                  poster: BUSINESS_ESSENCE_VIDEO_POSTER,
-                  aspectRatio: '9:16',
-                  title: 'Видео о сути бизнеса Oriflame',
-                  duration: '~20 мин',
-                  description:
-                    'Видео Надежды Долиной о сути бизнеса Oriflame. Открой по кнопке воспроизведения или по ссылке ниже.',
-                }}
-              />
-              <a
-                className="external-links__item"
-                href={BUSINESS_ESSENCE_VIDEO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Открыть видео
-              </a>
-            </div>
-            <p className="ref-note">
-              Шаблоны ниже - альтернативы. Не отправляй их все одному человеку
-              подряд.
-            </p>
-          </div>
-
+          <p className="ref-note">
+            Шаблоны ниже - альтернативы. Не отправляй их все одному человеку
+            подряд.
+          </p>
           {invitations.length === 0 ? (
             <p className="muted">Ничего не найдено. Измени запрос поиска.</p>
           ) : (

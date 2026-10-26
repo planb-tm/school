@@ -17,7 +17,7 @@ export const productsIntro = [
   'Давай посмотрим, какая продукция представлена в Oriflame и что можно найти для себя.',
 ] as const;
 
-/** High-level assortment overview — not a product catalogue. */
+/** High-level assortment overview - not a product catalogue. */
 export const productCategories: ProductCategory[] = [
   {
     id: 'fragrance',
@@ -56,7 +56,7 @@ export const productCategories: ProductCategory[] = [
   },
 ];
 
-/** Official Oriflame Russia (RU) links — verified against oriflame.ru. */
+/** Official Oriflame Russia (RU) links - verified against oriflame.ru. */
 export const productsOutro = {
   text: 'Здесь мы рассмотрели основные категории продукции Oriflame. Подробную информацию о каждом продукте можно найти на официальном сайте компании и в электронном каталоге.',
   links: [

@@ -1,11 +1,4 @@
-export {
-  BUSINESS_ESSENCE_VIDEO_POSTER,
-  BUSINESS_ESSENCE_VIDEO_URL,
-  invitationsIntro,
-  invitingIntro,
-  invitingLessonMeta,
-  invitingSections,
-} from './meta';
+export { invitingIntro, invitingLessonMeta, invitingSections } from './meta';
 export { invitationTemplates } from './invitations';
 export { objectionCategories, objectionItems } from './objections';
 export { followupTemplates } from './followups';
