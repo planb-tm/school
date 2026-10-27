@@ -51,10 +51,16 @@ export const firstOrderStages: FirstOrderStage[] = [
     cardDescription: 'Короткое введение',
     icon: 'box',
     contentType: 'video',
-    status: 'draft',
+    status: 'ready',
     order: 1,
-    placeholder:
-      'Здесь будет короткое видео Надежды о том, почему удобно начать знакомство с партнёрством с первого заказа и на что обратить внимание перед оформлением',
+    video: {
+      type: 'mp4',
+      url: `${import.meta.env.BASE_URL}media/orders/why-first-order.mp4`,
+      title: 'Почему начать с первого заказа',
+      duration: '32 сек',
+      description: 'Короткое видео перед выбором товаров и оформлением заказа.',
+      aspectRatio: '1:1',
+    },
   },
   {
     id: 'product-introduction',

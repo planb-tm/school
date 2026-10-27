@@ -1071,6 +1071,13 @@ code {
   object-position: center;
 }
 
+.lesson-video--square .lesson-video__poster,
+.lesson-video--square .lesson-video__frame {
+  width: min(100%, 24rem);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
 .lesson-video__poster--circle {
   width: 4.5rem;
   height: 4.5rem;

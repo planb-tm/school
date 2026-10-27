@@ -36,7 +36,7 @@ describe('Первый заказ', () => {
     ]);
   });
 
-  it('has six ordered stages and meaningful copy for the draft materials', () => {
+  it('has six ordered stages and marks only completed materials as ready', () => {
     expect(getVisibleFirstOrderStages().map((stage) => stage.order)).toEqual([1, 2, 3, 4, 5, 6]);
     expect(getVisibleFirstOrderStages().map((stage) => stage.path)).toEqual([
       '/learn/orders/why-first-order',
@@ -46,9 +46,15 @@ describe('Первый заказ', () => {
       '/learn/orders/delivery',
       '/learn/orders/final-check',
     ]);
-    expect(firstOrderStages[0].placeholder).toContain('короткое видео Надежды');
+    expect(firstOrderStages[0].video).toMatchObject({
+      type: 'mp4',
+      title: 'Почему начать с первого заказа',
+      duration: '32 сек',
+      aspectRatio: '1:1',
+    });
+    expect(firstOrderStages[0].video?.url).toContain('media/orders/why-first-order.mp4');
     expect(firstOrderStages[2].placeholder).toContain('несколько каталогов');
-    expect(firstOrderStages[0].status).toBe('draft');
+    expect(firstOrderStages[0].status).toBe('ready');
     expect(firstOrderStages[2].status).toBe('draft');
     expect(firstOrderStages[4].links?.[0]).toMatchObject({
       label: 'Официальный сайт Oriflame - раздел «Помощь»',

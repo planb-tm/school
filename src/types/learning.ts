@@ -3,12 +3,12 @@
 export type VerificationStatus = 'verified' | 'needs_review' | 'outdated';
 
 /**
- * Optional short lesson video. Omit until a real hosting URL is chosen.
- * Only https URLs are accepted by the player; embeds are allowlisted.
+ * Optional short lesson video. Embeds use allowlisted https sources; MP4 may
+ * also use a same-origin absolute path for locally hosted lesson assets.
  */
 export type LessonVideoType = 'embed' | 'mp4';
 
-export type LessonVideoAspect = '16:9' | '9:16';
+export type LessonVideoAspect = '16:9' | '9:16' | '1:1';
 
 export interface LessonVideo {
   type: LessonVideoType;

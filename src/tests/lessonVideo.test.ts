@@ -23,6 +23,18 @@ describe('resolveLessonVideoSrc', () => {
     ).toBe('https://cdn.example.com/lesson.mp4');
   });
 
+  it('accepts same-origin MP4 assets and rejects protocol-relative paths', () => {
+    expect(
+      resolveLessonVideoSrc({
+        type: 'mp4',
+        url: '/school/media/orders/why-first-order.mp4',
+      }),
+    ).toBe('/school/media/orders/why-first-order.mp4');
+    expect(
+      resolveLessonVideoSrc({ type: 'mp4', url: '//cdn.example.com/video.mp4' }),
+    ).toBeNull();
+  });
+
   it('normalizes youtube watch links to nocookie embed', () => {
     expect(
       resolveLessonVideoSrc({

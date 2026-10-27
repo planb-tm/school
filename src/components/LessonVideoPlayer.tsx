@@ -21,10 +21,12 @@ export function LessonVideoPlayer({ video }: Props) {
   const description = video.description ?? label;
   const useCircle = Boolean(video.circlePreview && video.poster);
   const isPortrait = video.aspectRatio === '9:16';
+  const isSquare = video.aspectRatio === '1:1';
   const rootClass = [
     'lesson-video',
     useCircle ? 'lesson-video--circle' : '',
     isPortrait ? 'lesson-video--portrait' : '',
+    isSquare ? 'lesson-video--square' : '',
     started ? 'lesson-video--playing' : '',
   ]
     .filter(Boolean)
