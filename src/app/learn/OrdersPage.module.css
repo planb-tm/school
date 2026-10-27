@@ -3,6 +3,7 @@
 }
 
 .lesson :global(.lesson-intro p),
+.lesson :global(.lesson-video-summary p),
 .lesson :global(.callout p),
 .lesson :global(.plain-list),
 .lesson :global(.bodyText) {

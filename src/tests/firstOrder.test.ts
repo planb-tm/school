@@ -57,6 +57,8 @@ describe('Первый заказ', () => {
       'media/orders/planb-video-preview.jpg',
     );
     expect(firstOrderStages[0].description).toBeUndefined();
+    expect(firstOrderStages[0].summary).toHaveLength(4);
+    expect(firstOrderStages[0].summary?.[3]).toContain('акции для новых партнёров');
     expect(firstOrderStages[2].placeholder).toContain('несколько каталогов');
     expect(firstOrderStages[0].status).toBe('ready');
     expect(firstOrderStages[2].status).toBe('draft');

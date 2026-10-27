@@ -153,7 +153,18 @@ function OrderChecklist() {
 function renderStageContent(stage: FirstOrderStage) {
   switch (stage.contentType) {
     case 'video':
-      return stage.video ? <LessonVideoPlayer video={stage.video} /> : null;
+      return (
+        <>
+          {stage.video ? <LessonVideoPlayer video={stage.video} /> : null}
+          {stage.summary?.length ? (
+            <div className="lesson-video-summary">
+              {stage.summary.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          ) : null}
+        </>
+      );
     case 'text':
       return <ProductIntroduction />;
     case 'starter-program':

@@ -22,6 +22,8 @@ export type FirstOrderStage = {
   path: string;
   title: string;
   description?: string;
+  /** Text summary under the stage media (e.g. video transcript). */
+  summary?: readonly string[];
   cardDescription: string;
   icon: FirstOrderStageIcon;
   contentType: FirstOrderContentType;
@@ -63,6 +65,12 @@ export const firstOrderStages: FirstOrderStage[] = [
       aspectRatio: '1:1',
       shape: 'circle',
     },
+    summary: [
+      'Первый заказ — это возможность воспользоваться специальными предложениями для новых партнёров. Если не оформить заказ, эти преимущества останутся недоступными.',
+      'Также ты сразу разберёшься, как работает сайт, как оформлять заказы и как устроена доставка.',
+      'Посмотри, что заканчивается дома: косметика, средства для ухода, товары для ванной комнаты. Можно также объединить заказ с покупками друзей и родственников.',
+      'Перед оформлением обязательно изучи все акции для новых партнёров, чтобы получить максимум от первого заказа.',
+    ],
   },
   {
     id: 'product-introduction',
