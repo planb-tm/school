@@ -42,6 +42,9 @@ export const firstOrderModuleMeta = {
     'Разберись в продукции, выбери нужные товары, изучи предложения для новичков и научись оформлять заказ',
 } as const;
 
+/** Cover for the circular intro video on «Почему начать с первого заказа». */
+export const FIRST_ORDER_INTRO_VIDEO_POSTER = `${import.meta.env.BASE_URL}media/orders/planb-video-preview.jpg`;
+
 export const firstOrderStages: FirstOrderStage[] = [
   {
     id: 'why-first-order',
@@ -55,6 +58,7 @@ export const firstOrderStages: FirstOrderStage[] = [
     video: {
       type: 'embed',
       url: 'https://kinescope.io/5dNj1xN4vQ67g3prZPVe5Y',
+      poster: FIRST_ORDER_INTRO_VIDEO_POSTER,
       title: 'Почему начать с первого заказа',
       aspectRatio: '1:1',
       shape: 'circle',

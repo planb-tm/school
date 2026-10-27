@@ -53,6 +53,9 @@ describe('Первый заказ', () => {
       shape: 'circle',
     });
     expect(firstOrderStages[0].video?.url).toBe('https://kinescope.io/5dNj1xN4vQ67g3prZPVe5Y');
+    expect(firstOrderStages[0].video?.poster).toContain(
+      'media/orders/planb-video-preview.jpg',
+    );
     expect(firstOrderStages[0].description).toBeUndefined();
     expect(firstOrderStages[2].placeholder).toContain('несколько каталогов');
     expect(firstOrderStages[0].status).toBe('ready');

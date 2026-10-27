@@ -1096,6 +1096,11 @@ code {
     var(--surface-2);
 }
 
+.lesson-video--circular .lesson-video__image {
+  object-fit: cover;
+  object-position: center 18%;
+}
+
 .lesson-video--circular .lesson-video__media {
   left: 50%;
   width: 177.78%;
