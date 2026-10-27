@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { LessonVideoPlayer } from '@/components/LessonVideoPlayer';
 import {
-  businessEssenceIntro,
   businessEssenceMeta,
   businessEssenceVideo,
 } from '@/data/learning/businessEssence';
@@ -15,9 +14,6 @@ export function BusinessEssencePage() {
 
       <header className="home-intro">
         <h1 className="home-intro__title">{businessEssenceMeta.title}</h1>
-        <div className="lesson-intro">
-          <p>{businessEssenceIntro}</p>
-        </div>
       </header>
 
       <section className="panel panel--soft" aria-label="Видео о сути бизнеса">

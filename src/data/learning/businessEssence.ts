@@ -13,9 +13,6 @@ export const BUSINESS_ESSENCE_VIDEO_URL =
 
 export const BUSINESS_ESSENCE_VIDEO_POSTER = `${import.meta.env.BASE_URL}media/business-essence-poster.jpg`;
 
-export const businessEssenceIntro =
-  'Не нужно сразу рассказывать человеку обо всём бизнесе и отвечать на все возможные вопросы. На первом этапе достаточно предложить посмотреть видео о сути бизнеса, а затем обсудить, что ему интересно.';
-
 export const businessEssenceVideo: LessonVideo = {
   type: 'embed',
   url: BUSINESS_ESSENCE_VIDEO_URL,
