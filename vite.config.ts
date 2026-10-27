@@ -19,6 +19,16 @@ export default defineConfig({
       '@': path.resolve(rootDir, 'src'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          const normalizedId = id.replace(/\\/g, '/');
+          if (normalizedId.includes('/node_modules/xlsx/')) return 'xlsx';
+        },
+      },
+    },
+  },
   test: {
     environment: 'node',
     include: ['src/tests/**/*.test.ts'],

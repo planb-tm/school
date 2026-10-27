@@ -1637,6 +1637,40 @@ code {
   font-size: var(--text-sm);
 }
 
+.route-loading {
+  display: flex;
+  min-height: 8rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.route-loading__spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: route-loading-spin 0.8s linear infinite;
+}
+
+.home-hub-card__title {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-md);
+  line-height: var(--leading-tight);
+}
+
+.learn-start-card {
+  margin-bottom: 1rem;
+}
+
+@keyframes route-loading-spin {
+  to { transform: rotate(360deg); }
+}
+
 .source-meta {
   display: flex;
   flex-wrap: wrap;

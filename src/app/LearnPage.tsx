@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { LessonVideoPlayer } from '@/components/LessonVideoPlayer';
 import { learningCatalog } from '@/data/learning/catalog';
+import { START_ROUTE_PATH } from '@/data/startRoute';
 
 export function LearnPage() {
   return (
@@ -13,6 +14,15 @@ export function LearnPage() {
           Oriflame и как выполнять основные действия.
         </p>
       </header>
+
+      <Link to={START_ROUTE_PATH} className="tools-card learn-start-card">
+        <p className="eyebrow eyebrow--accent">Рекомендуемый маршрут</p>
+        <h2 className="tools-card__title">Начать здесь</h2>
+        <p className="tools-card__desc">
+          Последовательно познакомиться с основными материалами и инструментами.
+        </p>
+        <span className="tools-card__cta">Открыть маршрут</span>
+      </Link>
 
       <ul className="tools-catalog">
         {learningCatalog.map((item) => (
