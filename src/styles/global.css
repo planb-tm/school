@@ -1695,10 +1695,6 @@ code {
   line-height: var(--leading-tight);
 }
 
-.learn-start-card {
-  margin-bottom: 1rem;
-}
-
 @keyframes route-loading-spin {
   to { transform: rotate(360deg); }
 }

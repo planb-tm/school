@@ -134,7 +134,7 @@
 
 .stageRow {
   display: grid;
-  grid-template-columns: 2.75rem minmax(0, 1fr) max-content;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
   align-items: center;
   gap: 0.65rem;
   min-height: 4.65rem;
@@ -190,26 +190,6 @@
   line-height: 1.35;
 }
 
-.stageStatus {
-  justify-self: end;
-  padding: 0.18rem 0.5rem;
-  border-radius: 999px;
-  font-size: 0.6875rem;
-  font-weight: 650;
-  line-height: 1.25;
-  white-space: nowrap;
-}
-
-.stageStatusReady {
-  background: var(--ok-soft);
-  color: var(--ok);
-}
-
-.stageStatusDraft {
-  background: var(--warn-soft);
-  color: var(--warn);
-}
-
 .stagePagination {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -258,17 +238,12 @@
   }
 
   .stageRow {
-    grid-template-columns: 2.5rem minmax(0, 1fr) max-content;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
     gap: 0.5rem;
   }
 
   .stageIcon {
     width: 2.5rem;
     height: 2.5rem;
-  }
-
-  .stageStatus {
-    padding-inline: 0.35rem;
-    font-size: 0.625rem;
   }
 }

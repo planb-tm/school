@@ -203,13 +203,8 @@ export function OrdersPage() {
                 <FirstOrderStageIcon name={stage.icon} />
               </span>
               <span className={styles.stageCopy}>
-                <span className={styles.stageRowTitle}>{stage.order}. {stage.title}</span>
+                <span className={styles.stageRowTitle}>{stage.title}</span>
                 <span className={styles.stageRowDescription}>{stage.cardDescription}</span>
-              </span>
-              <span
-                className={`${styles.stageStatus} ${stage.status === 'ready' ? styles.stageStatusReady : styles.stageStatusDraft}`}
-              >
-                {stage.status === 'ready' ? 'Готово' : 'В разработке'}
               </span>
             </Link>
           </li>
