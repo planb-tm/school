@@ -18,15 +18,17 @@ export function LessonVideoPlayer({ video }: Props) {
   if (!src) return null;
 
   const label = video.title ?? 'Видео';
-  const description = video.description ?? label;
+  const description = video.description?.trim();
   const useCircle = Boolean(video.circlePreview && video.poster);
   const isPortrait = video.aspectRatio === '9:16';
   const isSquare = video.aspectRatio === '1:1';
+  const isCircular = video.shape === 'circle';
   const rootClass = [
     'lesson-video',
     useCircle ? 'lesson-video--circle' : '',
     isPortrait ? 'lesson-video--portrait' : '',
     isSquare ? 'lesson-video--square' : '',
+    isCircular ? 'lesson-video--circular' : '',
     started ? 'lesson-video--playing' : '',
   ]
     .filter(Boolean)
@@ -68,7 +70,7 @@ export function LessonVideoPlayer({ video }: Props) {
           {video.duration ? (
             <p className="lesson-video__duration">{video.duration}</p>
           ) : null}
-          <p className="lesson-video__alt">{description}</p>
+          {description ? <p className="lesson-video__alt">{description}</p> : null}
         </div>
       </div>
     );
@@ -101,7 +103,7 @@ export function LessonVideoPlayer({ video }: Props) {
           />
         )}
       </div>
-      <p className="lesson-video__alt">{description}</p>
+      {description ? <p className="lesson-video__alt">{description}</p> : null}
     </div>
   );
 }

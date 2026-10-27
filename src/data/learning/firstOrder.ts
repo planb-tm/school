@@ -21,7 +21,7 @@ export type FirstOrderStage = {
   id: string;
   path: string;
   title: string;
-  description: string;
+  description?: string;
   cardDescription: string;
   icon: FirstOrderStageIcon;
   contentType: FirstOrderContentType;
@@ -47,19 +47,17 @@ export const firstOrderStages: FirstOrderStage[] = [
     id: 'why-first-order',
     path: '/learn/orders/why-first-order',
     title: 'Почему начать с первого заказа',
-    description: 'Короткое введение перед выбором товаров и оформлением заказа.',
     cardDescription: 'Короткое введение',
     icon: 'box',
     contentType: 'video',
     status: 'ready',
     order: 1,
     video: {
-      type: 'mp4',
-      url: `${import.meta.env.BASE_URL}media/orders/why-first-order.mp4`,
+      type: 'embed',
+      url: 'https://kinescope.io/5dNj1xN4vQ67g3prZPVe5Y',
       title: 'Почему начать с первого заказа',
-      duration: '32 сек',
-      description: 'Короткое видео перед выбором товаров и оформлением заказа.',
       aspectRatio: '1:1',
+      shape: 'circle',
     },
   },
   {

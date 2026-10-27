@@ -3,12 +3,14 @@
 export type VerificationStatus = 'verified' | 'needs_review' | 'outdated';
 
 /**
- * Optional short lesson video. Embeds use allowlisted https sources; MP4 may
- * also use a same-origin absolute path for locally hosted lesson assets.
+ * Optional short lesson video. Only https URLs are accepted by the player;
+ * embeds are allowlisted.
  */
 export type LessonVideoType = 'embed' | 'mp4';
 
 export type LessonVideoAspect = '16:9' | '9:16' | '1:1';
+
+export type LessonVideoShape = 'circle';
 
 export interface LessonVideo {
   type: LessonVideoType;
@@ -23,6 +25,8 @@ export interface LessonVideo {
   circlePreview?: boolean;
   /** Preview / player frame ratio. Defaults to 16:9. */
   aspectRatio?: LessonVideoAspect;
+  /** Crop the preview and player frame into a circle. */
+  shape?: LessonVideoShape;
 }
 
 export type KnowledgeCardType =

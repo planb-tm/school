@@ -18,7 +18,7 @@ export function LearningModuleStage({ stage, children }: Props) {
     >
       <header className="panel__header">
         <h2 id={`${stage.id}-title`}>{stage.title}</h2>
-        <p>{stage.description}</p>
+        {stage.description ? <p>{stage.description}</p> : null}
       </header>
       {stage.status === 'draft' && stage.placeholder ? (
         <div className="callout callout--info" role="note">

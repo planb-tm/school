@@ -1078,6 +1078,24 @@ code {
   margin-inline: auto;
 }
 
+.lesson-video--circular {
+  justify-items: center;
+}
+
+.lesson-video--circular .lesson-video__poster,
+.lesson-video--circular .lesson-video__frame {
+  width: min(100%, 24rem);
+  aspect-ratio: 1;
+  margin-inline: auto;
+  border-radius: 50%;
+}
+
+.lesson-video--circular .lesson-video__placeholder {
+  background:
+    radial-gradient(circle at 35% 28%, color-mix(in srgb, var(--accent) 45%, var(--surface)), transparent 70%),
+    var(--surface-2);
+}
+
 .lesson-video__poster--circle {
   width: 4.5rem;
   height: 4.5rem;

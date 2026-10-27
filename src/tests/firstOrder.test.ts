@@ -47,12 +47,13 @@ describe('Первый заказ', () => {
       '/learn/orders/final-check',
     ]);
     expect(firstOrderStages[0].video).toMatchObject({
-      type: 'mp4',
+      type: 'embed',
       title: 'Почему начать с первого заказа',
-      duration: '32 сек',
       aspectRatio: '1:1',
+      shape: 'circle',
     });
-    expect(firstOrderStages[0].video?.url).toContain('media/orders/why-first-order.mp4');
+    expect(firstOrderStages[0].video?.url).toBe('https://kinescope.io/5dNj1xN4vQ67g3prZPVe5Y');
+    expect(firstOrderStages[0].description).toBeUndefined();
     expect(firstOrderStages[2].placeholder).toContain('несколько каталогов');
     expect(firstOrderStages[0].status).toBe('ready');
     expect(firstOrderStages[2].status).toBe('draft');

@@ -73,17 +73,7 @@ function youtubeId(url: URL): string | null {
 export function resolveLessonVideoSrc(
   video: Pick<LessonVideo, 'type' | 'url'>,
 ): string | null {
-  const raw = video.url.trim();
-  if (
-    video.type === 'mp4' &&
-    raw.startsWith('/') &&
-    !raw.startsWith('//') &&
-    !raw.includes('\\')
-  ) {
-    return raw;
-  }
-
-  const url = parseHttpsUrl(raw);
+  const url = parseHttpsUrl(video.url);
   if (!url) return null;
 
   if (video.type === 'mp4') {
