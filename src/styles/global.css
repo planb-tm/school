@@ -1096,6 +1096,13 @@ code {
     var(--surface-2);
 }
 
+.lesson-video--circular .lesson-video__media {
+  left: 50%;
+  width: 177.78%;
+  max-width: none;
+  transform: translateX(-50%);
+}
+
 .lesson-video__poster--circle {
   width: 4.5rem;
   height: 4.5rem;
