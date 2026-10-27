@@ -1076,6 +1076,12 @@ code {
   outline: none;
 }
 
+.lesson-video--portrait .lesson-video__poster {
+  /* Match the supplied 9:20 cover so the full photo stays visible. */
+  width: min(100%, 18rem, calc(min(72vh, 32rem) * 9 / 20));
+  aspect-ratio: 9 / 20;
+}
+
 .lesson-video--portrait .lesson-video__image {
   position: absolute;
   inset: 0;
