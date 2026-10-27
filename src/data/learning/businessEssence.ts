@@ -11,7 +11,7 @@ export const businessEssenceMeta = {
 export const BUSINESS_ESSENCE_VIDEO_URL =
   'https://kinescope.io/87pANSt571Np3CPcvdZc1d';
 
-export const BUSINESS_ESSENCE_VIDEO_POSTER = `${import.meta.env.BASE_URL}media/business-essence-poster.jpg`;
+export const BUSINESS_ESSENCE_VIDEO_POSTER = `${import.meta.env.BASE_URL}media/business-essence-cover.png`;
 
 export const businessEssenceVideo: LessonVideo = {
   type: 'embed',
