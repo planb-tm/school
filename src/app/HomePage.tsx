@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { START_ROUTE_PATH } from '@/data/startRoute';
 
 export function HomePage() {
   return (
@@ -11,16 +10,6 @@ export function HomePage() {
           инструменты для работы в Oriflame.
         </p>
       </header>
-
-      <Link to={START_ROUTE_PATH} className="home-hub-card home-hub-card--start">
-        <p className="eyebrow eyebrow--accent">Рекомендуемый маршрут</p>
-        <h2 className="home-hub-card__title">Начать здесь</h2>
-        <p className="home-hub-card__desc">
-          Короткий путь по главным материалам: суть бизнеса, первый заказ,
-          приглашения и полезные инструменты.
-        </p>
-        <p className="home-hub-card__note">Открыть маршрут</p>
-      </Link>
 
       <Link to="/learn" className="home-hub-card">
         <p className="eyebrow eyebrow--accent">Обучение</p>
