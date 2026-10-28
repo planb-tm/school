@@ -84,6 +84,7 @@ export function LessonVideoPlayer({ video }: Props) {
             className="lesson-video__media"
             src={src}
             controls
+            autoPlay
             playsInline
             preload="metadata"
             poster={video.poster}
@@ -94,9 +95,9 @@ export function LessonVideoPlayer({ video }: Props) {
         ) : (
           <iframe
             className="lesson-video__media"
-            src={`${src}${src.includes('?') ? '&' : '?'}autoplay=0`}
+            src={`${src}${src.includes('?') ? '&' : '?'}autoplay=1`}
             title={label}
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             loading="lazy"
             referrerPolicy="strict-origin-when-cross-origin"
