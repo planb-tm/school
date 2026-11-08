@@ -17,6 +17,7 @@ export function StarterRoute() {
         </div>
         <Link
           to={starterRouteMeta.ctaPath}
+          state={{ from: 'home' }}
           className={`btn btn--accent ${styles.routeCta}`}
         >
           {starterRouteMeta.ctaLabel}
@@ -43,7 +44,11 @@ export function StarterRoute() {
           if (step.status === 'available' && step.path) {
             return (
               <li key={step.id} className={styles.routeItem}>
-                <Link to={step.path} className={styles.routeStep}>
+                <Link
+                  to={step.path}
+                  state={step.id === 'business-essence' ? { from: 'home' } : undefined}
+                  className={styles.routeStep}
+                >
                   {body}
                 </Link>
               </li>

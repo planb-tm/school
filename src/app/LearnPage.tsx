@@ -18,7 +18,11 @@ export function LearnPage() {
           <li key={item.id}>
             {item.status === 'available' && item.path ? (
               <div className="tools-card-stack">
-                <Link to={item.path} className="tools-card">
+                <Link
+                  to={item.path}
+                  state={item.id === 'business-essence' ? { from: 'learn' } : undefined}
+                  className="tools-card"
+                >
                   <h2 className="tools-card__title">{item.title}</h2>
                   {item.description ? (
                     <p className="tools-card__desc">{item.description}</p>
