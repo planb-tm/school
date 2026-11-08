@@ -32,7 +32,33 @@ export type CatalogCycle = {
  * conditions, direct official URLs and lastVerifiedAt. GitHub Pages serves
  * this static file, so edits require a new site deployment.
  */
-export const catalogCycles: CatalogCycle[] = [];
+export const catalogCycles: CatalogCycle[] = [
+  {
+    id: '2026-15',
+    name: '№ 15 · 2026',
+    startDate: '2026-10-25',
+    endDate: '2026-11-14',
+    offers: [
+      {
+        id: 'discount-up-to-90-bridge',
+        name: 'Скидка до 90% на продукт из подборки',
+        description:
+          'При выполнении условий можно добавить один продукт из специальной подборки по акционной цене.',
+        startDate: '2026-10-25',
+        endDate: '2026-11-14',
+        conditions: [
+          'В каталоге № 14 (с 4 по 24 октября 2026 года) оформи единовременный заказ от 30 ББ.',
+          'В каталоге № 15 (с 25 октября по 14 ноября 2026 года) оформи любой балловый заказ.',
+          'Добавь один продукт из специальной подборки на втором шаге оформления заказа.',
+        ],
+        officialUrl: 'https://oriflame.ru/offer/90-discount-bridge',
+        lastVerifiedAt: '2026-11-08',
+        limitations:
+          'Участвовать можно один раз за период. Количество товаров ограничено; предложение действует, пока акционные товары есть в наличии. Для заказа от 30 ББ действуют исключения, перечисленные в официальных правилах.',
+      },
+    ],
+  },
+];
 
 export function getCurrentCatalogCycle(
   cycles: readonly CatalogCycle[] = catalogCycles,

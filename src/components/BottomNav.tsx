@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { IconHome, IconLearn, IconTools } from './Icons';
+import { IconHome, IconTools } from './Icons';
 
 const ITEMS = [
   {
@@ -8,16 +8,7 @@ const ITEMS = [
     end: true,
     label: 'Главная',
     icon: IconHome,
-    isActive: (pathname: string) => pathname === '/',
-  },
-  {
-    id: 'learn',
-    to: '/learn',
-    end: false,
-    label: 'Обучение',
-    icon: IconLearn,
-    isActive: (pathname: string) =>
-      pathname === '/learn' || pathname.startsWith('/learn/'),
+    isActive: (pathname: string) => pathname === '/' || pathname.startsWith('/learn/'),
   },
   {
     id: 'tools',

@@ -4,9 +4,12 @@ import styles from './LearningStepSequence.module.css';
 
 export function LearningStepSequence({
   sequence,
+  presentation = 'standard',
 }: {
   sequence: OrderStepSequence;
+  presentation?: 'standard' | 'screenshots-only';
 }) {
+  const screenshotsOnly = presentation === 'screenshots-only';
   const [activeIndex, setActiveIndex] = useState(0);
   const [failedImageSrc, setFailedImageSrc] = useState<string | null>(null);
   const [isImageOpen, setIsImageOpen] = useState(false);
@@ -29,24 +32,27 @@ export function LearningStepSequence({
 
   return (
     <section
-      className={`panel ${styles.sequence}`}
-      aria-labelledby={sequenceTitleId}
+      className={`panel ${styles.sequence} ${screenshotsOnly ? styles.screenshotsOnly : ''}`}
+      aria-label={screenshotsOnly ? 'Скриншоты оформления заказа' : undefined}
+      aria-labelledby={screenshotsOnly ? undefined : sequenceTitleId}
     >
-      <header className={styles.sequenceHeader}>
-        <p className="eyebrow">Пошаговая инструкция</p>
-        <h2 id={sequenceTitleId}>{sequence.title}</h2>
-        <p>{sequence.description}</p>
-      </header>
+      {!screenshotsOnly ? (
+        <header className={styles.sequenceHeader}>
+          <p className="eyebrow">Пошаговая инструкция</p>
+          <h2 id={sequenceTitleId}>{sequence.title}</h2>
+          {sequence.description ? <p>{sequence.description}</p> : null}
+        </header>
+      ) : null}
 
-      <div className={styles.stepLayout}>
+      <div className={`${styles.stepLayout} ${screenshotsOnly ? styles.screenshotsOnlyLayout : ''}`}>
         <div className={styles.mediaColumn}>
-          <div className={styles.phoneFrame}>
+          <div className={screenshotsOnly ? styles.screenshotPhoneFrame : styles.phoneFrame}>
             {imageAvailable ? (
               <>
                 <button
                   type="button"
                   className={styles.imageButton}
-                  aria-label={`Открыть скриншот крупнее: ${step.title}`}
+                  aria-label={`Открыть скриншот крупнее: ${step.imageCaption}`}
                   aria-haspopup="dialog"
                   onClick={() => setIsImageOpen(true)}
                 >
@@ -85,29 +91,31 @@ export function LearningStepSequence({
             )}
           </div>
           <p className={styles.imageCaption}>{step.imageCaption}</p>
-          {imageAvailable ? (
+          {imageAvailable && !screenshotsOnly ? (
             <p className={styles.zoomHint}>Нажмите на скриншот, чтобы увеличить</p>
           ) : null}
         </div>
 
-        <div className={styles.stepContent}>
-          <p className={styles.stepCount} aria-live="polite">
-            Шаг {activeIndex + 1} из {sequence.steps.length}
-          </p>
-          <h3 id={stepTitleId}>{step.title}</h3>
-          <p>{step.description}</p>
-        </div>
+        {!screenshotsOnly ? (
+          <div className={styles.stepContent}>
+            <p className={styles.stepCount} aria-live="polite">
+              Шаг {activeIndex + 1} из {sequence.steps.length}
+            </p>
+            <h3 id={stepTitleId}>{step.title}</h3>
+            {step.description ? <p>{step.description}</p> : null}
+          </div>
+        ) : null}
       </div>
 
       <nav
         className={styles.controls}
-        aria-label={`Шаги: ${sequence.title}`}
+        aria-label={screenshotsOnly ? 'Переход по скриншотам' : `Шаги: ${sequence.title}`}
       >
         <button
           type="button"
           className="btn btn--secondary"
           disabled={activeIndex === 0}
-          aria-label={`Назад: ${step.title}`}
+          aria-label={screenshotsOnly ? 'Предыдущий скриншот' : `Назад: ${step.title}`}
           onClick={() => setActiveIndex((current) => Math.max(0, current - 1))}
         >
           Назад
@@ -119,8 +127,10 @@ export function LearningStepSequence({
           type="button"
           className="btn btn--primary"
           disabled={activeIndex === sequence.steps.length - 1}
-          aria-label={`Далее: ${sequence.steps[activeIndex + 1]?.title ?? 'последний шаг'}`}
-          aria-describedby={stepTitleId}
+          aria-label={screenshotsOnly
+            ? 'Следующий скриншот'
+            : `Далее: ${sequence.steps[activeIndex + 1]?.title ?? 'последний шаг'}`}
+          aria-describedby={screenshotsOnly ? undefined : stepTitleId}
           onClick={() =>
             setActiveIndex((current) =>
               Math.min(sequence.steps.length - 1, current + 1),

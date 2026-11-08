@@ -1,4 +1,4 @@
-export type QuickAccessIcon = 'calculator' | 'sheet' | 'messages' | 'learn';
+export type QuickAccessIcon = 'calculator' | 'sheet' | 'messages';
 
 export type QuickAccessItem = {
   id: string;
@@ -33,12 +33,5 @@ export const quickAccessItems: readonly QuickAccessItem[] = [
     description: 'Шаблоны сообщений и работа с вопросами',
     path: '/learn/inviting',
     icon: 'messages',
-  },
-  {
-    id: 'learn',
-    title: 'Обучение',
-    description: 'Все доступные обучающие материалы',
-    path: '/learn',
-    icon: 'learn',
   },
 ] as const;

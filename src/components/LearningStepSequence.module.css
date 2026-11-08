@@ -5,6 +5,61 @@
   box-shadow: var(--shadow);
 }
 
+.screenshotsOnly {
+  width: min(100%, 24rem);
+  justify-self: center;
+  justify-items: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  border-color: var(--line);
+  box-shadow: var(--shadow);
+}
+
+.stepLayout.screenshotsOnlyLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  width: 100%;
+}
+
+.screenshotsOnlyLayout .mediaColumn {
+  width: 100%;
+  gap: 0.45rem;
+  justify-items: center;
+}
+
+.screenshotPhoneFrame {
+  position: relative;
+  display: grid;
+  width: min(100%, 16rem);
+  justify-self: center;
+  margin-inline: auto;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  place-items: center;
+  border: 0.45rem solid var(--line-dark);
+  border-radius: 1.8rem;
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+}
+
+.screenshotsOnly .imageCaption {
+  width: min(100%, 17rem);
+  justify-self: center;
+  margin-inline: auto;
+  min-height: 2.7rem;
+  max-width: none;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.screenshotsOnly .controls {
+  width: min(100%, 17rem);
+  justify-self: center;
+  padding-top: 0.7rem;
+}
+
 .sequenceHeader {
   display: grid;
   gap: 0.35rem;
@@ -14,16 +69,20 @@
 .stepContent h3 {
   margin: 0;
   color: var(--ink);
-  font-size: 1.3rem;
+  font-size: var(--text-xl);
   font-weight: 730;
   line-height: 1.25;
+}
+
+.stepContent h3 {
+  font-size: var(--text-md);
 }
 
 .sequenceHeader > p:last-child,
 .stepContent > p:last-child {
   margin: 0;
   color: var(--muted);
-  font-size: 0.9375rem;
+  font-size: var(--text-md);
   line-height: 1.5;
 }
 
@@ -262,6 +321,26 @@
     min-width: 9.5rem;
   }
 
+  .screenshotsOnly {
+    gap: 0.75rem;
+    padding: 0.8rem 0.7rem 0.9rem;
+  }
+
+  .screenshotPhoneFrame {
+    width: min(57vw, 12rem);
+    min-width: 9.5rem;
+  }
+
+  .screenshotsOnly .imageCaption {
+    width: min(100%, 15rem);
+    min-height: 2.55rem;
+    font-size: 0.72rem;
+  }
+
+  .screenshotsOnly .controls {
+    width: min(100%, 15rem);
+  }
+
   .imageDialog {
     width: calc(100vw - 1rem);
     max-width: calc(100vw - 1rem);
@@ -282,9 +361,12 @@
     max-height: calc(100dvh - 6rem);
   }
 
-  .sequenceHeader h2,
+  .sequenceHeader h2 {
+    font-size: var(--text-xl);
+  }
+
   .stepContent h3 {
-    font-size: 1.25rem;
+    font-size: var(--text-md);
   }
 
   .stepContent {

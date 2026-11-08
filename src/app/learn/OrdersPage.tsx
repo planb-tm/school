@@ -1,94 +1,71 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
-import { CurrentCatalogOffers } from '@/components/CurrentCatalogOffers';
 import { FirstOrderStageIcon } from '@/components/FirstOrderStageIcon';
 import { LearningModuleStage } from '@/components/LearningModuleStage';
+import { LearningStepSequence } from '@/components/LearningStepSequence';
 import {
   firstOrderModuleMeta,
   getVisibleFirstOrderStages,
   type FirstOrderStage,
 } from '@/data/learning/firstOrder';
-import { offerLearning, orderScenarios } from '@/data/learning/orders';
+import { orderStepSequences } from '@/data/learning/orders';
 import styles from './OrdersPage.module.css';
 
 const stages = getVisibleFirstOrderStages();
-
-function Scenario({ id }: { id: string }) {
-  const scenario = orderScenarios.find((item) => item.id === id);
-  if (!scenario) return null;
-
-  return (
-    <article className={`callout ${styles.scenario}`}>
-      <h3>{scenario.title}</h3>
-      <p className="bodyText"><strong>Вопрос:</strong> {scenario.question}</p>
-      <p className="bodyText"><strong>Разбор:</strong> {scenario.answer}</p>
-    </article>
-  );
-}
-
-function StarterProgramAndOffers() {
-  return (
-    <div className="stack">
-      <div>
-        <h3 className={styles.subheading}>Стартовая программа</h3>
-        <p>
-          Состав и требования зависят от актуальной программы и доступности для
-          аккаунта. Сверяйся с официальным описанием и учитывай только те
-          преимущества, условия которых подтверждены.
-        </p>
-      </div>
-      <CurrentCatalogOffers embedded />
-      <div>
-        <h3 className={styles.subheading}>Как проверять предложение каталога</h3>
-        <p>{offerLearning.intro}</p>
-        <ul className="plain-list">
-          {offerLearning.conditions.map((condition) => <li key={condition}>{condition}</li>)}
-        </ul>
-        <h4 className={styles.subheading}>Возможные причины, почему предложение не применилось</h4>
-        <ul className="plain-list">
-          {offerLearning.possibleReasons.map((reason) => <li key={reason}>{reason}</li>)}
-        </ul>
-        <p className={`callout callout--info ${styles.note}`}>{offerLearning.note}</p>
-        <ul className="external-links">
-          {offerLearning.links.map((item) => (
-            <li key={item.id}>
-              <a className="external-links__item" href={item.href} target="_blank" rel="noopener noreferrer">
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <Scenario id="missing-gift" />
-      </div>
-    </div>
-  );
-}
 
 function renderStageContent(stage: FirstOrderStage) {
   switch (stage.contentType) {
     case 'intro':
       return (
-        <div className="stack">
-          <div className="lesson-intro">
-            {stage.introText?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-          </div>
-          <section className="stack" aria-labelledby="first-order-benefits-title">
-            <h3 id="first-order-benefits-title" className={styles.subheading}>
-              Что даёт первый заказ
-            </h3>
-            <ul className="plain-list">
-              <li>
-                Разберёшься в последовательности заказа - от выбора товаров до получения.
-              </li>
-              <li>
-                Получишь личный опыт, на который можно опираться, объясняя процесс клиенту.
-              </li>
-              <li>
-                Проверишь преимущества стартовой программы, если она доступна и
-                соблюдены её условия.
-              </li>
-            </ul>
-          </section>
-          <StarterProgramAndOffers />
+        <div className="lesson-intro">
+          <p><strong>Ты теперь Бьюти-партнёр Oriflame. Что дальше?</strong></p>
+          <p>
+            После регистрации в Oriflame тебе становятся доступны продукция компании,
+            специальные предложения и преимущества партнёрской программы.
+          </p>
+          <p>Давай разберёмся, какие возможности у тебя есть и с чего лучше начать.</p>
+
+          <h3>Твои преимущества</h3>
+          <h4>15% постоянная скидка</h4>
+          <p>
+            Ты покупаешь продукцию Oriflame со скидкой 15% от цены каталога. Скидка
+            применяется при оформлении заказа согласно условиям программы.
+          </p>
+          <h4>15% приветственный кешбэк</h4>
+          <p>
+            За первый заказ ты можешь получить дополнительный кешбэк 15%. Он
+            зачисляется на электронный кошелёк после оплаты заказа. Накопленный
+            кешбэк можно использовать для оплаты до 60% стоимости следующих заказов
+            в течение 17 каталогов.
+          </p>
+          <h4>10% рекомендационный бонус</h4>
+          <p>
+            Если по твоей рекомендации зарегистрируются новые Бьюти- или
+            Бизнес-партнёры, ты можешь получать бонус за их оплаченные заказы на
+            первом уровне. Бонус рассчитывается по правилам компании и зачисляется
+            на электронный кошелёк. Его также можно использовать для частичной оплаты
+            последующих заказов.
+          </p>
+          <h4>Дополнительные акции и подарки</h4>
+          <p>
+            Для новых партнёров компания проводит специальные акции, предлагает
+            подарки и выгодные условия оформления заказов. Актуальные предложения,
+            условия получения подарков и доставки смотри в разделе{' '}
+            <Link className={styles.orderingSiteLink} to="/learn/catalog-offers">
+              Акции текущего каталога
+            </Link>.
+          </p>
+
+          <h3>С чего начать?</h3>
+          <p>Я всегда рекомендую начать партнерство именно с оформления заказа.</p>
+          <p>
+            Чтобы посмотреть, как оформляется заказ, как работает сайт, как работает
+            доставка.
+          </p>
+          <p>Посмотрите, что у вас заканчивается или закончилось в косметичке, в ванной комнате.</p>
+          <p>А также всегда можно подключить ваших друзей и родственников.</p>
+          <p>
+            Плюс оформление первого заказа - это максимально выгодно для нового партнера.
+          </p>
         </div>
       );
     case 'plain-text':
@@ -96,11 +73,20 @@ function renderStageContent(stage: FirstOrderStage) {
         <div className="lesson-intro">
           <p>
             Заказы продукции Oriflame оформляются на официальном сайте{' '}
-            <a href="https://oriflame.ru/" target="_blank" rel="noopener noreferrer">
+            <a
+              className={styles.orderingSiteLink}
+              href="https://oriflame.ru/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               oriflame.ru
             </a>.
           </p>
           {stage.introText?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          <LearningStepSequence
+            presentation="screenshots-only"
+            sequence={orderStepSequences[0]}
+          />
         </div>
       );
   }
@@ -109,7 +95,7 @@ function renderStageContent(stage: FirstOrderStage) {
 export function OrdersPage() {
   return (
     <div className={`${styles.lesson} ${styles.stageOverview} tools-page`}>
-      <Link to="/learn" className="tools-back">Назад</Link>
+      <Link to="/" className="tools-back">Назад</Link>
       <header className={styles.moduleHeader}>
         <h1>{firstOrderModuleMeta.title}</h1>
       </header>
@@ -149,13 +135,6 @@ export function OrderStagePage() {
   }
 
   const stage = stages[currentIndex];
-  const previousStage = stages[currentIndex - 1];
-  const nextStage = stages[currentIndex + 1];
-  const paginationClass = [
-    styles.stagePagination,
-    !previousStage ? styles.stagePaginationFirst : '',
-    !nextStage ? styles.stagePaginationLast : '',
-  ].filter(Boolean).join(' ');
 
   return (
     <div className={`${styles.lesson} tools-page`}>
@@ -164,21 +143,6 @@ export function OrderStagePage() {
       <LearningModuleStage stage={stage}>
         {renderStageContent(stage)}
       </LearningModuleStage>
-
-      <nav className={paginationClass} aria-label="Переход между этапами">
-        {previousStage ? (
-          <Link to={previousStage.path} className="btn btn--secondary">
-            <span>Назад</span>
-            <small>{previousStage.title}</small>
-          </Link>
-        ) : <span />}
-        {nextStage ? (
-          <Link to={nextStage.path} className="btn btn--primary">
-            <span>Следующий этап →</span>
-            <small>{nextStage.title}</small>
-          </Link>
-        ) : null}
-      </nav>
     </div>
   );
 }

@@ -10,6 +10,16 @@ const STATUS_LABELS = {
 } as const;
 
 const officialOffersUrl = 'https://oriflame.ru/offer/akcii';
+const catalogDateFormatter = new Intl.DateTimeFormat('ru-RU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+function formatCatalogDate(value: string): string {
+  const date = new Date(`${value}T00:00:00`);
+  return Number.isNaN(date.getTime()) ? value : catalogDateFormatter.format(date);
+}
 
 type Props = { embedded?: boolean };
 
@@ -25,7 +35,7 @@ export function CurrentCatalogOffers({ embedded = false }: Props) {
         </h3>
         <p>
           {cycle
-            ? `Период каталога: ${cycle.startDate} - ${cycle.endDate}. Проверяйте условия перед заказом.`
+            ? `Период каталога: ${formatCatalogDate(cycle.startDate)} — ${formatCatalogDate(cycle.endDate)} Проверяйте условия перед заказом.`
             : 'Предложения будут показаны здесь после проверки официальных условий и периода каталога.'}
         </p>
       </header>
@@ -65,7 +75,7 @@ export function CurrentCatalogOffers({ embedded = false }: Props) {
                 <h3 className="currentOfferTitle">{offer.name}</h3>
                 <p>{offer.description}</p>
                 <p className="info-list__desc">
-                  Период: {offer.startDate} - {offer.endDate}
+                  Период: {formatCatalogDate(offer.startDate)} — {formatCatalogDate(offer.endDate)}
                 </p>
                 <ul className="plain-list">
                   {offer.conditions.map((condition) => (
@@ -74,7 +84,7 @@ export function CurrentCatalogOffers({ embedded = false }: Props) {
                 </ul>
                 {offer.limitations ? <p>{offer.limitations}</p> : null}
                 <p className="info-list__desc">
-                  Последняя проверка: {offer.lastVerifiedAt}
+                  Последняя проверка: {formatCatalogDate(offer.lastVerifiedAt)}
                 </p>
                 <a
                   className="external-links__item"
@@ -87,6 +97,14 @@ export function CurrentCatalogOffers({ embedded = false }: Props) {
               </article>
             );
           })}
+          <a
+            className="external-links__item"
+            href={officialOffersUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Посмотреть все акции на сайте Oriflame
+          </a>
         </div>
       )}
     </section>

@@ -5,7 +5,6 @@ import {
   type QuickAccessIcon,
 } from '@/data/home/quickAccess';
 import {
-  IconBook,
   IconCalculator,
   IconLearn,
   IconTools,
@@ -20,8 +19,6 @@ function AccessIcon({ name }: { name: QuickAccessIcon }) {
       return <IconTools size={20} />;
     case 'messages':
       return <IconLearn size={20} />;
-    case 'learn':
-      return <IconBook size={20} />;
   }
 }
 

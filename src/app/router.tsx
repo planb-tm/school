@@ -4,9 +4,9 @@ import { AppShell } from '@/components/AppShell';
 import { RouteLoadingFallback } from '@/components/RouteLoadingFallback';
 
 const HomePage = lazy(() => import('./HomePage').then((module) => ({ default: module.HomePage })));
-const LearnPage = lazy(() => import('./LearnPage').then((module) => ({ default: module.LearnPage })));
 const BusinessEssencePage = lazy(() => import('./learn/BusinessEssencePage').then((module) => ({ default: module.BusinessEssencePage })));
 const InvitingPage = lazy(() => import('./learn/InvitingPage').then((module) => ({ default: module.InvitingPage })));
+const CatalogOffersPage = lazy(() => import('./learn/CatalogOffersPage').then((module) => ({ default: module.CatalogOffersPage })));
 const OrdersPage = lazy(() => import('./learn/OrdersPage').then((module) => ({ default: module.OrdersPage })));
 const OrderStagePage = lazy(() => import('./learn/OrdersPage').then((module) => ({ default: module.OrderStagePage })));
 const ToolsPage = lazy(() => import('./ToolsPage').then((module) => ({ default: module.ToolsPage })));
@@ -30,8 +30,9 @@ export function AppRouter() {
     <Routes>
       <Route element={<AppShell />}>
         <Route index element={renderPage(HomePage)} />
-        <Route path="learn" element={renderPage(LearnPage)} />
+        <Route path="learn" element={<Navigate to="/" replace />} />
         <Route path="learn/business-essence" element={renderPage(BusinessEssencePage)} />
+        <Route path="learn/catalog-offers" element={renderPage(CatalogOffersPage)} />
         <Route path="learn/products" element={<Navigate to="/learn/orders" replace />} />
         <Route path="learn/orders" element={renderPage(OrdersPage)} />
         <Route path="learn/orders/:stageSlug" element={renderPage(OrderStagePage)} />

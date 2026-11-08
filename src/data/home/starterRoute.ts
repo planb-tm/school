@@ -10,14 +10,6 @@ export type StarterRouteStep = {
   path?: string;
 };
 
-export const starterRouteMeta = {
-  title: 'Твой маршрут',
-  subtitle:
-    'Разберись в модели бизнеса и последовательно пройди основные этапы знакомства с системой',
-  ctaLabel: 'Открыть маршрут',
-  ctaPath: '/learn/business-essence',
-} as const;
-
 export const starterRouteSteps: readonly StarterRouteStep[] = [
   {
     id: 'business-essence',
@@ -36,8 +28,16 @@ export const starterRouteSteps: readonly StarterRouteStep[] = [
     path: '/learn/orders',
   },
   {
-    id: 'inviting',
+    id: 'catalog-offers',
     number: '03',
+    title: 'Акции текущего каталога',
+    description: 'Скидки, бонусы, подарки и условия текущего каталога',
+    status: 'available',
+    path: '/learn/catalog-offers',
+  },
+  {
+    id: 'inviting',
+    number: '04',
     title: 'Приглашения и общение',
     description:
       'Научиться рассказывать о возможностях, работать с вопросами и возражениями',
@@ -46,14 +46,14 @@ export const starterRouteSteps: readonly StarterRouteStep[] = [
   },
   {
     id: 'independent-work',
-    number: '04',
+    number: '05',
     title: 'Самостоятельная работа',
     description: 'Разобраться, как организовать личную деятельность и работу с клиентами',
     status: 'upcoming',
   },
   {
     id: 'team-growth',
-    number: '05',
+    number: '06',
     title: 'Развитие команды',
     description:
       'Познакомиться с основами передачи знаний и сопровождения новых партнёров',

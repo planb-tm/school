@@ -9,7 +9,7 @@ export const ordersLessonMeta = {
 export type OrderLearningStep = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   imageSrc: string | null;
   imageAlt: string;
   imageCaption: string;
@@ -20,84 +20,116 @@ export type OrderLearningStep = {
 export type OrderStepSequence = {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   steps: OrderLearningStep[];
 };
 
-/** Replace null imageSrc values after adding checked screenshots to public/media/orders/. */
+const orderScreenshot = (number: number) =>
+  `${import.meta.env.BASE_URL}media/orders/order-step-${String(number).padStart(2, '0')}.jpg`;
+
+/** One continuous order walkthrough; keep the source screenshot number in each file path. */
 export const orderStepSequences: OrderStepSequence[] = [
   {
-    id: 'products-and-cart',
-    title: 'Выбор товаров и корзина',
-    description: 'Добавьте нужные позиции и проверьте их до оформления.',
+    id: 'order-walkthrough',
+    title: 'Оформление заказа',
     steps: [
       {
-        id: 'choose-products',
-        title: 'Выберите товары',
-        description:
-          'Найдите нужные позиции в актуальном каталоге. Сверьте название, вариант и количество перед добавлением.',
-        imageSrc: null,
-        imageAlt: 'Место для проверенного скриншота выбора товара на сайте Oriflame.',
-        imageCaption: 'Скриншот выбора товара появится после добавления реального изображения.',
+        id: 'order-step-01',
+        title: 'Откройте профиль партнёра',
+        imageSrc: orderScreenshot(1),
+        imageAlt: 'Мобильная страница Oriflame с выделенной кнопкой профиля в нижнем меню.',
+        imageCaption: 'Откройте профиль партнёра через значок в нижней панели.',
       },
       {
-        id: 'review-cart',
+        id: 'order-step-02',
+        title: 'Войдите в личный кабинет',
+        imageSrc: orderScreenshot(2),
+        imageAlt: 'Форма входа в личный кабинет Oriflame по номеру партнёра или электронной почте.',
+        imageCaption: 'Введите номер партнёра или e-mail и пароль.',
+      },
+      {
+        id: 'order-step-03',
+        title: 'Посмотрите профиль и электронный кошелёк',
+        imageSrc: orderScreenshot(3),
+        imageAlt: 'Страница профиля партнёра с персональной ссылкой и электронным кошельком.',
+        imageCaption: 'В профиле доступны персональная ссылка и электронный кошелёк.',
+      },
+      {
+        id: 'order-step-04',
+        title: 'Откройте каталог',
+        imageSrc: orderScreenshot(4),
+        imageAlt: 'Каталог Oriflame открыт на первой странице.',
+        imageCaption: 'Откройте каталог, чтобы перейти к выбору продукции.',
+      },
+      {
+        id: 'order-step-05',
+        title: 'Изучите страницу товара',
+        imageSrc: orderScreenshot(5),
+        imageAlt: 'Страница товара каталога с описанием, характеристиками и ценой.',
+        imageCaption: 'Откройте карточку товара и ознакомьтесь с его описанием.',
+      },
+      {
+        id: 'order-step-06',
+        title: 'Выберите продукцию в каталоге',
+        imageSrc: orderScreenshot(6),
+        imageAlt: 'Страница каталога с товарами и кнопками добавления в корзину.',
+        imageCaption: 'Выберите нужные товары и добавьте их в корзину.',
+      },
+      {
+        id: 'order-step-07',
         title: 'Проверьте корзину',
-        description:
-          'Сравните содержимое корзины со своим списком. Исправьте количество или удалите лишнее, пока заказ ещё не отправлен.',
-        imageSrc: null,
-        imageAlt: 'Место для проверенного скриншота корзины на сайте Oriflame.',
-        imageCaption: 'Не добавляйте скриншоты с личными данными или данными реального заказа.',
-      },
-    ],
-  },
-  {
-    id: 'delivery-choice',
-    title: 'Выбор доставки',
-    description: 'Варианты и условия проверяйте после ввода данных доставки.',
-    steps: [
-      {
-        id: 'available-delivery',
-        title: 'Посмотрите доступные варианты',
-        description:
-          'Укажите запрошенные данные о местоположении. Рассматривайте только те варианты, которые сайт показывает для вашего заказа.',
-        imageSrc: null,
-        imageAlt: 'Место для проверенного скриншота доступных способов доставки.',
-        imageCaption: 'Доступность зависит от адреса и может меняться.',
+        imageSrc: orderScreenshot(7),
+        imageAlt: 'Корзина с товарами, количеством и кнопкой продолжения оформления.',
+        imageCaption: 'Сверьте товары и количество в корзине.',
       },
       {
-        id: 'compare-delivery',
-        title: 'Сравните условия',
-        description:
-          'Сопоставьте показанную стоимость, удобство получения, доступность для адреса и условия. Учитывайте срок только если он указан на экране.',
-        imageSrc: null,
-        imageAlt: 'Место для проверенного скриншота сравнения способов доставки.',
-        imageCaption: 'Не подменяйте условия из оформления заказа старыми тарифами или сроками.',
-      },
-    ],
-  },
-  {
-    id: 'total-and-confirmation',
-    title: 'Итоговая сумма и подтверждение',
-    description: 'Перед отправкой проверьте заказ целиком, затем убедитесь, что он подтверждён.',
-    steps: [
-      {
-        id: 'review-order-total',
-        title: 'Сверьте итог',
-        description:
-          'Проверьте состав заказа, адрес, доставку, оплату и применившиеся предложения. Сверьте итоговую сумму с тем, что готовы оплатить.',
-        imageSrc: null,
-        imageAlt: 'Место для проверенного скриншота итоговой проверки заказа.',
-        imageCaption: 'Сумма и применённые предложения должны быть видны до подтверждения.',
+        id: 'order-step-08',
+        title: 'Посмотрите онлайн-предложения',
+        imageSrc: orderScreenshot(8),
+        imageAlt: 'Раздел онлайн-предложений с товарами и кнопками добавления.',
+        imageCaption: 'Проверьте, есть ли подходящие специальные предложения.',
       },
       {
-        id: 'confirm-order',
-        title: 'Подтвердите и проверьте статус',
-        description:
-          'Если всё верно, отправьте заказ. После этого найдите сообщение или статус, подтверждающий оформление.',
-        imageSrc: null,
-        imageAlt: 'Место для проверенного скриншота подтверждения заказа.',
-        imageCaption: 'Добавляйте только актуальный скриншот без персональных данных.',
+        id: 'order-step-09',
+        title: 'Проверьте способ получения',
+        imageSrc: orderScreenshot(9),
+        imageAlt: 'Страница оформления с выбором получения, адресом и деталями доставки.',
+        imageCaption: 'Проверьте способ получения, адрес и показанные условия доставки.',
+      },
+      {
+        id: 'order-step-10',
+        title: 'Выберите пункт выдачи',
+        imageSrc: orderScreenshot(10),
+        imageAlt: 'Список доступных пунктов выдачи с адресами и условиями.',
+        imageCaption: 'Выберите подходящий из доступных пунктов выдачи.',
+      },
+      {
+        id: 'order-step-11',
+        title: 'Найдите пункт на карте',
+        imageSrc: orderScreenshot(11),
+        imageAlt: 'Карта с пунктами выдачи, строкой поиска и фильтрами.',
+        imageCaption: 'Найдите пункт на карте или воспользуйтесь поиском.',
+      },
+      {
+        id: 'order-step-13',
+        title: 'Найдите пункт в своём городе',
+        imageSrc: orderScreenshot(13),
+        imageAlt: 'Результаты поиска пунктов выдачи в Красноярске на карте.',
+        imageCaption: 'Укажите свой город и сравните доступные пункты.',
+      },
+      {
+        id: 'order-step-14',
+        title: 'Сравните расположение пунктов',
+        imageSrc: orderScreenshot(14),
+        imageAlt: 'Пункты выдачи на карте города с указанием расположения.',
+        imageCaption: 'Выберите пункт, в который вам будет удобно приехать.',
+      },
+      {
+        id: 'order-step-15',
+        title: 'Проверьте оплату и итог заказа',
+        imageSrc: orderScreenshot(15),
+        imageAlt: 'Страница выбора способа оплаты с составом заказа и итоговой суммой.',
+        imageCaption: 'Выберите доступный способ оплаты и ещё раз сверьте итог.',
       },
     ],
   },

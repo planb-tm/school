@@ -9,7 +9,7 @@ import {
 export function ProductsPage() {
   return (
     <div className="tools-page">
-      <Link to="/learn" className="tools-back">
+      <Link to="/" className="tools-back">
         Назад
       </Link>
 

@@ -4,9 +4,6 @@ import { SectionNav } from '@/components/SectionNav';
 import {
   MODULE_BASE,
   isModuleSectionId,
-  nextSectionId,
-  prevSectionId,
-  sectionPath,
 } from './sectionsConfig';
 import type { SuccessPlanRouteContext } from './SuccessPlanLayout';
 import { OverviewSection } from './OverviewSection';
@@ -30,13 +27,10 @@ export function SuccessPlanSectionPage() {
     return <Navigate to={MODULE_BASE} replace />;
   }
 
-  const prevId = prevSectionId(sectionId);
-  const nextId = nextSectionId(sectionId);
-
   return (
     <div className="module-page">
       <div className="module-section-toolbar">
-        <Link to={MODULE_BASE} className="btn btn--ghost btn--back">
+        <Link to={MODULE_BASE} className="tools-back">
           Назад
         </Link>
       </div>
@@ -61,27 +55,6 @@ export function SuccessPlanSectionPage() {
         ) : null}
         {sectionId === 'sources' ? <SourcesSection /> : null}
       </div>
-
-      <nav className="module-pager" aria-label="Соседние разделы">
-        {prevId ? (
-          <Link to={sectionPath(prevId)} className="btn btn--secondary">
-            Назад
-          </Link>
-        ) : (
-          <Link to={MODULE_BASE} className="btn btn--secondary">
-            Назад
-          </Link>
-        )}
-        {nextId ? (
-          <Link to={sectionPath(nextId)} className="btn btn--primary">
-            Следующий раздел →
-          </Link>
-        ) : (
-          <Link to={MODULE_BASE} className="btn btn--primary">
-            К оглавлению
-          </Link>
-        )}
-      </nav>
 
       <div className="module-footer-actions">
         <button type="button" className="btn btn--ghost" onClick={resetProgress}>

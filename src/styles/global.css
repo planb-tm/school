@@ -271,7 +271,7 @@ code {
   max-width: min(100%, calc(var(--max) + 2 * var(--page-pad)));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0.35rem;
 }
 
@@ -632,7 +632,7 @@ code {
 
 .tools-page {
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .tools-back {
@@ -875,6 +875,8 @@ code {
 }
 
 .home-intro {
+  display: grid;
+  gap: 0.35rem;
   min-width: 0;
   max-width: var(--measure);
 }
@@ -890,7 +892,7 @@ code {
 
 .home-intro__title {
   margin: 0;
-  font-size: clamp(1.35rem, 4.2vw, var(--text-2xl));
+  font-size: var(--text-xl);
   font-weight: 750;
   line-height: var(--leading-tight);
   letter-spacing: -0.025em;
@@ -899,7 +901,7 @@ code {
 }
 
 .home-intro__title:not(:last-child) {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0;
 }
 
 .home-hub-card {
@@ -1372,7 +1374,7 @@ code {
 .home-intro__lead {
   margin: 0;
   color: var(--muted);
-  font-size: var(--text-sm);
+  font-size: 0.875rem;
   line-height: 1.5;
   max-width: var(--measure);
 }
@@ -1491,7 +1493,7 @@ code {
 /* --- Module --- */
 .module-page {
   display: grid;
-  gap: 0.85rem;
+  gap: 1rem;
   min-width: 0;
   width: 100%;
   max-width: 100%;
@@ -1503,6 +1505,10 @@ code {
   animation: fade-up var(--dur-slow) var(--ease) both;
   min-width: 0;
   max-width: 100%;
+}
+
+.module-hero .lead {
+  font-size: 0.875rem;
 }
 
 .module-hero__actions {
@@ -2241,17 +2247,6 @@ code {
   font-size: var(--text-sm);
 }
 
-.module-pager {
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.55rem;
-}
-
-.module-pager .btn {
-  width: 100%;
-}
-
 .plain-list,
 .callout p,
 .panel__header p,
@@ -2420,9 +2415,7 @@ code {
     padding-top: 1.15rem;
   }
 
-  .home-intro__title {
-    max-width: 32ch;
-  }
+  .home-intro__title { max-width: 32ch; }
 
   .module-teaser {
     padding: 1.15rem 1.1rem;

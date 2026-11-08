@@ -6,6 +6,7 @@ import {
   getVisibleFirstOrderStages,
   type FirstOrderStage,
 } from '@/data/learning/firstOrder';
+import { starterRouteSteps } from '@/data/home/starterRoute';
 
 describe('Оформление заказа', () => {
   it('replaces the separate product and order cards with one module card', () => {
@@ -47,7 +48,8 @@ describe('Оформление заказа', () => {
       contentType: 'intro',
       status: 'ready',
     });
-    expect(firstOrderStages[0].introText).toHaveLength(1);
+    expect(firstOrderStages[0]).not.toHaveProperty('introText');
+    expect(firstOrderStages[0]).not.toHaveProperty('description');
     expect(firstOrderStages[0]).not.toHaveProperty('video');
     expect(firstOrderStages[1]).toMatchObject({
       title: 'Как оформить заказ',
@@ -60,5 +62,14 @@ describe('Оформление заказа', () => {
     });
     expect(firstOrderStages[1]).not.toHaveProperty('sequenceIds');
     expect(firstOrderStages[1]).not.toHaveProperty('description');
+  });
+
+  it('places current catalog offers on the home route as step 03', () => {
+    expect(starterRouteSteps.slice(0, 4)).toMatchObject([
+      { number: '01', title: 'Суть бизнеса', path: '/learn/business-essence' },
+      { number: '02', title: 'Оформление заказа', path: '/learn/orders' },
+      { number: '03', title: 'Акции текущего каталога', path: '/learn/catalog-offers' },
+      { number: '04', title: 'Приглашения и общение', path: '/learn/inviting' },
+    ]);
   });
 });

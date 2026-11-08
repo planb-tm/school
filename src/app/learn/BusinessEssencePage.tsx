@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LessonVideoPlayer } from '@/components/LessonVideoPlayer';
 import {
   businessEssenceMeta,
@@ -6,12 +6,9 @@ import {
 } from '@/data/learning/businessEssence';
 
 export function BusinessEssencePage() {
-  const location = useLocation();
-  const fromHome = location.state?.from === 'home';
-
   return (
     <div className="tools-page">
-      <Link to={fromHome ? '/' : '/learn'} className="tools-back">
+      <Link to="/" className="tools-back">
         Назад
       </Link>
 

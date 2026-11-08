@@ -36,15 +36,11 @@ export const firstOrderStages: FirstOrderStage[] = [
     id: 'why-first-order',
     path: '/learn/orders/why-first-order',
     title: 'Почему важно начать с первого заказа',
-    description: 'Что даёт первый практический опыт и где смотреть условия стартовой программы.',
     cardDescription: 'Зачем оформлять заказ и какие преимущества доступны новичку',
     icon: 'box',
     contentType: 'intro',
     status: 'ready',
     order: 1,
-    introText: [
-      'Первый заказ переводит знакомство с кабинетом и продукцией в практику. Перед оформлением проверь, какие условия стартовой программы доступны именно тебе.',
-    ],
   },
   {
     id: 'placing-an-order',
