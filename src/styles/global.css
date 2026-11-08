@@ -337,7 +337,7 @@ code {
   border-bottom: 1px solid var(--line);
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
   transition: background-color var(--dur-slow) var(--ease), border-color var(--dur-slow) var(--ease);
 }
 
@@ -353,7 +353,15 @@ code {
   gap: 0.5rem;
   min-width: 0;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.app-main:has(.home-page--wide) {
+  max-width: min(100%, calc(56rem + 2 * var(--page-pad)));
+}
+
+.app-shell:has(.home-page--wide) .app-header__inner {
+  max-width: min(100%, calc(56rem + 2 * var(--page-pad)));
 }
 
 .brand {
@@ -361,8 +369,136 @@ code {
   align-items: center;
   gap: 0.4rem;
   min-width: 0;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   overflow: hidden;
+}
+
+.app-header__nav {
+  display: none;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.app-header__nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.app-header__nav-link:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+.app-header__nav-link--active {
+  color: var(--ink);
+  background: var(--info-soft);
+}
+
+.app-header__nav-link:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.app-header__menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.app-header__menu-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.app-header__menu-btn:hover {
+  background: var(--info-soft);
+}
+
+.app-header__menu-btn:active {
+  transform: scale(0.96);
+}
+
+.app-header__menu-btn:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
+.app-header__menu-panel {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  right: 0;
+  z-index: 50;
+  min-width: 9.5rem;
+  padding: 0.35rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+.app-header__menu-item {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: calc(var(--radius-sm) - 2px);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 650;
+  box-sizing: border-box;
+}
+
+.app-header__menu-item:hover {
+  background: var(--info-soft);
+}
+
+.app-header__menu-item:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 1px;
+}
+
+/* Align with BottomNav: header links and bottom bar never both visible. */
+@media (min-width: 1024px) {
+  .app-header__nav {
+    display: flex;
+  }
+
+  .bottom-nav {
+    display: none;
+  }
+
+  .app-shell {
+    padding-bottom: 0;
+  }
+
+  .app-footer {
+    padding-bottom: 1.1rem;
+  }
 }
 
 .brand__name {

@@ -1,33 +1,50 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { HelpEntry, HOME_HELP_ID } from '@/components/home/HelpEntry';
+import { QuickAccess } from '@/components/home/QuickAccess';
+import { StarterRoute } from '@/components/home/StarterRoute';
+import { UsefulInformation } from '@/components/home/UsefulInformation';
+import styles from './HomePage.module.css';
+
+function scrollToHomeHelp(behavior: ScrollBehavior = 'smooth') {
+  const target = document.getElementById(HOME_HELP_ID);
+  if (!target) return;
+  target.scrollIntoView({ behavior, block: 'start' });
+  target.focus({ preventScroll: true });
+}
 
 export function HomePage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash !== `#${HOME_HELP_ID}`) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const frame = window.requestAnimationFrame(() => {
+      scrollToHomeHelp(reduceMotion ? 'auto' : 'smooth');
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.hash, location.key]);
+
   return (
-    <div className="home-page">
-      <header className="home-intro">
-        <h1 className="home-intro__title">Рабочее пространство команды</h1>
-        <p className="home-intro__lead">
-          Здесь собраны материалы для обучения, ответы на рабочие вопросы и
-          инструменты для работы в Oriflame.
+    <div className={`home-page--wide ${styles.page}`}>
+      <header className={styles.hero}>
+        <h1 className={styles.heroTitle}>Всё начинается с первого шага.</h1>
+        <p className={styles.heroLead}>
+          Материалы, инструменты и последовательность действий для развития своего
+          дела.
         </p>
       </header>
 
-      <Link to="/learn" className="home-hub-card">
-        <p className="eyebrow eyebrow--accent">Обучение</p>
-        <p className="home-hub-card__desc">
-          Основы бизнеса, работа с заказами, продуктами и клиентами, приглашение
-          новых партнёров.
-        </p>
-        <p className="home-hub-card__note">Для изучения и освоения</p>
-      </Link>
+      <div className={styles.mainGrid}>
+        <StarterRoute />
+        <div className={styles.sidebar}>
+          <UsefulInformation />
+        </div>
+      </div>
 
-      <Link to="/tools" className="home-hub-card">
-        <p className="eyebrow eyebrow--accent">Инструменты</p>
-        <p className="home-hub-card__desc">
-          План Успеха, расчёты, визуализатор структуры команды и другие
-          практические помощники.
-        </p>
-        <p className="home-hub-card__note">Для решения рабочих задач</p>
-      </Link>
+      <QuickAccess />
+      <HelpEntry />
     </div>
   );
 }
