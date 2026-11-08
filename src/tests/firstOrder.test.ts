@@ -18,7 +18,7 @@ describe('Первый заказ', () => {
       id: firstOrderModuleMeta.id,
       title: 'Первый заказ',
       description:
-        'Узнай, зачем начинать с первого заказа, и пройди оформление - от выбора товаров до получения и проверки',
+        'Узнай, зачем начинать с первого заказа и как оформить заказ на официальном сайте Oriflame',
       path: '/learn/orders',
     });
   });
@@ -51,13 +51,14 @@ describe('Первый заказ', () => {
     expect(firstOrderStages[0]).not.toHaveProperty('video');
     expect(firstOrderStages[1]).toMatchObject({
       title: 'Как оформить заказ',
-      contentType: 'step-sequence',
-      sequenceIds: ['products-and-cart', 'delivery-choice', 'total-and-confirmation'],
-      includeFinalChecklist: true,
+      contentType: 'plain-text',
+      cardDescription: 'Пошаговое оформление заказа',
+      introText: [
+        'Для входа в личный кабинет используйте свои данные для авторизации. Информация для входа была отправлена вам в сообщении после регистрации.',
+        'После авторизации вы сможете выбирать продукцию из каталога, добавлять товары в корзину и оформлять заказы.',
+      ],
     });
-    expect(firstOrderStages[1].links?.[0]).toMatchObject({
-      label: 'Официальный сайт Oriflame - раздел «Помощь»',
-      href: 'https://oriflame.ru/',
-    });
+    expect(firstOrderStages[1]).not.toHaveProperty('sequenceIds');
+    expect(firstOrderStages[1]).not.toHaveProperty('description');
   });
 });

@@ -1,7 +1,5 @@
-import { deliveryHelpLink } from './orders';
-
 export type FirstOrderStageStatus = 'ready' | 'draft' | 'hidden';
-export type FirstOrderContentType = 'intro' | 'step-sequence';
+export type FirstOrderContentType = 'intro' | 'plain-text';
 export type FirstOrderStageIcon =
   | 'box'
   | 'bag'
@@ -23,10 +21,6 @@ export type FirstOrderStage = {
   status: FirstOrderStageStatus;
   order: number;
   placeholder?: string;
-  sequenceIds?: string[];
-  links?: { label: string; href: string }[];
-  includeProductIntroduction?: boolean;
-  includeFinalChecklist?: boolean;
 };
 
 export const firstOrderModuleMeta = {
@@ -34,7 +28,7 @@ export const firstOrderModuleMeta = {
   title: 'Первый заказ',
   path: '/learn/orders',
   catalogDescription:
-    'Узнай, зачем начинать с первого заказа, и пройди оформление - от выбора товаров до получения и проверки',
+    'Узнай, зачем начинать с первого заказа и как оформить заказ на официальном сайте Oriflame',
 } as const;
 
 export const firstOrderStages: FirstOrderStage[] = [
@@ -56,16 +50,15 @@ export const firstOrderStages: FirstOrderStage[] = [
     id: 'placing-an-order',
     path: '/learn/orders/checkout',
     title: 'Как оформить заказ',
-    description: 'Пошаговый путь от выбора товаров до получения и проверки заказа.',
-    cardDescription: 'Оформление, доставка, получение и проверка',
+    cardDescription: 'Пошаговое оформление заказа',
     icon: 'clipboard',
-    contentType: 'step-sequence',
+    contentType: 'plain-text',
     status: 'ready',
     order: 2,
-    sequenceIds: ['products-and-cart', 'delivery-choice', 'total-and-confirmation'],
-    links: [deliveryHelpLink],
-    includeProductIntroduction: true,
-    includeFinalChecklist: true,
+    introText: [
+      'Для входа в личный кабинет используйте свои данные для авторизации. Информация для входа была отправлена вам в сообщении после регистрации.',
+      'После авторизации вы сможете выбирать продукцию из каталога, добавлять товары в корзину и оформлять заказы.',
+    ],
   },
 ];
 
