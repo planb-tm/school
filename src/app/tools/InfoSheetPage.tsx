@@ -5,7 +5,7 @@ export function InfoSheetPage() {
   return (
     <div className="tools-page tools-page--wide">
       <Link to="/tools" className="tools-back">
-        ← К инструментам
+        Назад
       </Link>
       <InfoSheetApp />
     </div>

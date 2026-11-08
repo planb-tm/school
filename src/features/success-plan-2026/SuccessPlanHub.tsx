@@ -13,7 +13,7 @@ export function SuccessPlanHub() {
   return (
     <div className="module-page">
       <Link to="/tools" className="tools-back">
-        ← К инструментам
+        Назад
       </Link>
       <header className="module-hero">
         <p className="eyebrow">Инструмент</p>

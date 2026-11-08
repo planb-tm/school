@@ -7,7 +7,7 @@ import {
   type FirstOrderStage,
 } from '@/data/learning/firstOrder';
 
-describe('Первый заказ', () => {
+describe('Оформление заказа', () => {
   it('replaces the separate product and order cards with one module card', () => {
     const moduleCards = learningCatalog.filter((item) =>
       item.path === '/learn/orders' || item.path === '/learn/products',
@@ -16,7 +16,7 @@ describe('Первый заказ', () => {
     expect(moduleCards).toHaveLength(1);
     expect(moduleCards[0]).toMatchObject({
       id: firstOrderModuleMeta.id,
-      title: 'Первый заказ',
+      title: 'Оформление заказа',
       description:
         'Узнай, зачем начинать с первого заказа и как оформить заказ на официальном сайте Oriflame',
       path: '/learn/orders',

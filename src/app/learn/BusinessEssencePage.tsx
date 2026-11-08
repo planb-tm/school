@@ -12,7 +12,7 @@ export function BusinessEssencePage() {
   return (
     <div className="tools-page">
       <Link to={fromHome ? '/' : '/learn'} className="tools-back">
-        {fromHome ? '← На главную' : '← К обучению'}
+        Назад
       </Link>
 
       <header className="home-intro">

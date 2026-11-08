@@ -37,7 +37,7 @@ export function SuccessPlanSectionPage() {
     <div className="module-page">
       <div className="module-section-toolbar">
         <Link to={MODULE_BASE} className="btn btn--ghost btn--back">
-          ← К оглавлению модуля
+          Назад
         </Link>
       </div>
 
@@ -65,11 +65,11 @@ export function SuccessPlanSectionPage() {
       <nav className="module-pager" aria-label="Соседние разделы">
         {prevId ? (
           <Link to={sectionPath(prevId)} className="btn btn--secondary">
-            ← Назад
+            Назад
           </Link>
         ) : (
           <Link to={MODULE_BASE} className="btn btn--secondary">
-            ← К оглавлению
+            Назад
           </Link>
         )}
         {nextId ? (

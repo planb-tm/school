@@ -10,7 +10,7 @@ export function ProductsPage() {
   return (
     <div className="tools-page">
       <Link to="/learn" className="tools-back">
-        ← К обучению
+        Назад
       </Link>
 
       <header className="home-intro">

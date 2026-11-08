@@ -25,7 +25,7 @@ export type FirstOrderStage = {
 
 export const firstOrderModuleMeta = {
   id: 'first-order',
-  title: 'Первый заказ',
+  title: 'Оформление заказа',
   path: '/learn/orders',
   catalogDescription:
     'Узнай, зачем начинать с первого заказа и как оформить заказ на официальном сайте Oriflame',

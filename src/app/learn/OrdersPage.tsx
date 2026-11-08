@@ -109,13 +109,12 @@ function renderStageContent(stage: FirstOrderStage) {
 export function OrdersPage() {
   return (
     <div className={`${styles.lesson} ${styles.stageOverview} tools-page`}>
-      <Link to="/learn" className="tools-back">← К обучению</Link>
+      <Link to="/learn" className="tools-back">Назад</Link>
       <header className={styles.moduleHeader}>
         <h1>{firstOrderModuleMeta.title}</h1>
-        <p>Пройди два этапа - от понимания первого заказа до его оформления и проверки.</p>
       </header>
 
-      <ol className={styles.stageList} aria-label="Этапы модуля «Первый заказ»">
+      <ol className={styles.stageList} aria-label="Этапы модуля «Оформление заказа»">
         {stages.map((stage) => (
           <li key={stage.id}>
             <Link to={stage.path} className={styles.stageRow}>
@@ -160,7 +159,7 @@ export function OrderStagePage() {
 
   return (
     <div className={`${styles.lesson} tools-page`}>
-      <Link to={firstOrderModuleMeta.path} className="tools-back">← К этапам</Link>
+      <Link to={firstOrderModuleMeta.path} className="tools-back">Назад</Link>
 
       <LearningModuleStage stage={stage}>
         {renderStageContent(stage)}
@@ -169,7 +168,7 @@ export function OrderStagePage() {
       <nav className={paginationClass} aria-label="Переход между этапами">
         {previousStage ? (
           <Link to={previousStage.path} className="btn btn--secondary">
-            <span>← Предыдущий этап</span>
+            <span>Назад</span>
             <small>{previousStage.title}</small>
           </Link>
         ) : <span />}

@@ -30,8 +30,8 @@ export const starterRouteSteps: readonly StarterRouteStep[] = [
   {
     id: 'first-order',
     number: '02',
-    title: 'Первый заказ',
-    description: 'Изучить каталог, выбор продукции, оформление и доставку заказа',
+    title: 'Оформление заказа',
+    description: 'Понять, зачем начинать с первого заказа, и узнать, как его оформить',
     status: 'available',
     path: '/learn/orders',
   },
