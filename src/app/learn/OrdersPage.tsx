@@ -4,7 +4,6 @@ import { CurrentCatalogOffers } from '@/components/CurrentCatalogOffers';
 import { FirstOrderStageIcon } from '@/components/FirstOrderStageIcon';
 import { LearningModuleStage } from '@/components/LearningModuleStage';
 import { LearningStepSequence } from '@/components/LearningStepSequence';
-import { LessonVideoPlayer } from '@/components/LessonVideoPlayer';
 import {
   firstOrderModuleMeta,
   getVisibleFirstOrderStages,
@@ -73,11 +72,16 @@ function StarterProgramAndOffers() {
   return (
     <div className="stack">
       <div>
-        <h3 className={styles.subheading}>Предложения конкретного каталога</h3>
-        <CurrentCatalogOffers embedded />
+        <h3 className={styles.subheading}>Стартовая программа</h3>
+        <p>
+          Состав и требования зависят от актуальной программы и доступности для
+          аккаунта. Сверяйся с официальным описанием и учитывай только те
+          преимущества, условия которых подтверждены.
+        </p>
       </div>
+      <CurrentCatalogOffers embedded />
       <div>
-        <h3 className={styles.subheading}>Как проверять предложение</h3>
+        <h3 className={styles.subheading}>Как проверять предложение каталога</h3>
         <p>{offerLearning.intro}</p>
         <ul className="plain-list">
           {offerLearning.conditions.map((condition) => <li key={condition}>{condition}</li>)}
@@ -152,31 +156,41 @@ function OrderChecklist() {
 
 function renderStageContent(stage: FirstOrderStage) {
   switch (stage.contentType) {
-    case 'video':
+    case 'intro':
       return (
-        <>
-          {stage.video ? <LessonVideoPlayer video={stage.video} /> : null}
-          {stage.summary?.length ? (
-            <div className="lesson-video-summary">
-              {stage.summary.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          ) : null}
-        </>
+        <div className="stack">
+          <div className="lesson-intro">
+            {stage.introText?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+          <section className="stack" aria-labelledby="first-order-benefits-title">
+            <h3 id="first-order-benefits-title" className={styles.subheading}>
+              Что даёт первый заказ
+            </h3>
+            <ul className="plain-list">
+              <li>
+                Разберёшься в последовательности заказа - от выбора товаров до получения.
+              </li>
+              <li>
+                Получишь личный опыт, на который можно опираться, объясняя процесс клиенту.
+              </li>
+              <li>
+                Проверишь преимущества стартовой программы, если она доступна и
+                соблюдены её условия.
+              </li>
+            </ul>
+          </section>
+          <StarterProgramAndOffers />
+        </div>
       );
-    case 'text':
-      return <ProductIntroduction />;
-    case 'starter-program':
-      return <StarterProgramAndOffers />;
     case 'step-sequence':
       return (
         <div className="stack">
+          {stage.includeProductIntroduction ? <ProductIntroduction /> : null}
           {stage.sequenceIds?.map((id) => {
             const sequence = sequenceById.get(id);
             return sequence ? <LearningStepSequence key={id} sequence={sequence} /> : null;
           })}
-          {stage.id === 'delivery-and-receiving' ? (
+          {stage.sequenceIds?.includes('delivery-choice') ? (
             <div className="callout">
               <h3>Где проверить условия</h3>
               <p>Стоимость, доступность и условия зависят от заказа и адреса. Сверяйтесь с тем, что показано при оформлении.</p>
@@ -188,12 +202,9 @@ function renderStageContent(stage: FirstOrderStage) {
               <Scenario id="delivery-cost" />
             </div>
           ) : null}
+          {stage.includeFinalChecklist ? <OrderChecklist /> : null}
         </div>
       );
-    case 'checklist':
-      return <OrderChecklist />;
-    case 'offers':
-      return <CurrentCatalogOffers embedded />;
   }
 }
 
@@ -203,7 +214,7 @@ export function OrdersPage() {
       <Link to="/learn" className="tools-back">← К обучению</Link>
       <header className={styles.moduleHeader}>
         <h1>{firstOrderModuleMeta.title}</h1>
-        <p>Пройди шесть этапов - от знакомства с продукцией до проверки заказа.</p>
+        <p>Пройди два этапа - от понимания первого заказа до его оформления и проверки.</p>
       </header>
 
       <ol className={styles.stageList} aria-label="Этапы модуля «Первый заказ»">
@@ -231,7 +242,14 @@ export function OrderStagePage() {
     (stage) => stage.path.split('/').pop() === stageSlug,
   );
 
-  if (currentIndex < 0) return <Navigate to={firstOrderModuleMeta.path} replace />;
+  if (currentIndex < 0) {
+    const oldOrderStageSlugs = new Set(['products', 'offers', 'delivery', 'final-check']);
+    return oldOrderStageSlugs.has(stageSlug ?? '') ? (
+      <Navigate to="/learn/orders/checkout" replace />
+    ) : (
+      <Navigate to={firstOrderModuleMeta.path} replace />
+    );
+  }
 
   const stage = stages[currentIndex];
   const previousStage = stages[currentIndex - 1];
