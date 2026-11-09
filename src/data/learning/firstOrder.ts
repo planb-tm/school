@@ -35,7 +35,7 @@ export const firstOrderStages: FirstOrderStage[] = [
   {
     id: 'why-first-order',
     path: '/learn/orders/why-first-order',
-    title: 'Почему важно начать с первого заказа',
+    title: 'Почему важно начать с заказа',
     cardDescription: 'Зачем оформлять заказ и какие преимущества доступны новичку',
     icon: 'box',
     contentType: 'intro',

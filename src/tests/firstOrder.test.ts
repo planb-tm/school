@@ -44,7 +44,7 @@ describe('Оформление заказа', () => {
       '/learn/orders/checkout',
     ]);
     expect(firstOrderStages[0]).toMatchObject({
-      title: 'Почему важно начать с первого заказа',
+      title: 'Почему важно начать с заказа',
       contentType: 'intro',
       status: 'ready',
     });
