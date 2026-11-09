@@ -23,7 +23,7 @@ export const starterRouteSteps: readonly StarterRouteStep[] = [
     id: 'first-order',
     number: '02',
     title: 'Оформление заказа',
-    description: 'Понять, зачем начинать с первого заказа, и узнать, как его оформить',
+    description: 'Понять, зачем начинать с заказа, и узнать, как его оформить',
     status: 'available',
     path: '/learn/orders',
   },

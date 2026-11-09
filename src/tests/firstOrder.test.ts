@@ -67,7 +67,12 @@ describe('Оформление заказа', () => {
   it('places current catalog offers on the home route as step 03', () => {
     expect(starterRouteSteps.slice(0, 4)).toMatchObject([
       { number: '01', title: 'Суть бизнеса', path: '/learn/business-essence' },
-      { number: '02', title: 'Оформление заказа', path: '/learn/orders' },
+      {
+        number: '02',
+        title: 'Оформление заказа',
+        description: 'Понять, зачем начинать с заказа, и узнать, как его оформить',
+        path: '/learn/orders',
+      },
       { number: '03', title: 'Акции текущего каталога', path: '/learn/catalog-offers' },
       { number: '04', title: 'Приглашения и общение', path: '/learn/inviting' },
     ]);
