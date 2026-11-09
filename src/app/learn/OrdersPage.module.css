@@ -9,6 +9,13 @@
   margin-inline: auto;
 }
 
+.checkoutContent {
+  display: grid;
+  gap: var(--space-5);
+  width: 100%;
+  min-width: 0;
+}
+
 .lesson :global(.lesson-intro p),
 .lesson :global(.lesson-video-summary p),
 .lesson :global(.callout p),

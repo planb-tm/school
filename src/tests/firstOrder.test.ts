@@ -1,4 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+import sharp from 'sharp';
 import { learningCatalog } from '@/data/learning/catalog';
 import {
   firstOrderModuleMeta,
@@ -6,6 +9,11 @@ import {
   getVisibleFirstOrderStages,
   type FirstOrderStage,
 } from '@/data/learning/firstOrder';
+import {
+  ORDER_SCREENSHOT_HEIGHT,
+  ORDER_SCREENSHOT_WIDTH,
+  orderStepSequences,
+} from '@/data/learning/orders';
 import { starterRouteSteps } from '@/data/home/starterRoute';
 
 describe('Оформление заказа', () => {
@@ -62,6 +70,46 @@ describe('Оформление заказа', () => {
     });
     expect(firstOrderStages[1]).not.toHaveProperty('sequenceIds');
     expect(firstOrderStages[1]).not.toHaveProperty('description');
+  });
+
+  it('keeps all 14 supplied checkout screenshots in step order and source dimensions', async () => {
+    const steps = orderStepSequences[0].steps;
+
+    expect(steps).toHaveLength(14);
+    expect(steps.map((step) => step.number)).toEqual(
+      Array.from({ length: 14 }, (_, index) => index + 1),
+    );
+    expect(steps.map((step) => step.title)).toEqual([
+      'Открой официальный сайт Oriflame',
+      'Войди в личный кабинет',
+      'Данные профиля',
+      'Открой каталог продукции',
+      'Изучи предложение и цену товара',
+      'Выбери товары из каталога',
+      'Проверь товары в корзине',
+      'Проверь дополнительные предложения',
+      'Выбери способ получения заказа',
+      'Открой выбор пункта выдачи',
+      'Найди пункт выдачи на карте',
+      'Введи город или адрес',
+      'Проверь расположение пункта выдачи',
+      'Проверь заказ и выбери способ оплаты',
+    ]);
+
+    for (const [index, step] of steps.entries()) {
+      const filename = step.imageSrc.split('/').at(-1);
+      expect(filename).toBe(`order-wizard-${String(index + 1).padStart(2, '0')}.png`);
+      const imagePath = resolve(process.cwd(), 'public', 'media', 'orders', filename ?? '');
+      expect(existsSync(imagePath)).toBe(true);
+      const metadata = await sharp(imagePath).metadata();
+      expect([metadata.width, metadata.height]).toEqual([
+        ORDER_SCREENSHOT_WIDTH,
+        ORDER_SCREENSHOT_HEIGHT,
+      ]);
+    }
+
+    expect(ORDER_SCREENSHOT_WIDTH).toBe(941);
+    expect(ORDER_SCREENSHOT_HEIGHT).toBe(1672);
   });
 
   it('places current catalog offers on the home route as step 03', () => {

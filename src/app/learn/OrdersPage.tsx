@@ -73,23 +73,22 @@ function renderStageContent(stage: FirstOrderStage) {
       );
     case 'plain-text':
       return (
-        <div className={`lesson-intro ${styles.introContent}`}>
-          <p>
-            Заказы продукции Oriflame оформляются на официальном сайте{' '}
-            <a
-              className={styles.orderingSiteLink}
-              href="https://oriflame.ru/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              oriflame.ru
-            </a>.
-          </p>
-          {stage.introText?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-          <LearningStepSequence
-            presentation="screenshots-only"
-            sequence={orderStepSequences[0]}
-          />
+        <div className={styles.checkoutContent}>
+          <div className={`lesson-intro ${styles.introContent}`}>
+            <p>
+              Заказы продукции Oriflame оформляются на официальном сайте{' '}
+              <a
+                className={styles.orderingSiteLink}
+                href="https://oriflame.ru/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                oriflame.ru
+              </a>.
+            </p>
+            {stage.introText?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          </div>
+          <LearningStepSequence sequence={orderStepSequences[0]} />
         </div>
       );
   }

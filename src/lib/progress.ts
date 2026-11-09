@@ -2,6 +2,11 @@ import type { LearningProgress } from '@/types/learning';
 
 export type { LearningProgress };
 
+export type SavedSequenceProgress = {
+  stepIndex: number;
+  completed: boolean;
+};
+
 const STORAGE_PREFIX = 'oriflame-learning-progress:';
 
 function storageKey(moduleId: string): string {
@@ -23,7 +28,8 @@ export function hasLearningProgress(progress: LearningProgress): boolean {
   return (
     progress.completedTaskIds.length > 0 ||
     Object.keys(progress.quizResults).length > 0 ||
-    Object.keys(progress.scenarioResults).length > 0
+    Object.keys(progress.scenarioResults).length > 0 ||
+    Object.keys(progress.sequenceProgress ?? {}).length > 0
   );
 }
 
@@ -54,6 +60,39 @@ export function saveProgress(progress: LearningProgress): LearningProgress {
     // Quota / private mode - keep in-memory only.
   }
   return next;
+}
+
+export function loadSequenceProgress(
+  moduleId: string,
+  sequenceId: string,
+  stepCount: number,
+): SavedSequenceProgress | null {
+  const saved = loadProgress(moduleId).sequenceProgress?.[sequenceId];
+  if (
+    !saved ||
+    !Number.isInteger(saved.stepIndex) ||
+    saved.stepIndex < 0 ||
+    saved.stepIndex >= stepCount ||
+    typeof saved.completed !== 'boolean'
+  ) {
+    return null;
+  }
+  return saved;
+}
+
+export function saveSequenceProgress(
+  moduleId: string,
+  sequenceId: string,
+  sequenceProgress: SavedSequenceProgress,
+): LearningProgress {
+  const progress = loadProgress(moduleId);
+  return saveProgress({
+    ...progress,
+    sequenceProgress: {
+      ...progress.sequenceProgress,
+      [sequenceId]: sequenceProgress,
+    },
+  });
 }
 
 export function markTaskComplete(

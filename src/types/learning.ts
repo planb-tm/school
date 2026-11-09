@@ -127,6 +127,7 @@ export interface LearningProgress {
   completedTaskIds: string[];
   quizResults: Record<string, { selectedIndex: number; correct: boolean }>;
   scenarioResults: Record<string, { passed: boolean; at: string }>;
+  sequenceProgress?: Record<string, { stepIndex: number; completed: boolean }>;
   updatedAt: string;
 }
 

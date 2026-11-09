@@ -1,292 +1,21 @@
 .sequence {
   display: grid;
-  gap: var(--space-4);
-  border: 1px solid color-mix(in srgb, var(--accent-strong) 45%, var(--line));
-  box-shadow: var(--shadow);
-}
-
-.screenshotsOnly {
-  width: min(100%, 24rem);
-  justify-self: center;
-  justify-items: center;
-  gap: var(--space-4);
-  padding: var(--space-4);
-  border-color: var(--line);
-  box-shadow: var(--shadow);
-}
-
-.stepLayout.screenshotsOnlyLayout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
+  gap: var(--space-5);
   width: 100%;
-}
-
-.screenshotsOnlyLayout .mediaColumn {
-  width: 100%;
-  gap: var(--space-2);
-  justify-items: center;
-}
-
-.screenshotPhoneFrame {
-  position: relative;
-  display: grid;
-  width: min(100%, 22rem);
-  justify-self: center;
-  margin-inline: auto;
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  place-items: center;
-  border: 0.5rem solid var(--line-dark);
-  border-radius: 2rem;
-  background: var(--surface-2);
-  box-shadow: var(--shadow);
-}
-
-.screenshotsOnly .imageCaption {
-  width: min(100%, 17rem);
-  justify-self: center;
-  margin-inline: auto;
-  min-height: 2.7rem;
-  max-width: none;
-  font-size: var(--text-caption);
-  line-height: 1.5;
-  text-align: center;
-}
-
-.screenshotsOnly .controls {
-  width: min(100%, 17rem);
-  justify-self: center;
-  padding-top: var(--space-3);
+  min-width: 0;
 }
 
 .sequenceHeader {
   display: grid;
-  gap: var(--space-2);
-}
-
-.sequenceHeader h2,
-.stepContent h3 {
-  margin: 0;
-  color: var(--ink);
-  font-size: var(--text-xl);
-  font-weight: 700;
-  line-height: 1.25;
-}
-
-.stepContent h3 {
-  font-size: var(--text-lg);
-}
-
-.sequenceHeader > p:last-child,
-.stepContent > p:last-child {
-  margin: 0;
-  color: var(--muted);
-  font-size: var(--text-body);
-  line-height: 1.6;
-}
-
-.stepLayout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  align-items: center;
-  gap: var(--space-7);
+  gap: var(--space-3);
   min-width: 0;
 }
 
-.mediaColumn {
-  display: grid;
-  justify-items: center;
-  gap: var(--space-2);
-  min-width: 0;
-}
-
-.phoneFrame {
-  position: relative;
-  display: grid;
-  width: min(100%, 15rem);
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  place-items: center;
-  border: 0.45rem solid var(--line-dark);
-  border-radius: 1.8rem;
-  background: var(--surface-2);
-}
-
-.highlight {
-  position: absolute;
-  z-index: 1;
-  border: 2px solid var(--accent-strong);
-  border-radius: 0.35rem;
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--surface) 75%, transparent);
-  pointer-events: none;
-}
-
-.imageButton {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-width: 0;
-  min-height: 0;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  cursor: zoom-in;
-  line-height: 0;
-}
-
-.imageButton:focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: -4px;
-}
-
-.screenshotsOnly .imageButton::after {
-  position: absolute;
-  z-index: 1;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1.4rem;
-  background: linear-gradient(
-    to right,
-    #fff 0,
-    #fff 2.5rem,
-    transparent 2.5rem,
-    transparent calc(100% - 2.5rem),
-    #fff calc(100% - 2.5rem),
-    #fff 100%
-  );
-  content: '';
-  pointer-events: none;
-}
-
-.screenshot {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-
-.placeholder {
-  display: grid;
-  align-content: center;
-  gap: var(--space-2);
-  width: 100%;
-  height: 100%;
-  padding: var(--space-4);
-  color: var(--muted);
-  text-align: center;
-  font-size: var(--text-small);
-  line-height: 1.5;
-}
-
-.placeholder strong {
-  color: var(--ink);
-  font-size: var(--text-body);
-}
-
-.imageCaption {
-  max-width: 15rem;
-  margin: 0;
-  color: var(--muted);
-  font-size: var(--text-small);
-  line-height: 1.5;
-  text-align: center;
-}
-
-.zoomHint {
-  max-width: 15rem;
-  margin: 0;
-  color: var(--muted);
-  font-size: var(--text-caption);
-  line-height: 1.5;
-  text-align: center;
-}
-
-.imageDialog {
-  width: min(60rem, calc(100vw - 2rem));
-  max-width: calc(100vw - 2rem);
-  max-height: calc(100dvh - var(--space-6));
-  margin: auto;
-  padding: var(--space-4);
-  overflow: auto;
-  overscroll-behavior: contain;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--shadow);
-}
-
-.imageDialog::backdrop {
-  background: rgb(12 13 18 / 78%);
-  backdrop-filter: blur(2px);
-}
-
-.dialogHeader {
+.progressSummary {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  margin-bottom: var(--space-3);
-}
-
-.dialogHeader h2 {
-  min-width: 0;
-  margin: 0;
-  color: var(--ink);
-  font-size: var(--text-lg);
-  line-height: 1.3;
-}
-
-.dialogHeader button:focus-visible {
-  outline: 3px solid var(--focus-ring);
-  outline-offset: 3px;
-}
-
-.largeFigure {
-  display: grid;
-  justify-items: center;
-  gap: var(--space-2);
-  min-width: 0;
-  max-width: 100%;
-  margin: 0;
-}
-
-.largeScreenshot {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: calc(100dvh - 10rem);
-  object-fit: contain;
-  object-position: center;
-}
-
-.largeFigure figcaption {
-  max-width: 100%;
-  color: var(--muted);
-  font-size: var(--text-small);
-  line-height: 1.5;
-  text-align: center;
-  overflow-wrap: anywhere;
-}
-
-.stepContent {
-  display: grid;
-  align-content: center;
-  gap: var(--space-3);
-  min-width: 0;
-}
-
-.stepContent > p:last-child {
-  color: var(--ink);
+  gap: var(--space-2) var(--space-3);
 }
 
 .stepCount {
@@ -297,111 +26,438 @@
   background: var(--info-soft);
   color: var(--ink);
   font-size: var(--text-small);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.35;
+  white-space: nowrap;
 }
 
-.controls {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center;
-  gap: var(--space-3);
-  border-top: 1px solid var(--line);
-  padding-top: var(--space-4);
-}
-
-.controls > :last-child {
-  justify-self: end;
-}
-
-.controlStep {
+.stageLabel,
+.eyebrow {
+  margin: 0;
   color: var(--muted);
   font-size: var(--text-small);
-  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.45;
 }
 
-.controls button:focus-visible {
+.progressTrack {
+  height: 0.45rem;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+}
+
+.progressTrack > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent-strong);
+  transition: width var(--dur) var(--ease);
+}
+
+.stepJump {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+}
+
+.stepJump ol {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-1);
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: 0.15rem 0.1rem 0.4rem;
+  list-style: none;
+}
+
+.stepJumpButton {
+  display: grid;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  transition:
+    background-color var(--dur) var(--ease),
+    border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.stepJumpButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.stepJumpButtonComplete {
+  border-color: color-mix(in srgb, var(--accent-strong) 45%, var(--line));
+  background: color-mix(in srgb, var(--accent-strong) 12%, var(--surface));
+  color: var(--ink);
+}
+
+.stepJumpButtonCurrent {
+  border-color: var(--accent-strong);
+  background: var(--accent-strong);
+  color: var(--surface);
+}
+
+.stepJumpButton:focus-visible,
+.imageButton:focus-visible,
+.controls button:focus-visible,
+.dialogControls button:focus-visible,
+.dialogHeader button:focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 
-.controls :global(.btn),
-.dialogHeader :global(.btn) {
-  min-height: var(--control-size);
-  min-width: var(--control-size);
-  font-size: var(--text-small);
+.wizardLayout {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.8fr) minmax(0, 1.2fr);
+  grid-template-areas:
+    'details image'
+    'controls image';
+  align-items: center;
+  gap: var(--space-5) var(--space-7);
+  min-width: 0;
 }
 
-@media (max-width: 560px) {
+.stepDetails {
+  display: grid;
+  grid-area: details;
+  align-content: end;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.stepDetails h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(var(--text-xl), 2vw + 0.85rem, 2.25rem);
+  font-weight: 700;
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+}
+
+.stepDetails p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-body);
+  line-height: 1.55;
+}
+
+.imageFigure {
+  display: grid;
+  grid-area: image;
+  justify-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+}
+
+.imageFrame {
+  justify-self: center;
+  box-sizing: border-box;
+  width: min(100%, 26.5rem);
+  height: auto;
+  max-width: 100%;
+  aspect-ratio: 941 / 1672;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 1.125rem;
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+}
+
+.imageButton {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+  line-height: 0;
+}
+
+.screenshot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.imageUnavailable {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  padding: var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-small);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.imageHint {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-caption);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  grid-area: controls;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-width: 0;
+  padding-bottom: var(--safe-bottom);
+  scroll-margin-block-end: calc(5rem + var(--safe-bottom));
+}
+
+.controls button,
+.resumeActions button,
+.dialogControls button,
+.dialogHeader button {
+  min-height: var(--control-size);
+}
+
+.resumePanel {
+  display: grid;
+  gap: var(--space-3);
+  width: min(100%, 42rem);
+  margin-inline: auto;
+  padding-block: var(--space-4);
+}
+
+.resumePanel h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-xl);
+  line-height: 1.25;
+}
+
+.resumePanel > p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-body);
+  line-height: 1.55;
+}
+
+.resumeActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.imageDialog {
+  display: none;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: min(70rem, calc(100vw - 2rem));
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100dvh - var(--space-5) - var(--safe-top) - var(--safe-bottom));
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.imageDialog[open] {
+  display: grid;
+}
+
+.imageDialog::backdrop {
+  background: rgb(12 13 18 / 78%);
+  backdrop-filter: blur(3px);
+}
+
+.dialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.dialogHeader p {
+  margin: 0 0 var(--space-1);
+  color: var(--muted);
+  font-size: var(--text-caption);
+}
+
+.dialogHeader h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--text-body);
+  line-height: 1.3;
+}
+
+.imageViewport {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  max-height: calc(100dvh - 12rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-x pan-y pinch-zoom;
+  background: var(--surface-2);
+}
+
+.largeScreenshot {
+  display: block;
+  width: auto;
+  height: auto;
+  margin-inline: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 13rem - var(--safe-top) - var(--safe-bottom));
+  object-fit: contain;
+  object-position: center;
+}
+
+.largeScreenshot.largeScreenshotZoomed {
+  margin: 0;
+  max-width: none;
+  max-height: none;
+}
+
+.dialogControls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4) calc(var(--space-3) + var(--safe-bottom));
+  border-top: 1px solid var(--line);
+}
+
+.dialogControls button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .stepJumpButton:enabled:hover {
+    transform: translateY(-1px);
+    border-color: var(--accent-strong);
+    color: var(--ink);
+  }
+
+  .stepJumpButtonCurrent:enabled:hover {
+    color: var(--surface);
+  }
+
+  .imageButton:hover .screenshot {
+    filter: brightness(0.985);
+  }
+}
+
+@media (max-width: 720px) {
   .sequence {
     gap: var(--space-4);
-    padding: var(--space-4);
   }
 
-  .stepLayout {
+  .sequenceHeader {
+    gap: var(--space-2);
+  }
+
+  .wizardLayout {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'details'
+      'image'
+      'controls';
     gap: var(--space-4);
   }
 
-  .phoneFrame {
-    width: min(57vw, 12rem);
-    min-width: 9.5rem;
+  .stepDetails {
+    gap: var(--space-2);
   }
 
-  .screenshotsOnly {
-    gap: var(--space-3);
-    padding: var(--space-3);
+  .stepDetails h2 {
+    font-size: var(--text-xl);
   }
 
-  .screenshotPhoneFrame {
-    width: min(100%, 22rem);
-    min-width: 0;
+  .imageFigure,
+  .imageFrame {
+    width: 100%;
   }
 
-  .screenshotsOnly .imageCaption {
-    width: min(100%, 15rem);
-    min-height: 2.55rem;
-    font-size: var(--text-caption);
+  .imageFrame {
+    height: auto;
+    aspect-ratio: 941 / 1672;
   }
 
-  .screenshotsOnly .controls {
-    width: min(100%, 15rem);
+  .imageButton {
+    height: auto;
+  }
+
+  .screenshot {
+    width: 100%;
+    height: auto;
+  }
+
+  .controls {
+    padding-top: var(--space-1);
+  }
+
+  .controls button {
+    min-width: min(8.5rem, calc(50% - var(--space-2)));
   }
 
   .imageDialog {
     width: calc(100vw - 1rem);
     max-width: calc(100vw - 1rem);
-    max-height: calc(100dvh - var(--space-4));
-    padding: var(--space-3);
+    max-height: calc(100dvh - var(--space-3) - var(--safe-top) - var(--safe-bottom));
     border-radius: var(--radius-sm);
   }
 
   .dialogHeader {
     gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
   }
 
-  .dialogHeader h2 {
-    font-size: var(--text-lg);
+  .imageViewport {
+    max-height: calc(100dvh - 11rem - var(--safe-top) - var(--safe-bottom));
   }
 
   .largeScreenshot {
-    max-height: calc(100dvh - 10rem);
+    max-height: calc(100dvh - 12rem - var(--safe-top) - var(--safe-bottom));
   }
 
-  .sequenceHeader h2 {
-    font-size: var(--text-xl);
+  .dialogControls {
+    gap: var(--space-1);
+    padding-inline: var(--space-2);
   }
 
-  .stepContent h3 {
-    font-size: var(--text-lg);
+  .dialogControls button {
+    flex: 1 1 auto;
+    padding-inline: var(--space-2);
   }
+}
 
-  .stepContent {
-    gap: var(--space-2);
-  }
-
-  .controls :global(.btn) {
-    min-height: var(--control-size);
-    padding: var(--space-3);
+@media (prefers-reduced-motion: reduce) {
+  .progressTrack > span,
+  .stepJumpButton {
+    transition: none;
   }
 }
