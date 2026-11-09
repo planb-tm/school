@@ -3,6 +3,7 @@ import styles from './SocialLinks.module.css';
 const socialLinks = [
   {
     name: 'Telegram',
+    label: 'Telegram',
     description: '',
     href: 'https://t.me/dolina_nadya',
     title: 'Telegram',
@@ -10,6 +11,7 @@ const socialLinks = [
   },
   {
     name: 'ВКонтакте',
+    label: 'Личная страница',
     description: 'личная страница',
     href: 'https://vk.ru/dolina_nadya',
     title: 'ВКонтакте - личная страница',
@@ -17,6 +19,7 @@ const socialLinks = [
   },
   {
     name: 'ВКонтакте',
+    label: 'Сообщество',
     description: 'сообщество',
     href: 'https://vk.ru/dolina_public',
     title: 'ВКонтакте - сообщество',
@@ -24,6 +27,7 @@ const socialLinks = [
   },
   {
     name: 'Instagram',
+    label: 'Instagram',
     description: '',
     href: 'https://www.instagram.com/dolina_nadya',
     title: 'Instagram',
@@ -82,14 +86,7 @@ export function SocialLinks() {
                 <SocialIcon name={link.icon} />
               </span>
               <span className={styles.label}>
-                {link.icon === 'vk' ? (
-                  <span>{link.description}</span>
-                ) : (
-                  <>
-                    <span>{link.name}</span>
-                    {link.description && <span className={styles.detail}>{link.description}</span>}
-                  </>
-                )}
+                <span>{link.label}</span>
               </span>
             </a>
           </li>
