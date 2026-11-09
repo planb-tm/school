@@ -214,14 +214,11 @@ export function CatalogOffers({ catalog, now = new Date() }: { catalog: Catalog;
       {catalog.offers.map((offer, index) => <Offer key={offer.id} offer={offer} onOpen={openSlide} now={now} priority={index === 0} />)}
       {catalog.offers.length === 0 ? <p className={styles.periodNote}>Проверенные акции этого каталога пока не добавлены.</p> : null}
 
-      <section className={styles.source} aria-labelledby="catalog-documents-title">
-        <div className={styles.sectionHeading}>
-          <h2 id="catalog-documents-title">Официальные документы</h2>
-        </div>
+      <section className={styles.source} aria-label="Официальные документы">
         {catalog.documents.map((document) => (
           <div className={styles.rulesRow} key={document.id}>
             <div>
-              <h3>{document.title}</h3>
+              <h2>{document.title}</h2>
               {document.description ? <p>{document.description}</p> : null}
             </div>
             <a href={catalogAssetUrl(document.href)} target="_blank" rel="noopener noreferrer" className={styles.rulesLink}>

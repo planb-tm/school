@@ -45,7 +45,7 @@
   --is-primary-fg: var(--accent-ink);
 }
 
-.root :is(button, a, summary, input, select, [tabindex]):focus-visible {
+.root :is(button, a, summary, input, select, [tabindex]:not(h1)):focus-visible {
   outline: 3px solid var(--focus-ring, var(--accent-strong));
   outline-offset: 3px;
 }

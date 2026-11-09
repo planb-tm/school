@@ -3,9 +3,9 @@ import styles from './SocialLinks.module.css';
 const socialLinks = [
   {
     name: 'Telegram',
-    description: 'личные сообщения',
+    description: '',
     href: 'https://t.me/dolina_nadya',
-    title: 'Telegram - личные сообщения',
+    title: 'Telegram',
     icon: 'telegram',
   },
   {

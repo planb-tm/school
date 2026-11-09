@@ -29,7 +29,7 @@ export const catalog2026_15 = {
   documents: [
     {
       id: 'campaign-conditions',
-      title: 'Официальные условия кампании',
+      title: 'Полные условия компании',
       href: 'media/catalog-offers/2026-15/campaign-conditions.pdf',
       description: 'Официальные условия Oriflame · редакция от 25.10.2026',
     },
