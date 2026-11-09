@@ -82,8 +82,14 @@ export function SocialLinks() {
                 <SocialIcon name={link.icon} />
               </span>
               <span className={styles.label}>
-                <span>{link.name}</span>
-                {link.description && <span className={styles.detail}>{link.description}</span>}
+                {link.icon === 'vk' ? (
+                  <span>{link.description}</span>
+                ) : (
+                  <>
+                    <span>{link.name}</span>
+                    {link.description && <span className={styles.detail}>{link.description}</span>}
+                  </>
+                )}
               </span>
             </a>
           </li>

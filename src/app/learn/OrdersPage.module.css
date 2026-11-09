@@ -17,6 +17,16 @@
   line-height: 1.6;
 }
 
+.introContent :global(h2) {
+  margin: var(--space-3) 0 0;
+  line-height: 1.25;
+}
+
+.introContent :global(h3) {
+  margin: var(--space-3) 0 0;
+  line-height: 1.3;
+}
+
 .lesson :global(.panel__header p) {
   font-size: var(--text-small);
   line-height: 1.5;

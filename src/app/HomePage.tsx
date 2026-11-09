@@ -8,10 +8,6 @@ export function HomePage() {
     <PageContainer className={styles.page}>
       <header className={styles.hero}>
         <h1 className={styles.heroTitle} tabIndex={-1}>Всё начинается с первого шага.</h1>
-        <p className={styles.heroLead}>
-          Материалы, инструменты и последовательность действий для развития своего
-          дела.
-        </p>
       </header>
 
       <StarterRoute />
