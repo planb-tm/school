@@ -19,7 +19,9 @@ function renderStageContent(stage: FirstOrderStage) {
     case 'intro':
       return (
         <div className={`lesson-intro ${styles.introContent}`}>
-          <p><strong>Ты теперь Бьюти-партнёр Oriflame. Что дальше?</strong></p>
+          <p className={styles.introLead}>
+            <strong>Ты теперь Бьюти-партнёр Oriflame. Что дальше?</strong>
+          </p>
           <p>
             После регистрации в Oriflame тебе становятся доступны продукция компании,
             специальные предложения и преимущества партнёрской программы.
