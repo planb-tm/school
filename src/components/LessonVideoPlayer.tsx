@@ -13,7 +13,9 @@ type Props = {
 export function LessonVideoPlayer({ video }: Props) {
   const titleId = useId();
   const src = resolveLessonVideoSrc(video);
-  const [started, setStarted] = useState(false);
+  // Keep embedded players ready before the user taps their native play control.
+  // Autoplay in a newly created cross-origin iframe can fall back to muted playback.
+  const [started, setStarted] = useState(video.type === 'embed');
 
   if (!src) return null;
 
@@ -95,11 +97,11 @@ export function LessonVideoPlayer({ video }: Props) {
         ) : (
           <iframe
             className="lesson-video__media"
-            src={`${src}${src.includes('?') ? '&' : '?'}autoplay=1`}
+            src={src}
             title={label}
             allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            loading="lazy"
+            loading="eager"
             referrerPolicy="strict-origin-when-cross-origin"
           />
         )}
