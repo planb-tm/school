@@ -4,16 +4,11 @@ import { successPlanData } from '@/data/success-plan-2026/module';
 
 export function BonusStepsSection() {
   return (
-    <section className="panel" id="bonus-steps">
-      <header className="panel__header">
-        <h2>Принципы расчёта бонусов</h2>
-        <p>Пять шагов из документа (с. 21) и таблица уровней.</p>
-      </header>
-
+    <section className="panel" id="bonus-steps" aria-label="Принципы расчёта бонусов">
       <ol className="step-list">
         {successPlanData.bonusSteps.map((step) => (
           <li key={step.title} className="step-list__item">
-            <h3>{step.title}</h3>
+            <h2 className="content-heading">{step.title}</h2>
             <p>{step.body}</p>
           </li>
         ))}

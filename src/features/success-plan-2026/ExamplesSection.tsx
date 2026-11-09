@@ -31,13 +31,13 @@ function ExampleWalkthrough({ example }: { example: CalculationExample }) {
   return (
     <article className="example-card">
       <div className="example-card__top">
-        <h3>{example.title}</h3>
+        <h2 className="content-heading">{example.title}</h2>
         <StatusBadge status={example.status} compact />
       </div>
       <p>{example.description}</p>
 
       <div className="walkthrough">
-        <p className="muted walkthrough__progress">
+        <p className="muted walkthrough__progress" role="status" aria-live="polite">
           Шаг {Math.min(visibleCount, steps.length)} из {steps.length}
         </p>
 
@@ -92,7 +92,7 @@ function ExampleWalkthrough({ example }: { example: CalculationExample }) {
       </div>
 
       {done ? (
-        <div className="result-grid">
+        <div className="result-grid" role="status" aria-label={`Итог примера: ${example.title}`}>
           <div>
             <span className="muted">Рекомендационный</span>
             <strong>{formatRub(example.expected.recommendationBonus)}</strong>
@@ -123,15 +123,7 @@ function ExampleWalkthrough({ example }: { example: CalculationExample }) {
 
 export function ExamplesSection() {
   return (
-    <section className="panel" id="examples">
-      <header className="panel__header">
-        <h2>Разбор контрольных примеров</h2>
-        <p>
-          Два контрольных примера из «Плана Успеха» 2026. Открывайте шаги по одному -
-          так проще увидеть промежуточные суммы.
-        </p>
-      </header>
-
+    <section className="panel" id="examples" aria-label="Разбор контрольных примеров">
       <div className="stack">
         {calculationExamples.map((example) => (
           <ExampleWalkthrough key={example.id} example={example} />

@@ -5,21 +5,21 @@ const socialLinks = [
     name: 'Telegram',
     description: 'личные сообщения',
     href: 'https://t.me/dolina_nadya',
-    title: 'Telegram — личные сообщения',
+    title: 'Telegram - личные сообщения',
     icon: 'telegram',
   },
   {
     name: 'ВКонтакте',
     description: 'личная страница',
     href: 'https://vk.ru/dolina_nadya',
-    title: 'ВКонтакте — личная страница',
+    title: 'ВКонтакте - личная страница',
     icon: 'vk',
   },
   {
     name: 'ВКонтакте',
     description: 'сообщество',
     href: 'https://vk.ru/dolina_public',
-    title: 'ВКонтакте — сообщество',
+    title: 'ВКонтакте - сообщество',
     icon: 'vk',
   },
   {
@@ -75,7 +75,7 @@ export function SocialLinks() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`${link.name}${link.description ? ` — ${link.description}` : ''}`}
+              aria-label={`${link.name}${link.description ? ` - ${link.description}` : ''}`}
               title={link.title}
             >
               <span className={styles.icon}>

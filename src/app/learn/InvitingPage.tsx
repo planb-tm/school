@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { CopyTextButton } from '@/components/CopyTextButton';
+import { PageContainer } from '@/components/PageContainer';
+import { PageHeader } from '@/components/PageHeader';
 import {
   communicationRules,
   followupTemplates,
@@ -75,22 +76,15 @@ export function InvitingPage() {
     invitingSections.find((item) => item.id === section)?.hint ?? '';
 
   return (
-    <div className="tools-page">
-      <Link to="/" className="tools-back">
-        Назад
-      </Link>
-
-      <header className="home-intro">
-        <p className="eyebrow">Справочник</p>
-        <h1 className="home-intro__title">{invitingLessonMeta.title}</h1>
-        <p className="home-intro__lead">{invitingIntro}</p>
-      </header>
+    <PageContainer>
+      <PageHeader title={invitingLessonMeta.title} backTo="/" description={invitingIntro} />
 
       <nav className="ref-subnav" aria-label="Подразделы справочника">
         {invitingSections.map((item) => (
           <button
             key={item.id}
             type="button"
+            aria-pressed={section === item.id}
             className={
               section === item.id
                 ? 'chip chip--active'
@@ -150,6 +144,7 @@ export function InvitingPage() {
           <div className="filter-row" role="group" aria-label="Категории">
             <button
               type="button"
+              aria-pressed={categoryId === 'all'}
               className={categoryId === 'all' ? 'chip chip--active' : 'chip'}
               onClick={() => setCategoryId('all')}
             >
@@ -159,6 +154,7 @@ export function InvitingPage() {
               <button
                 key={category.id}
                 type="button"
+                aria-pressed={categoryId === category.id}
                 className={
                   categoryId === category.id ? 'chip chip--active' : 'chip'
                 }
@@ -231,6 +227,6 @@ export function InvitingPage() {
           )}
         </section>
       ) : null}
-    </div>
+    </PageContainer>
   );
 }

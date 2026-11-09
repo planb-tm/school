@@ -1,0 +1,9 @@
+.accordionHeading {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.collapsible[hidden] {
+  display: none;
+}

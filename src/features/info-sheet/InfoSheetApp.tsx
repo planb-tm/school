@@ -8,6 +8,7 @@ import { PartnerSearch } from './components/PartnerSearch';
 import { PartnerCard } from './components/PartnerCard';
 import { StructureTree } from './components/StructureTree';
 import { Toast } from './components/Toast';
+import { PageHeader } from '@/components/PageHeader';
 import type { DashboardTab } from './types/report';
 import {
   IconLayoutDashboard,
@@ -72,24 +73,18 @@ function Dashboard() {
         </nav>
       </aside>
 
-      <header className={styles.topHeader}>
-        <div className={styles.headerTopRow}>
-          <div className={styles.headerTitleBlock}>
-            <h1 className={styles.headerTitle}>{TAB_TITLES[state.tab]}</h1>
-            {root ? (
-              <p className={styles.headerSubtitle}>
-                {root.fullName ?? root.partnerNumber}
-                <span className={styles.headerDot}>·</span>
-                {root.partnerNumber}
-              </p>
-            ) : null}
-          </div>
-          <div className={styles.headerActions}>
+      <div className={styles.topHeader}>
+        <PageHeader
+          title={TAB_TITLES[state.tab]}
+          description={root ? `${root.fullName ?? root.partnerNumber} · ${root.partnerNumber}` : ''}
+          className={styles.dashboardHeading}
+          actions={<div className={styles.headerActions}>
             <button
               type="button"
               className={styles.headerBtn}
               onClick={changeRoot}
               title="Сменить корень анализа"
+              aria-label="Сменить корень анализа"
             >
               <IconRefresh size={16} strokeWidth={1.75} />
               <span>Корень</span>
@@ -99,12 +94,13 @@ function Dashboard() {
               className={`${styles.headerBtn} ${styles.headerBtnDanger}`}
               onClick={clearData}
               title="Очистить данные и загрузить другой файл"
+              aria-label="Очистить данные и загрузить другой файл"
             >
               <IconEraser size={16} strokeWidth={1.75} />
               <span>Сброс</span>
             </button>
-          </div>
-        </div>
+          </div>}
+        />
         {(state.report?.catalogLabel || state.report?.reportDate) && (
           <div className={styles.headerMeta}>
             {state.report?.catalogLabel ? (
@@ -137,14 +133,14 @@ function Dashboard() {
             );
           })}
         </nav>
-      </header>
+      </div>
 
-      <main className={styles.main}>
+      <div className={styles.main}>
         {state.tab === 'overview' ? <OverviewPanel /> : null}
         {state.tab === 'partners' ? <PartnerSearch /> : null}
         {state.tab === 'structure' ? <StructureTree /> : null}
         {state.tab === 'card' ? <PartnerCard /> : null}
-      </main>
+      </div>
     </div>
   );
 }
@@ -163,6 +159,7 @@ function ToolShell() {
   if (state.view === 'import') {
     return (
       <div className={styles.shell}>
+        <PageHeader title="Визуализатор информационного листка" />
         <div className={styles.hero}>
           <ImportReport />
         </div>
@@ -173,6 +170,7 @@ function ToolShell() {
   if (state.view === 'select-root') {
     return (
       <div className={styles.shell}>
+        <PageHeader title="Визуализатор информационного листка" />
         <div className={styles.hero}>
           <RootSelector />
         </div>

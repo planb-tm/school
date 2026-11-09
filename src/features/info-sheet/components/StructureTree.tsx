@@ -32,14 +32,14 @@ function TreeBranch({
   const hasChildren = node.children.length > 0;
 
   return (
-    <div className={styles.treeNode}>
+    <div className={`${styles.treeNode} ${node.level >= 3 ? styles.treeNodeDeep : ''} ${node.level >= 8 ? styles.treeNodeVeryDeep : ''}`}>
       <div className={styles.treeRow}>
         {hasChildren ? (
           <button
             type="button"
             className={styles.treeToggle}
             aria-expanded={isOpen}
-            aria-label={isOpen ? 'Свернуть' : 'Развернуть'}
+            aria-label={`${isOpen ? 'Свернуть' : 'Развернуть'} ветку: ${node.partner.fullName ?? node.partnerNumber}`}
             onClick={() => onToggle(node.partnerNumber)}
           >
             {isOpen ? (

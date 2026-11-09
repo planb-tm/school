@@ -26,8 +26,15 @@ export function LearningStepSequence({
     const dialog = imageDialogRef.current;
     if (!dialog) return;
 
-    if (isImageOpen && !dialog.open) dialog.showModal();
-    if (!isImageOpen && dialog.open) dialog.close();
+    if (!isImageOpen) {
+      if (dialog.open) dialog.close();
+      return;
+    }
+
+    if (!dialog.open) dialog.showModal();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previousOverflow; };
   }, [isImageOpen]);
 
   return (
@@ -120,7 +127,7 @@ export function LearningStepSequence({
         >
           Назад
         </button>
-        <span className={styles.controlStep} aria-hidden="true">
+        <span className={styles.controlStep} aria-live="polite" aria-atomic="true">
           {activeIndex + 1} / {sequence.steps.length}
         </span>
         <button

@@ -4,13 +4,8 @@ export function OverviewSection() {
   const { overview } = successPlanData;
 
   return (
-    <section className="panel" id="overview">
-      <header className="panel__header">
-        <h2>Введение</h2>
-        <p>Что такое План Успеха и зачем сначала освоить основы</p>
-      </header>
-
-      <div className="stack">
+    <section className="panel" id="overview" aria-label="Введение">
+      <div className="stack content-reading">
         <div className="callout callout--info">
           <strong>Роль Плана Успеха</strong>
           <p>{overview.rolePlain}</p>

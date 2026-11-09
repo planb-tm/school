@@ -59,6 +59,8 @@ export function RootSelector() {
           inputMode="numeric"
           autoComplete="off"
           value={value}
+          aria-invalid={Boolean(error) || Boolean(value.trim() && !preview)}
+          aria-describedby={error ? 'root-number-error' : 'root-number-preview'}
           onChange={(e) => {
             setValue(e.target.value.replace(/[^\d]/g, ''));
             setError(null);
@@ -70,9 +72,12 @@ export function RootSelector() {
       <div className={styles.field} style={{ marginTop: 12 }}>
         <label>Подтверждение ФИО</label>
         <div
+          id="root-number-preview"
           className={styles.panelTight}
+          role="status"
+          aria-live="polite"
           style={{
-            background: 'var(--surface-muted)',
+            background: 'var(--surface-2)',
             borderRadius: 'var(--radius-sm)',
             border: '1px solid var(--line)',
           }}
@@ -85,7 +90,7 @@ export function RootSelector() {
       </div>
 
       {error ? (
-        <div className={`${styles.alert} ${styles.alertError}`} role="alert">
+        <div id="root-number-error" className={`${styles.alert} ${styles.alertError}`} role="alert">
           {error}
         </div>
       ) : null}

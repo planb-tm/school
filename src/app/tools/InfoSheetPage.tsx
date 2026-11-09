@@ -1,13 +1,12 @@
-import { Link } from 'react-router-dom';
 import { InfoSheetApp } from '@/features/info-sheet/InfoSheetApp';
+import { PageContainer } from '@/components/PageContainer';
+import { PageBackLink } from '@/components/PageHeader';
 
 export function InfoSheetPage() {
   return (
-    <div className="tools-page tools-page--wide">
-      <Link to="/tools" className="tools-back">
-        Назад
-      </Link>
+    <PageContainer variant="workspace">
+      <PageBackLink to="/tools" />
       <InfoSheetApp />
-    </div>
+    </PageContainer>
   );
 }

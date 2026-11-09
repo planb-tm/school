@@ -14,6 +14,7 @@ import {
   saveScenarioResult,
   type LearningProgress,
 } from '@/lib/progress';
+import styles from './SuccessPlan.module.css';
 
 type PresetId = 'example1' | 'example2' | 'custom';
 
@@ -42,24 +43,25 @@ const PRESETS: Record<Exclude<PresetId, 'custom'>, FormState> = {
 function buildInput(form: FormState): {
   input: SuccessPlanScenarioInput | null;
   error: string | null;
+  invalidField?: keyof FormState;
 } {
   const personal = parseNonNegativeNumber(form.personalBb, 'Личные ББ');
-  if (!personal.ok) return { input: null, error: personal.error };
+  if (!personal.ok) return { input: null, error: personal.error, invalidField: 'personalBb' };
 
   const count = parsePositiveInteger(form.partnerCount, 'Число партнёров', {
     min: 1,
     max: 10,
   });
-  if (!count.ok) return { input: null, error: count.error };
+  if (!count.ok) return { input: null, error: count.error, invalidField: 'partnerCount' };
 
   const partnerBb = parseNonNegativeNumber(
     form.partnerBb,
     'ББ заказа партнёра 1-го уровня',
   );
-  if (!partnerBb.ok) return { input: null, error: partnerBb.error };
+  if (!partnerBb.ok) return { input: null, error: partnerBb.error, invalidField: 'partnerBb' };
 
   const deeper = parseNonNegativeNumber(form.deeperBb, 'Доп. ББ глубже в ветви');
-  if (!deeper.ok) return { input: null, error: deeper.error };
+  if (!deeper.ok) return { input: null, error: deeper.error, invalidField: 'deeperBb' };
 
   const branchBb = partnerBb.value + deeper.value;
   const input: SuccessPlanScenarioInput = {
@@ -125,15 +127,7 @@ export function TryYourselfSection({
     Number(form.partnerBb || 0) + Number(form.deeperBb || 0);
 
   return (
-    <section className="panel" id="try">
-      <header className="panel__header">
-        <h2>Самостоятельная практика</h2>
-        <p>
-          Меняйте входные значения. Ниже - учебный результат и разбор вычислений.
-          Это не официальный расчёт кабинета.
-        </p>
-      </header>
-
+    <section className="panel" id="try" aria-label="Самостоятельная практика">
       <div className="callout callout--warn">
         <strong>Границы применимости модели</strong>
         <ul className="plain-list">
@@ -143,10 +137,11 @@ export function TryYourselfSection({
         </ul>
       </div>
 
-      <div className="filter-row" role="group" aria-label="Готовые сценарии">
+      <div className="filter-row filter-row--presets" role="group" aria-label="Готовые сценарии" aria-describedby="scenario-preset-hint">
         <button
           type="button"
           className={preset === 'example1' ? 'chip chip--active' : 'chip'}
+          aria-pressed={preset === 'example1'}
           onClick={() => applyPreset('example1')}
         >
           Пример 1
@@ -154,17 +149,19 @@ export function TryYourselfSection({
         <button
           type="button"
           className={preset === 'example2' ? 'chip chip--active' : 'chip'}
+          aria-pressed={preset === 'example2'}
           onClick={() => applyPreset('example2')}
         >
           Пример 2
         </button>
-        <span className="chip-note">
-          {preset === 'custom' ? 'Свои числа' : 'Поля можно менять'}
-        </span>
       </div>
+      <p className="chip-note" id="scenario-preset-hint">
+        {preset === 'custom' ? 'Свои числа' : 'Поля можно менять'}
+      </p>
 
       <form
         className="form-grid"
+        aria-describedby={computed.error ? 'scenario-error' : undefined}
         onSubmit={(e) => {
           e.preventDefault();
           markDone();
@@ -178,6 +175,8 @@ export function TryYourselfSection({
             step={1}
             inputMode="numeric"
             value={form.personalBb}
+            aria-invalid={parsed.invalidField === 'personalBb'}
+            aria-describedby={parsed.invalidField === 'personalBb' ? 'scenario-error' : undefined}
             onChange={(e) => updateField('personalBb', e.target.value)}
           />
         </label>
@@ -190,6 +189,8 @@ export function TryYourselfSection({
             step={1}
             inputMode="numeric"
             value={form.partnerCount}
+            aria-invalid={parsed.invalidField === 'partnerCount'}
+            aria-describedby={parsed.invalidField === 'partnerCount' ? 'scenario-error' : undefined}
             onChange={(e) => updateField('partnerCount', e.target.value)}
           />
         </label>
@@ -201,6 +202,8 @@ export function TryYourselfSection({
             step={1}
             inputMode="numeric"
             value={form.partnerBb}
+            aria-invalid={parsed.invalidField === 'partnerBb'}
+            aria-describedby={parsed.invalidField === 'partnerBb' ? 'scenario-error' : undefined}
             onChange={(e) => updateField('partnerBb', e.target.value)}
           />
         </label>
@@ -212,9 +215,11 @@ export function TryYourselfSection({
             step={1}
             inputMode="numeric"
             value={form.deeperBb}
+            aria-invalid={parsed.invalidField === 'deeperBb'}
+            aria-describedby={parsed.invalidField === 'deeperBb' ? 'scenario-branch-hint scenario-error' : 'scenario-branch-hint'}
             onChange={(e) => updateField('deeperBb', e.target.value)}
           />
-          <span className="field-hint">
+          <span className="field-hint" id="scenario-branch-hint">
             ББ одной ветви = заказ партнёра + глубже → сейчас{' '}
             {Number.isFinite(branchBbPreview) ? branchBbPreview : '-' } ББ
           </span>
@@ -231,6 +236,8 @@ export function TryYourselfSection({
           <button
             type="button"
             className="btn btn--secondary btn--block"
+            aria-expanded={Boolean(computed.result && showSteps)}
+            aria-controls={computed.result ? 'scenario-explanation' : undefined}
             onClick={() => setShowSteps((v) => !v)}
           >
             {showSteps ? 'Скрыть объяснение' : 'Показать объяснение'}
@@ -239,7 +246,7 @@ export function TryYourselfSection({
       </form>
 
       {computed.error ? (
-        <div className="error-state" role="alert">
+        <div className="error-state" id="scenario-error" role="alert">
           <h3>Нельзя посчитать</h3>
           <p>{computed.error}</p>
         </div>
@@ -247,7 +254,7 @@ export function TryYourselfSection({
 
       {computed.result ? (
         <>
-          <div className="result-grid result-grid--wide">
+          <div className="result-grid result-grid--wide" role="status" aria-label="Результат учебного расчёта" aria-atomic="true">
             <div>
               <span className="muted">Всего ББ</span>
               <strong>{formatBb(computed.result.totalBb)}</strong>
@@ -275,24 +282,22 @@ export function TryYourselfSection({
             </div>
           </div>
 
-          {showSteps ? (
-            <ol className="walkthrough__steps">
-              {explanation.map((step, index) => (
-                <li key={step.id} className="walkthrough__step">
-                  <div className="walkthrough__step-head">
-                    <span className="walkthrough__num">{index + 1}</span>
-                    <strong>{step.title}</strong>
-                  </div>
-                  <p>{step.detail}</p>
-                  {step.formula ? (
-                    <p className="walkthrough__formula">
-                      <span className="muted">Вычисление:</span> {step.formula}
-                    </p>
-                  ) : null}
-                </li>
-              ))}
-            </ol>
-          ) : null}
+          <ol id="scenario-explanation" className={`walkthrough__steps ${styles.collapsible}`} hidden={!showSteps}>
+            {explanation.map((step, index) => (
+              <li key={step.id} className="walkthrough__step">
+                <div className="walkthrough__step-head">
+                  <span className="walkthrough__num">{index + 1}</span>
+                  <strong>{step.title}</strong>
+                </div>
+                <p>{step.detail}</p>
+                {step.formula ? (
+                  <p className="walkthrough__formula">
+                    <span className="muted">Вычисление:</span> {step.formula}
+                  </p>
+                ) : null}
+              </li>
+            ))}
+          </ol>
         </>
       ) : null}
 

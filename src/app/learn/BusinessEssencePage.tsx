@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
 import { LessonVideoPlayer } from '@/components/LessonVideoPlayer';
+import { PageContainer } from '@/components/PageContainer';
+import { PageHeader } from '@/components/PageHeader';
 import {
   businessEssenceMeta,
   businessEssenceVideo,
@@ -7,16 +8,9 @@ import {
 
 export function BusinessEssencePage() {
   return (
-    <div className="tools-page">
-      <Link to="/" className="tools-back">
-        Назад
-      </Link>
-
-      <header className="home-intro">
-        <h1 className="home-intro__title">{businessEssenceMeta.title}</h1>
-      </header>
-
-      <section className="panel panel--soft" aria-label="Видео о сути бизнеса">
+    <PageContainer>
+      <PageHeader title={businessEssenceMeta.title} backTo="/" />
+      <section className="media-panel" aria-label="Видео о сути бизнеса">
         <LessonVideoPlayer video={businessEssenceVideo} />
         <a
           className="external-links__item"
@@ -27,6 +21,6 @@ export function BusinessEssencePage() {
           Открыть видео
         </a>
       </section>
-    </div>
+    </PageContainer>
   );
 }

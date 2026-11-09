@@ -46,20 +46,15 @@ export function QuizSection({
   }
 
   return (
-    <section className="panel" id="quiz">
-      <header className="panel__header">
-        <h2>Тест</h2>
-        <p>
-          После каждого ответа сразу видно, верно ли, и почему. Ответы хранятся
-          только на этом устройстве.
-          {answeredCount > 0
-            ? ` Сейчас: ${correctCount} из ${answeredCount} верно.`
-            : null}
+    <section className="panel" id="quiz" aria-label="Тест">
+      {answeredCount > 0 ? (
+        <p className="muted" role="status">
+          Сейчас: {correctCount} из {answeredCount} верно.
         </p>
-      </header>
+      ) : null}
 
       {finished ? (
-        <div className="callout callout--info quiz-summary">
+        <div className="callout callout--info quiz-summary" role="status">
           <strong>
             Результат: {correctCount} из {learningQuestions.length}
           </strong>
@@ -80,13 +75,13 @@ export function QuizSection({
 
           return (
             <article key={q.id} className="quiz-card">
-              <h3>
+              <h2 id={`quiz-${q.id}-title`} className="content-heading">
                 {index + 1}. {q.prompt}
-              </h3>
+              </h2>
               <div
                 className="quiz-options"
                 role="group"
-                aria-label={`Вопрос ${index + 1}`}
+                aria-labelledby={`quiz-${q.id}-title`}
               >
                 {q.options.map((option, optionIndex) => {
                   const selected = saved?.selectedIndex === optionIndex;
@@ -104,6 +99,8 @@ export function QuizSection({
                       type="button"
                       className={className}
                       disabled={answered}
+                      aria-pressed={selected}
+                      aria-describedby={answered ? `quiz-${q.id}-feedback` : undefined}
                       onClick={() => answer(q.id, optionIndex, q.correctIndex)}
                     >
                       {option}
@@ -114,6 +111,7 @@ export function QuizSection({
 
               {answered && saved ? (
                 <div
+                  id={`quiz-${q.id}-feedback`}
                   className={
                     saved.correct
                       ? 'callout callout--ok'

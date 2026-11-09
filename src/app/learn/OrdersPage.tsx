@@ -2,6 +2,8 @@ import { Link, Navigate, useParams } from 'react-router-dom';
 import { FirstOrderStageIcon } from '@/components/FirstOrderStageIcon';
 import { LearningModuleStage } from '@/components/LearningModuleStage';
 import { LearningStepSequence } from '@/components/LearningStepSequence';
+import { PageContainer } from '@/components/PageContainer';
+import { PageHeader } from '@/components/PageHeader';
 import {
   firstOrderModuleMeta,
   getVisibleFirstOrderStages,
@@ -16,7 +18,7 @@ function renderStageContent(stage: FirstOrderStage) {
   switch (stage.contentType) {
     case 'intro':
       return (
-        <div className="lesson-intro">
+        <div className={`lesson-intro ${styles.introContent}`}>
           <p><strong>Ты теперь Бьюти-партнёр Oriflame. Что дальше?</strong></p>
           <p>
             После регистрации в Oriflame тебе становятся доступны продукция компании,
@@ -24,20 +26,20 @@ function renderStageContent(stage: FirstOrderStage) {
           </p>
           <p>Давай разберёмся, какие возможности у тебя есть и с чего лучше начать.</p>
 
-          <h3>Твои преимущества</h3>
-          <h4>15% постоянная скидка</h4>
+          <h2>Твои преимущества</h2>
+          <h3>15% постоянная скидка</h3>
           <p>
             Ты покупаешь продукцию Oriflame со скидкой 15% от цены каталога. Скидка
             применяется при оформлении заказа согласно условиям программы.
           </p>
-          <h4>15% приветственный кешбэк</h4>
+          <h3>15% приветственный кешбэк</h3>
           <p>
             За первый заказ ты можешь получить дополнительный кешбэк 15%. Он
             зачисляется на электронный кошелёк после оплаты заказа. Накопленный
             кешбэк можно использовать для оплаты до 60% стоимости следующих заказов
             в течение 17 каталогов.
           </p>
-          <h4>10% рекомендационный бонус</h4>
+          <h3>10% рекомендационный бонус</h3>
           <p>
             Если по твоей рекомендации зарегистрируются новые Бьюти- или
             Бизнес-партнёры, ты можешь получать бонус за их оплаченные заказы на
@@ -45,7 +47,7 @@ function renderStageContent(stage: FirstOrderStage) {
             на электронный кошелёк. Его также можно использовать для частичной оплаты
             последующих заказов.
           </p>
-          <h4>Дополнительные акции и подарки</h4>
+          <h3>Дополнительные акции и подарки</h3>
           <p>
             Для новых партнёров компания проводит специальные акции, предлагает
             подарки и выгодные условия оформления заказов. Актуальные предложения,
@@ -55,7 +57,7 @@ function renderStageContent(stage: FirstOrderStage) {
             </Link>.
           </p>
 
-          <h3>С чего начать?</h3>
+          <h2>С чего начать?</h2>
           <p>Я всегда рекомендую начать партнерство именно с оформления заказа.</p>
           <p>
             Чтобы посмотреть, как оформляется заказ, как работает сайт, как работает
@@ -70,7 +72,7 @@ function renderStageContent(stage: FirstOrderStage) {
       );
     case 'plain-text':
       return (
-        <div className="lesson-intro">
+        <div className={`lesson-intro ${styles.introContent}`}>
           <p>
             Заказы продукции Oriflame оформляются на официальном сайте{' '}
             <a
@@ -94,28 +96,27 @@ function renderStageContent(stage: FirstOrderStage) {
 
 export function OrdersPage() {
   return (
-    <div className={`${styles.lesson} ${styles.stageOverview} tools-page`}>
-      <Link to="/" className="tools-back">Назад</Link>
-      <header className={styles.moduleHeader}>
-        <h1>{firstOrderModuleMeta.title}</h1>
-      </header>
+    <PageContainer variant="standard" className={styles.lesson}>
+      <PageHeader title={firstOrderModuleMeta.title} backTo="/" />
 
-      <ol className={styles.stageList} aria-label="Этапы модуля «Оформление заказа»">
-        {stages.map((stage) => (
-          <li key={stage.id}>
-            <Link to={stage.path} className={styles.stageRow}>
-              <span className={styles.stageIcon}>
-                <FirstOrderStageIcon name={stage.icon} />
-              </span>
-              <span className={styles.stageCopy}>
-                <span className={styles.stageRowTitle}>{stage.title}</span>
-                <span className={styles.stageRowDescription}>{stage.cardDescription}</span>
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ol>
-    </div>
+      <section className={styles.stageOverview} aria-label="Подразделы оформления заказа">
+        <ol className={styles.stageList} aria-label="Этапы модуля «Оформление заказа»">
+          {stages.map((stage) => (
+            <li key={stage.id}>
+              <Link to={stage.path} className={styles.stageRow}>
+                <span className={styles.stageIcon}>
+                  <FirstOrderStageIcon name={stage.icon} />
+                </span>
+                <span className={styles.stageCopy}>
+                  <span className={styles.stageRowTitle}>{stage.title}</span>
+                  <span className={styles.stageRowDescription}>{stage.cardDescription}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </PageContainer>
   );
 }
 
@@ -137,12 +138,17 @@ export function OrderStagePage() {
   const stage = stages[currentIndex];
 
   return (
-    <div className={`${styles.lesson} tools-page`}>
-      <Link to={firstOrderModuleMeta.path} className="tools-back">Назад</Link>
+    <PageContainer variant="standard" className={styles.lesson}>
+      <PageHeader
+        id={`${stage.id}-title`}
+        title={stage.title}
+        backTo={firstOrderModuleMeta.path}
+        description={stage.description ?? ''}
+      />
 
-      <LearningModuleStage stage={stage}>
+      <LearningModuleStage stage={stage} hideHeading>
         {renderStageContent(stage)}
       </LearningModuleStage>
-    </div>
+    </PageContainer>
   );
 }

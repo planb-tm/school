@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { toolsCatalog } from '@/data/tools/catalog';
+import { PageContainer } from '@/components/PageContainer';
+import { PageHeader } from '@/components/PageHeader';
 
 export function ToolsPage() {
   return (
-    <div className="tools-page">
-      <header className="home-intro">
-        <h1 className="home-intro__title">Инструменты</h1>
-      </header>
+    <PageContainer>
+      <PageHeader title="Инструменты" />
 
       <ul className="tools-catalog">
         {toolsCatalog.map((tool) => (
@@ -30,6 +30,6 @@ export function ToolsPage() {
           </li>
         ))}
       </ul>
-    </div>
+    </PageContainer>
   );
 }

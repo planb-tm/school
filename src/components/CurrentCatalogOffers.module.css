@@ -1,0 +1,263 @@
+.showcase { display: grid; gap: var(--space-6); min-width: 0; }
+.showcase :is(p, h2, h3, h4, dl) { margin: 0; }
+
+.catalogInfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding-block: 0.2rem 0.6rem;
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+
+.catalogLabel, .audience {
+  width: fit-content;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--info-soft);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.periodNote { color: var(--muted); font-size: 0.875rem; }
+.offerPeriod { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); color: var(--muted); font-size: var(--text-small); }
+.status { padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); background: var(--info-soft); color: var(--ink); font-size: var(--text-caption); }
+.offer {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.slideButton, .thumbnail {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: var(--surface);
+  color: var(--ink);
+  text-align: left;
+  cursor: zoom-in;
+}
+
+.slideButton img, .thumbnail img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.slideCaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+.slideCaption svg { flex-shrink: 0; }
+.offerBody { display: grid; gap: var(--space-6); padding: var(--space-6); }
+.offerHeading { display: grid; gap: var(--space-3); }
+.offerHeading h2 {
+  font-size: var(--text-h2);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+.offerHeading > p:last-child, .eligibility p, .receipt p, .steps, .conditions {
+  font-size: var(--text-body);
+  line-height: var(--leading);
+}
+.offerHeading > p:last-child { color: var(--muted); }
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  padding-block: 1.1rem;
+  border-block: 1px solid var(--line);
+}
+.facts > div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  min-width: 0;
+}
+.facts > div + div { padding-left: 0.85rem; border-left: 1px solid var(--line); }
+.facts dt { color: var(--muted); font-size: 0.75rem; line-height: 1.45; }
+.facts dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+.showcase h3 { font-size: var(--text-h3); line-height: 1.4; letter-spacing: -0.015em; }
+.eligibility, .receipt { display: grid; align-content: start; gap: 0.5rem; }
+.eligibility p { color: var(--muted); }
+.instructions {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: var(--space-6);
+}
+.steps {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0;
+  margin: 0.8rem 0 0;
+  list-style: none;
+  counter-reset: campaign-step;
+}
+.steps li {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  gap: 0.6rem;
+  counter-increment: campaign-step;
+}
+.steps li::before {
+  content: counter(campaign-step, decimal-leading-zero);
+  padding-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.receipt { padding-left: 1.25rem; border-left: 2px solid var(--accent); }
+.receipt .deadline { margin-top: 0.4rem; color: var(--muted); font-size: var(--text-small); }
+.deadline strong { display: block; color: var(--ink); }
+
+.details { border-top: 1px solid var(--line); font-size: 0.875rem; }
+.details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 3rem;
+  padding-block: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.details summary::-webkit-details-marker { display: none; }
+.details summary::after { content: '+'; flex-shrink: 0; color: var(--muted); font-size: 1.3rem; font-weight: 400; }
+.details[open] summary::after { content: '−'; }
+.conditions { display: grid; gap: var(--space-3); padding: 0 0 0 1.15rem; margin: 0 0 0.5rem; color: var(--muted); }
+.calendar, .materials { display: grid; gap: 0.9rem; }
+.sectionHeading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.3rem 1rem; }
+.sectionHeading > span { font-size: 0.75rem; color: var(--muted); }
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.calendarWeek { display: grid; gap: 0.35rem; align-content: start; padding: 1rem 0.85rem; }
+.calendarWeek + .calendarWeek { border-left: 1px solid var(--line); }
+.calendarWeek p, .calendarNote, .prizeIntro { color: var(--muted); font-size: 0.75rem; line-height: 1.55; }
+.calendarWeek h4 { font-size: 0.875rem; line-height: 1.4; }
+.calendarWeek strong { margin-top: 0.4rem; font-size: 0.75rem; font-weight: 600; line-height: 1.5; }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+.thumbnail { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-sm); }
+.thumbnail .slideCaption { padding: 0.65rem 0.75rem; border-bottom: 0; color: var(--ink); }
+.prizes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+}
+.prizes li { display: grid; align-content: start; gap: 0.25rem; padding-block: 0.75rem; border-top: 1px solid var(--line); font-size: var(--text-small); line-height: 1.55; }
+.prizes small { color: var(--muted); font-size: var(--text-caption); }
+.source { display: grid; gap: var(--space-4); padding-block: 0.5rem; }
+.rulesRow { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; }
+.rulesRow p { margin-top: 0.35rem; color: var(--muted); font-size: 0.75rem; }
+.rulesLink {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem 0.5rem;
+  flex-shrink: 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+.rulesLink span { color: var(--muted); font-size: var(--text-caption); font-weight: 400; }
+.showcase button, .showcase a, .details summary { transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease); }
+.showcase :is(button, a, summary, [tabindex]):focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+.showcase .slideButton:focus-visible { outline-offset: -4px; }
+
+.imageDialog {
+  width: min(86rem, calc(100vw - 2rem));
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+.imageDialog::backdrop { background: rgb(12 13 18 / 82%); backdrop-filter: blur(4px); }
+.dialogHeader { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.85rem 1rem; }
+.dialogHeader p { margin-bottom: 0.2rem; color: var(--muted); font-size: var(--text-caption); }
+.dialogHeader h2 { font-size: 1rem; }
+.closeButton, .dialogControls button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: var(--text-small);
+}
+.closeButton { flex-shrink: 0; }
+.dialogControls { display: flex; align-items: center; justify-content: center; gap: var(--space-3); padding: 0.75rem; }
+.dialogControls button:disabled { opacity: 0.35; cursor: default; }
+.imageViewport { max-height: calc(100dvh - 12rem); min-width: 0; overflow: auto; overscroll-behavior: contain; background: var(--surface-2); }
+.imageViewport img { display: block; width: 100%; height: auto; max-width: 100%; }
+.zoomed img { max-width: none; }
+
+@media (hover: hover) {
+  .slideButton:hover .slideCaption, .thumbnail:hover .slideCaption, .rulesLink:hover,
+  .dialogControls button:enabled:hover, .closeButton:hover { background: var(--info-soft); color: var(--ink); }
+}
+
+@media (max-width: 767px) {
+  .showcase { gap: 1.1rem; }
+  .catalogInfo { gap: 0.5rem; font-size: 0.75rem; }
+  .offerBody { gap: var(--space-5); padding: var(--space-4); }
+  .slideCaption { padding-inline: 1rem; }
+  .facts { gap: 0.5rem; }
+  .facts > div + div { padding-left: 0.5rem; }
+  .facts dt { font-size: var(--text-caption); }
+  .instructions { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+  .calendarGrid { grid-template-columns: minmax(0, 1fr); }
+  .calendarWeek { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: baseline; gap: 0.25rem 0.75rem; }
+  .calendarWeek > :nth-child(1) { grid-column: 1; grid-row: 1; }
+  .calendarWeek > :nth-child(2) { grid-column: 1; grid-row: 2; }
+  .calendarWeek > :nth-child(3) { grid-column: 2; grid-row: 1; }
+  .calendarWeek > :nth-child(4) { grid-column: 2; grid-row: 2; margin: 0; }
+  .calendarWeek + .calendarWeek { border-left: 0; border-top: 1px solid var(--line); }
+  .prizes { grid-template-columns: minmax(0, 1fr); }
+  .rulesRow { align-items: start; flex-direction: column; }
+  .rulesLink { justify-content: start; }
+  .imageDialog { width: calc(100vw - 1rem); max-width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); }
+  .dialogHeader { gap: 0.5rem; padding: 0.65rem; }
+}

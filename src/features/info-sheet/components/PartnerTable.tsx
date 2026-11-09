@@ -23,10 +23,10 @@ export function PartnerTable({ hits, onSelect }: Props) {
         <table className={styles.table}>
           <thead>
             <tr>
-              <th>Партнёр</th>
-              <th>Спонсор</th>
-              <th>Личные ББ</th>
-              <th>ББ в ПГ</th>
+              <th scope="col">Партнёр</th>
+              <th scope="col">Спонсор</th>
+              <th scope="col">Личные ББ</th>
+              <th scope="col">ББ в ПГ</th>
             </tr>
           </thead>
           <tbody>
@@ -35,17 +35,18 @@ export function PartnerTable({ hits, onSelect }: Props) {
                 key={partner.partnerNumber}
                 className={exactNumber ? styles.tableExact : undefined}
                 onClick={() => onSelect(partner.partnerNumber)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onSelect(partner.partnerNumber);
-                  }
-                }}
-                tabIndex={0}
-                role="button"
               >
                 <td>
-                  <div className={styles.nameCell}>
+                  <button
+                    type="button"
+                    className={styles.partnerOpenButton}
+                    aria-label={`Открыть карточку: ${partner.fullName ?? partner.partnerNumber}`}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onSelect(partner.partnerNumber);
+                    }}
+                  >
+                  <span className={styles.nameCell}>
                     <span className={styles.namePrimary}>
                       {partner.fullName ?? 'Без ФИО'}
                       {exactNumber ? (
@@ -60,7 +61,8 @@ export function PartnerTable({ hits, onSelect }: Props) {
                     <span className={styles.nameSecondary}>
                       {partner.partnerNumber}
                     </span>
-                  </div>
+                  </span>
+                  </button>
                 </td>
                 <td>{partner.sponsorNumber ?? '-'}</td>
                 <td>{formatNumber(partner.personalBB)}</td>

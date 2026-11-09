@@ -1,4 +1,6 @@
 import { Link, Navigate, useLocation } from 'react-router-dom';
+import { PageContainer } from '@/components/PageContainer';
+import { PageHeader } from '@/components/PageHeader';
 import { successPlanModuleMeta } from '@/data/success-plan-2026/module';
 import { isModuleSectionId, MODULE_SECTIONS, sectionPath } from './sectionsConfig';
 
@@ -11,18 +13,13 @@ export function SuccessPlanHub() {
   }
 
   return (
-    <div className="module-page">
-      <Link to="/tools" className="tools-back">
-        Назад
-      </Link>
-      <header className="module-hero">
-        <p className="eyebrow">Инструмент</p>
-        <h1 className="page-title">{successPlanModuleMeta.title}</h1>
-        <p className="lead">
-          Как устроен маркетинг-план Oriflame: основные понятия, принципы расчёта
-          бонусов и разбор примеров.
-        </p>
-      </header>
+    <PageContainer variant="standard" className="module-page">
+      <PageHeader
+        backTo="/tools"
+        eyebrow="Инструмент"
+        title={successPlanModuleMeta.title}
+        description="Как устроен маркетинг-план Oriflame: основные понятия, принципы расчёта бонусов и разбор примеров."
+      />
 
       <section className="panel" aria-label="Разделы модуля">
         <ol className="module-toc">
@@ -41,6 +38,6 @@ export function SuccessPlanHub() {
           ))}
         </ol>
       </section>
-    </div>
+    </PageContainer>
   );
 }

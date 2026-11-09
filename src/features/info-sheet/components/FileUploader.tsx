@@ -2,6 +2,7 @@ import { useCallback, useRef, useState, type DragEvent } from 'react';
 import { IconUpload as Upload } from '../icons';
 import styles from '../styles/app.module.css';
 import { useSession } from '../context/SessionContext';
+import { PageHeader } from '@/components/PageHeader';
 
 export function FileUploader() {
   const { loadFile, state } = useSession();
@@ -27,17 +28,12 @@ export function FileUploader() {
   );
 
   return (
-    <section className={styles.hero}>
-      <header className={styles.heroHeader}>
-        <p className={styles.heroEyebrow}>Инструмент</p>
-        <h1 className={styles.heroBrand}>
-          Визуализатор информационного листка
-        </h1>
-        <p className={styles.heroText}>
-          Просмотр и анализ структуры команды на основе информационного листка
-          Excel.
-        </p>
-      </header>
+    <section className={styles.hero} aria-busy={state.isParsing}>
+      <PageHeader
+        title="Визуализатор информационного листка"
+        eyebrow="Инструмент"
+        description="Просмотр и анализ структуры команды на основе информационного листка Excel."
+      />
 
       <div className={styles.panel}>
         <h2 className={styles.blockTitle}>Как начать</h2>
@@ -77,7 +73,7 @@ export function FileUploader() {
             onClick={() => inputRef.current?.click()}
           >
             {state.isParsing ? (
-              <span className={styles.loadingRow}>
+              <span className={styles.loadingRow} role="status" aria-live="polite">
                 <span className={styles.spinner} aria-hidden />
                 Обработка…
               </span>
@@ -90,6 +86,9 @@ export function FileUploader() {
           ref={inputRef}
           className={styles.srOnly}
           type="file"
+          aria-label="Информационный листок Excel"
+          tabIndex={-1}
+          disabled={state.isParsing}
           accept=".xlsx,.xls,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
           onChange={(e) => {
             void onFiles(e.target.files);

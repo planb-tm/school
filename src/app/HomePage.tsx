@@ -1,12 +1,13 @@
 import { StarterRoute } from '@/components/home/StarterRoute';
 import { SocialLinks } from '@/components/home/SocialLinks';
+import { PageContainer } from '@/components/PageContainer';
 import styles from './HomePage.module.css';
 
 export function HomePage() {
   return (
-    <div className={`home-page--wide ${styles.page}`}>
+    <PageContainer className={styles.page}>
       <header className={styles.hero}>
-        <h1 className={styles.heroTitle}>Всё начинается с первого шага.</h1>
+        <h1 className={styles.heroTitle} tabIndex={-1}>Всё начинается с первого шага.</h1>
         <p className={styles.heroLead}>
           Материалы, инструменты и последовательность действий для развития своего
           дела.
@@ -15,6 +16,6 @@ export function HomePage() {
 
       <StarterRoute />
       <SocialLinks />
-    </div>
+    </PageContainer>
   );
 }

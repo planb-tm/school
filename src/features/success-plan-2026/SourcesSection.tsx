@@ -4,22 +4,14 @@ import { successPlanData } from '@/data/success-plan-2026/module';
 
 export function SourcesSection() {
   return (
-    <section className="panel" id="sources">
-      <header className="panel__header">
-        <h2>Источники и ограничения</h2>
-        <p>
-          Официальные PDF - в <code>docs/sources</code>. Статус показывает, что уже
-          сверено для обучения, а что ещё нельзя считать полностью проверенным.
-        </p>
-      </header>
-
+    <section className="panel" id="sources" aria-label="Источники и ограничения">
       <StatusLegend />
 
       <div className="stack">
         {sources.map((source) => (
           <article key={source.id} className="source-card">
             <div className="source-card__top">
-              <h3>{source.title}</h3>
+              <h2 className="content-heading">{source.title}</h2>
               <StatusBadge status={source.status} />
             </div>
             <dl className="meta-list">

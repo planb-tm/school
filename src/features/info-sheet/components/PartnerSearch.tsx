@@ -124,7 +124,7 @@ export function PartnerSearch() {
         </div>
 
         <div className={styles.resultMeta}>
-          <span className={styles.muted}>
+          <span className={styles.muted} role="status" aria-live="polite">
             Найдено: <strong>{hits.length}</strong>
             {directOnly ? (
               <>

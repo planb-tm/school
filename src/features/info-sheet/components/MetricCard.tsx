@@ -17,7 +17,7 @@ export function MetricCard({ label, value, hint, keepSlot = false }: Props) {
     <article className={styles.metricCard}>
       <div className={styles.metricLabel}>
         <span>{label}</span>
-        {hint ? <Hint text={hint} /> : null}
+        {hint ? <Hint text={hint} label={`Подсказка: ${label}`} /> : null}
       </div>
       <div className={styles.metricValue}>{formatNumber(value)}</div>
     </article>

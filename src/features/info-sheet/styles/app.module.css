@@ -7,9 +7,9 @@
   --is-ink-faint: color-mix(in srgb, var(--muted) 72%, var(--bg));
   --is-accent-hover: var(--accent-strong);
   --is-accent-soft: var(--info-soft);
-  --is-primary: var(--ink);
-  --is-primary-hover: color-mix(in srgb, var(--ink) 88%, var(--bg));
-  --is-primary-fg: var(--bg);
+  --is-primary: var(--surface-dark);
+  --is-primary-hover: var(--surface-dark-2);
+  --is-primary-fg: var(--ink-on-dark);
   --is-line-strong: var(--line);
   --is-danger-bg: var(--danger-soft);
   --is-warn-bg: var(--warn-soft);
@@ -17,26 +17,41 @@
   --is-radius-xs: var(--radius-sm);
   --is-radius-lg: var(--radius);
   --is-nav-width: 11.5rem;
-  --is-content-max: 52rem;
-  --is-space-1: 0.25rem;
-  --is-space-2: 0.5rem;
-  --is-space-3: 0.75rem;
-  --is-space-4: 1rem;
-  --is-space-5: 1.25rem;
-  --is-space-6: 1.5rem;
-  --is-space-7: 2rem;
-  --is-space-8: 2.5rem;
-  --is-focus: 0 0 0 3px color-mix(in srgb, var(--accent) 45%, transparent);
-  --is-text-xs: var(--text-xs, 0.6875rem);
-  --is-text-sm: var(--text-sm, 0.8125rem);
-  --is-text-md: var(--text-md, 0.9375rem);
+  --is-content-max: var(--content-workspace, 72rem);
+  --is-space-1: var(--space-1, 0.25rem);
+  --is-space-2: var(--space-2, 0.5rem);
+  --is-space-3: var(--space-3, 0.75rem);
+  --is-space-4: var(--space-4, 1rem);
+  --is-space-5: var(--space-5, 1.25rem);
+  --is-space-6: var(--space-6, 1.5rem);
+  --is-space-7: var(--space-7, 2rem);
+  --is-space-8: var(--space-8, 2.5rem);
+  --is-focus: 0 0 0 3px var(--accent-strong);
+  --is-text-xs: var(--text-caption, 0.75rem);
+  --is-text-sm: var(--text-small, 0.875rem);
+  --is-text-md: var(--text-body, 1rem);
   --is-text-lg: var(--text-lg, 1.125rem);
   --is-text-xl: var(--text-xl, 1.25rem);
   color: var(--ink);
   font-family: var(--font);
-  font-size: var(--is-text-sm);
+  font-size: var(--is-text-md);
   line-height: 1.5;
   min-width: 0;
+}
+
+:global([data-theme='dark']) .root {
+  --is-primary: var(--accent);
+  --is-primary-hover: var(--accent-strong);
+  --is-primary-fg: var(--accent-ink);
+}
+
+.root :is(button, a, summary, input, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--focus-ring, var(--accent-strong));
+  outline-offset: 3px;
+}
+
+.root button:disabled {
+  cursor: not-allowed;
 }
 
 .srOnly {
@@ -55,12 +70,13 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
+  gap: var(--is-space-5);
 }
 
 .dashboard {
   min-height: 0;
   display: grid;
-  grid-template-columns: var(--is-nav-width) 1fr;
+  grid-template-columns: var(--is-nav-width) minmax(0, 1fr);
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'nav header'
@@ -76,7 +92,7 @@
   flex-direction: column;
   gap: var(--is-space-5);
   position: sticky;
-  top: 0;
+  top: calc(var(--header-h) + var(--safe-top, 0px) + var(--is-space-4));
   align-self: start;
   max-height: calc(100dvh - var(--header-h) - var(--nav-h) - 4rem);
   overflow: auto;
@@ -114,7 +130,8 @@
   background: transparent;
   color: var(--is-ink-secondary);
   border-radius: var(--radius-sm);
-  padding: 0.65rem 0.75rem;
+  min-height: var(--control-size, 2.75rem);
+  padding: var(--is-space-2) var(--is-space-3);
   text-align: left;
   transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
@@ -147,7 +164,7 @@
   border-bottom: 1px solid var(--line);
   background: var(--surface);
   position: sticky;
-  top: 0;
+  top: calc(var(--header-h) + var(--safe-top, 0px));
   z-index: 20;
 }
 
@@ -158,6 +175,11 @@
   gap: var(--is-space-3);
 }
 
+.dashboardHeading :global(.page-header__description) {
+  font-size: var(--is-text-sm);
+  overflow-wrap: anywhere;
+}
+
 .headerTitleBlock {
   min-width: 0;
   flex: 1;
@@ -165,7 +187,7 @@
 
 .headerTitle {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: var(--is-text-xl);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.2;
@@ -174,7 +196,7 @@
 .headerSubtitle {
   margin: 0.2rem 0 0;
   color: var(--is-ink-muted);
-  font-size: 0.84rem;
+  font-size: var(--is-text-sm);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -198,7 +220,7 @@
   border-radius: 999px;
   background: var(--is-surface-muted);
   color: var(--is-ink-secondary);
-  font-size: 0.75rem;
+  font-size: var(--is-text-xs);
   font-weight: 500;
 }
 
@@ -214,13 +236,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  min-height: 2.4rem;
+  min-height: var(--control-size, 2.75rem);
   padding: 0.45rem 0.7rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--is-line-strong);
   background: var(--surface);
   color: var(--is-ink-secondary);
-  font-size: 0.82rem;
+  font-size: var(--is-text-sm);
   font-weight: 600;
 }
 
@@ -241,15 +263,16 @@
 
 .toolbarGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
   gap: 0.5rem;
   margin-top: var(--is-space-3);
 }
 
 .toolbarGrid .btn {
   width: 100%;
-  min-height: 2.5rem;
-  font-size: 0.82rem;
+  min-height: var(--control-size, 2.75rem);
+  white-space: normal;
+  font-size: var(--is-text-sm);
   padding: 0.5rem 0.55rem;
 }
 
@@ -257,7 +280,7 @@
   grid-area: main;
   padding: var(--is-space-5) var(--is-space-6) var(--is-space-7);
   min-width: 0;
-  max-width: var(--is-content-max);
+  max-width: none;
   width: 100%;
 }
 
@@ -273,12 +296,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  min-height: 2.75rem;
+  min-height: var(--control-size, 2.75rem);
   border: none;
   background: transparent;
   color: var(--is-ink-secondary);
   border-radius: var(--radius-sm);
-  font-size: 0.68rem;
+  font-size: var(--is-text-xs);
   font-weight: 600;
   padding: 0.4rem 0.2rem;
 }
@@ -299,11 +322,11 @@
   justify-content: center;
   gap: 0.4rem;
   border-radius: var(--radius-sm);
-  padding: 0.55rem 0.9rem;
-  min-height: 2.5rem;
+  padding: var(--is-space-2) var(--is-space-4);
+  min-height: var(--control-size, 2.75rem);
   border: 1px solid transparent;
   transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease), color var(--dur) var(--ease);
-  white-space: nowrap;
+  white-space: normal;
   font-size: var(--is-text-sm);
   font-weight: 650;
 }
@@ -369,8 +392,9 @@
 }
 
 .iconBtn {
-  width: 2.1rem;
-  height: 2.1rem;
+  width: var(--control-size, 2.75rem);
+  height: var(--control-size, 2.75rem);
+  flex-shrink: 0;
   padding: 0;
   border-radius: var(--is-radius-xs);
   border: 1px solid var(--line);
@@ -389,7 +413,7 @@
 .linkBtn {
   background: none;
   border: none;
-  color: var(--accent);
+  color: var(--link);
   padding: 0;
   text-align: left;
   font-weight: 600;
@@ -398,6 +422,12 @@
 .linkBtn:hover {
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+.linkBtn {
+  min-height: var(--control-size, 2.75rem);
+  overflow-wrap: anywhere;
+  line-height: 1.5;
 }
 
 /* Surfaces */
@@ -444,7 +474,7 @@
 
 .blockTitle {
   margin: 0 0 var(--is-space-3);
-  font-size: var(--is-text-md);
+  font-size: var(--is-text-lg);
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: var(--leading-tight, 1.2);
@@ -464,7 +494,7 @@
   border-radius: 999px;
   background: var(--is-surface-muted);
   border: 1px solid var(--line);
-  font-size: 0.78rem;
+  font-size: var(--is-text-xs);
   color: var(--is-ink-secondary);
 }
 
@@ -492,18 +522,22 @@
   font-weight: 600;
   padding: 0;
   text-align: left;
+  min-height: var(--control-size, 2.75rem);
+  overflow-wrap: anywhere;
 }
 
 .phoneTrigger:hover {
-  color: var(--accent);
+  color: var(--link);
 }
 
 .phoneMenu {
   position: absolute;
-  left: 0;
-  top: calc(100% + 8px);
+  pointer-events: auto;
   z-index: 40;
-  min-width: min(280px, 78vw);
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  overscroll-behavior: contain;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -516,7 +550,7 @@
 .phoneMenuNote {
   margin: 0 0 0.35rem;
   padding: 0.45rem 0.55rem;
-  font-size: 0.75rem;
+  font-size: var(--is-text-xs);
   line-height: 1.35;
   color: var(--is-ink-muted);
   background: var(--is-surface-muted);
@@ -534,6 +568,7 @@
   text-align: left;
   padding: 0.65rem 0.7rem;
   border-radius: var(--is-radius-xs);
+  min-height: var(--control-size, 2.75rem);
 }
 
 .phoneMenuItem:hover:not(:disabled) {
@@ -561,7 +596,7 @@
 
 .statusRaw {
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: var(--is-text-md);
   letter-spacing: -0.02em;
 }
 
@@ -596,7 +631,7 @@
 }
 
 .field label {
-  font-size: 0.82rem;
+  font-size: var(--is-text-sm);
   font-weight: 600;
   color: var(--is-ink-secondary);
 }
@@ -609,13 +644,15 @@
   padding: 0.7rem 0.85rem;
   background: var(--surface);
   color: var(--ink);
+  min-width: 0;
+  min-height: var(--control-size, 2.75rem);
+  font-size: var(--is-text-md);
   transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
 
 .input:focus,
 .select:focus {
-  border-color: var(--accent);
-  box-shadow: var(--is-focus);
+  border-color: var(--accent-strong);
 }
 
 .searchField {
@@ -654,7 +691,7 @@
 }
 
 .metricsRow .metricValue {
-  font-size: 1.35rem;
+  font-size: var(--is-text-xl);
 }
 
 .statsGrid {
@@ -686,7 +723,7 @@
 }
 
 .fileBannerLabel {
-  font-size: 0.78rem;
+  font-size: var(--is-text-xs);
   color: var(--is-ink-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -715,12 +752,12 @@
   align-items: center;
   gap: 0.35rem;
   color: var(--is-ink-muted);
-  font-size: 0.82rem;
+  font-size: var(--is-text-sm);
   font-weight: 500;
 }
 
 .metricValue {
-  font-size: 1.65rem;
+  font-size: clamp(1.375rem, 3vw, 1.75rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -730,11 +767,15 @@
 .hintBtn {
   border: none;
   background: transparent;
-  color: var(--is-ink-faint);
+  color: var(--muted);
   padding: 0;
   display: inline-flex;
-  width: 1rem;
-  height: 1rem;
+  width: var(--control-size, 2.75rem);
+  height: var(--control-size, 2.75rem);
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
   position: relative;
 }
 
@@ -744,20 +785,23 @@
 
 .hintBubble {
   position: absolute;
-  left: 50%;
-  bottom: calc(100% + 8px);
-  transform: translateX(-50%);
-  width: max-content;
-  max-width: 220px;
   padding: 0.55rem 0.7rem;
   border-radius: var(--is-radius-xs);
-  background: var(--ink);
-  color: #fff;
-  font-size: 0.75rem;
+  background: var(--floating-bg);
+  color: var(--floating-ink);
+  font-size: var(--is-text-xs);
   font-weight: 400;
   line-height: 1.35;
   z-index: 30;
   box-shadow: var(--shadow);
+  pointer-events: none;
+  overflow-wrap: anywhere;
+}
+
+.floatingLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
   pointer-events: none;
 }
 
@@ -800,12 +844,12 @@
 
 .actionTitle {
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: var(--is-text-sm);
 }
 
 .actionDesc {
   color: var(--is-ink-muted);
-  font-size: 0.82rem;
+  font-size: var(--is-text-sm);
   line-height: 1.4;
 }
 
@@ -820,7 +864,7 @@
 
 .infoItem {
   border-bottom: 1px solid var(--line);
-  font-size: 0.92rem;
+  font-size: var(--is-text-sm);
 }
 
 .infoItem:last-child {
@@ -888,7 +932,7 @@
 .infoDetail p {
   margin: 0;
   color: var(--is-ink-muted);
-  font-size: 0.86rem;
+  font-size: var(--is-text-sm);
   line-height: 1.45;
 }
 
@@ -899,7 +943,7 @@
   display: grid;
   gap: 0.45rem;
   color: var(--is-ink-muted);
-  font-size: 0.86rem;
+  font-size: var(--is-text-sm);
   line-height: 1.45;
 }
 
@@ -914,7 +958,7 @@
   grid-template-columns: 5.5rem 1fr 2.5rem;
   gap: 0.65rem;
   align-items: center;
-  font-size: 0.85rem;
+  font-size: var(--is-text-sm);
 }
 
 .levelBarTrack {
@@ -991,7 +1035,7 @@
 }
 
 .table th {
-  font-size: 0.72rem;
+  font-size: var(--is-text-xs);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--is-ink-muted);
@@ -1008,6 +1052,25 @@
 
 .table tbody tr:hover {
   background: var(--is-surface-hover);
+}
+
+.table tbody tr:focus-within {
+  background: var(--is-surface-hover);
+}
+
+.partnerOpenButton {
+  display: flex;
+  align-items: center;
+  min-height: var(--control-size, 2.75rem);
+  width: 100%;
+  padding: var(--is-space-1) 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .tableExact {
@@ -1030,7 +1093,7 @@
 
 .nameSecondary {
   color: var(--is-ink-muted);
-  font-size: 0.82rem;
+  font-size: var(--is-text-sm);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1051,7 +1114,7 @@
 }
 
 .mobileItem:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-strong);
 }
 
 .pager {
@@ -1098,7 +1161,7 @@
 
 .profileName {
   margin: 0;
-  font-size: 1.45rem;
+  font-size: var(--is-text-xl);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.2;
@@ -1124,7 +1187,8 @@
   min-width: 0;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  font-size: 0.82rem;
+  font-size: var(--is-text-sm);
+  flex-wrap: wrap;
 }
 
 .contactList {
@@ -1151,7 +1215,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent);
+  color: var(--link);
   flex: 0 0 auto;
 }
 
@@ -1161,7 +1225,7 @@
 }
 
 .contactLabel {
-  font-size: 0.75rem;
+  font-size: var(--is-text-xs);
   color: var(--is-ink-muted);
 }
 
@@ -1171,12 +1235,16 @@
 }
 
 .contactValue a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--control-size, 2.75rem);
+  max-width: 100%;
   color: inherit;
   text-decoration: none;
 }
 
 .contactValue a:hover {
-  color: var(--accent);
+  color: var(--link);
   text-decoration: underline;
 }
 
@@ -1196,7 +1264,7 @@
 }
 
 .relationRole {
-  font-size: 0.78rem;
+  font-size: var(--is-text-xs);
   color: var(--is-ink-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1220,13 +1288,13 @@
 }
 
 .directItem:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-strong);
   background: var(--is-surface-hover);
 }
 
 .directStats {
   color: var(--is-ink-muted);
-  font-size: 0.82rem;
+  font-size: var(--is-text-sm);
   font-variant-numeric: tabular-nums;
   text-align: right;
 }
@@ -1244,7 +1312,7 @@
 
 .kv dt {
   color: var(--is-ink-muted);
-  font-size: 0.78rem;
+  font-size: var(--is-text-xs);
 }
 
 .kv dd {
@@ -1306,18 +1374,24 @@
   gap: 0.2rem;
 }
 
+.treeNodeVeryDeep {
+  border-left: 0;
+  margin-left: 0;
+  padding-left: 0;
+}
+
 .treeMeta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 0.55rem;
   align-items: center;
   color: var(--is-ink-muted);
-  font-size: 0.78rem;
+  font-size: var(--is-text-xs);
 }
 
 .treeToggle {
-  width: 1.85rem;
-  height: 1.85rem;
+  width: var(--control-size, 2.75rem);
+  height: var(--control-size, 2.75rem);
   border-radius: var(--is-radius-xs);
   border: 1px solid var(--line);
   background: var(--surface);
@@ -1377,12 +1451,13 @@
   right: 1rem;
   bottom: calc(var(--nav-h) + var(--safe-bottom) + 1rem);
   z-index: 50;
-  background: var(--ink);
-  color: #fff;
+  max-width: min(26rem, calc(100vw - 2rem));
+  background: var(--floating-bg);
+  color: var(--floating-ink);
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
-  font-size: 0.9rem;
+  font-size: var(--is-text-sm);
   animation: toastIn 180ms ease;
 }
 
@@ -1413,8 +1488,8 @@
 
 /* Onboarding / upload */
 .hero {
-  width: min(780px, 100%);
-  margin: 0 auto;
+  width: min(var(--content-reading, 44rem), 100%);
+  margin: 0;
   padding: 0.25rem 0 var(--is-space-5);
   display: flex;
   flex-direction: column;
@@ -1477,7 +1552,7 @@
 }
 
 .dropzoneActive {
-  border-color: var(--accent);
+  border-color: var(--accent-strong);
   background: var(--is-accent-soft);
   transform: translateY(-1px);
 }
@@ -1503,7 +1578,7 @@
   width: 1rem;
   height: 1rem;
   border: 2px solid var(--is-line-strong);
-  border-top-color: var(--accent);
+  border-top-color: var(--accent-strong);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
@@ -1541,11 +1616,11 @@
   }
 
   .metricsRow .metricLabel {
-    font-size: 0.72rem;
+    font-size: var(--is-text-xs);
   }
 
   .metricsRow .metricValue {
-    font-size: 1.15rem;
+    font-size: var(--is-text-xl);
   }
 
   .main {
@@ -1560,7 +1635,7 @@
   }
 
   .headerTitle {
-    font-size: 1.1rem;
+    font-size: var(--is-text-xl);
   }
 
   .headerActions {
@@ -1569,11 +1644,11 @@
   }
 
   .headerBtn span {
-    font-size: 0.78rem;
+    font-size: var(--is-text-xs);
   }
 
   .toolbarGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
   }
 
   .actionsGrid {
@@ -1597,12 +1672,12 @@
   }
 
   .sectionTitle {
-    font-size: 1.15rem;
+    font-size: var(--is-text-xl);
   }
 
   .sectionLead {
     margin-bottom: var(--is-space-3);
-    font-size: 0.9rem;
+    font-size: var(--is-text-sm);
   }
 }
 
@@ -1628,16 +1703,16 @@
   }
 
   .profileName {
-    font-size: 1.2rem;
+    font-size: var(--is-text-xl);
   }
 
   .metricValue {
-    font-size: 1.4rem;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
   }
 
   .input,
   .select {
-    min-height: 2.75rem;
+    min-height: var(--control-size, 2.75rem);
     font-size: 1rem;
   }
 }
@@ -1653,12 +1728,18 @@
 
   .headerActions {
     min-width: auto;
-    grid-template-columns: repeat(2, 2.5rem);
+    grid-template-columns: repeat(2, var(--control-size, 2.75rem));
   }
 
   .headerBtn {
     padding: 0;
-    width: 2.5rem;
-    min-height: 2.5rem;
+    width: var(--control-size, 2.75rem);
+    min-height: var(--control-size, 2.75rem);
+  }
+
+  .treeNodeDeep {
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
   }
 }

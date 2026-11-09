@@ -20,10 +20,15 @@ export function SectionNav({
     if (!list) return;
     const active = list.querySelector<HTMLElement>('[aria-current="page"]');
     if (!active) return;
-    active.scrollIntoView({
-      behavior: 'smooth',
-      inline: 'center',
-      block: 'nearest',
+    const listBounds = list.getBoundingClientRect();
+    const activeBounds = active.getBoundingClientRect();
+    if (activeBounds.left >= listBounds.left && activeBounds.right <= listBounds.right) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    list.scrollTo({
+      left: list.scrollLeft + activeBounds.left - listBounds.left
+        - (list.clientWidth - activeBounds.width) / 2,
+      behavior: reducedMotion ? 'auto' : 'smooth',
     });
   }, [pathname]);
 

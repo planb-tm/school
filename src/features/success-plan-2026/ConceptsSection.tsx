@@ -4,6 +4,7 @@ import { EmptyState } from '@/components/EmptyState';
 import { knowledgeCards } from '@/data/success-plan-2026/knowledgeCards';
 import { getSourceById } from '@/data/success-plan-2026/sources';
 import type { KnowledgeCategory, KnowledgeCard } from '@/types/learning';
+import styles from './SuccessPlan.module.css';
 
 const CATEGORY_LABELS: Record<KnowledgeCategory, string> = {
   basics: 'Основы',
@@ -79,19 +80,12 @@ export function ConceptsSection() {
   }
 
   return (
-    <section className="panel" id="concepts">
-      <header className="panel__header">
-        <h2>Основные понятия</h2>
-        <p>
-          В каждой карточке одно и то же устройство: простое объяснение →
-          официальное правило → пример → ограничения → источник.
-        </p>
-      </header>
-
+    <section className="panel" id="concepts" aria-label="Основные понятия">
       <div className="filter-row" role="group" aria-label="Фильтр категорий">
         <button
           type="button"
           className={filter === 'all' ? 'chip chip--active' : 'chip'}
+          aria-pressed={filter === 'all'}
           onClick={() => setFilter('all')}
         >
           Все
@@ -101,12 +95,15 @@ export function ConceptsSection() {
             key={key}
             type="button"
             className={filter === key ? 'chip chip--active' : 'chip'}
+            aria-pressed={filter === key}
             onClick={() => setFilter(key)}
           >
             {CATEGORY_LABELS[key]}
           </button>
         ))}
       </div>
+
+      <p className="sr-only" role="status">Показано карточек: {filtered.length}.</p>
 
       {filtered.length === 0 ? (
         <EmptyState title="Нет карточек" message="В этой категории пока нет материалов." />
@@ -121,92 +118,100 @@ export function ConceptsSection() {
 
             return (
               <article key={card.id} className="knowledge-card">
-                <button
-                  type="button"
-                  className="knowledge-card__toggle"
-                  aria-expanded={open}
-                  onClick={() => setOpenId(open ? null : card.id)}
-                >
-                  <span className="knowledge-card__heading">
-                    <span className="knowledge-card__eyebrow">
-                      {index + 1}. {CATEGORY_LABELS[card.category]}
+                <h2 className={styles.accordionHeading}>
+                  <button
+                    id={`concept-${card.id}-toggle`}
+                    type="button"
+                    className="knowledge-card__toggle"
+                    aria-expanded={open}
+                    aria-controls={`concept-${card.id}-body`}
+                    onClick={() => setOpenId(open ? null : card.id)}
+                  >
+                    <span className="knowledge-card__heading">
+                      <span className="knowledge-card__eyebrow">
+                        {index + 1}. {CATEGORY_LABELS[card.category]}
+                      </span>
+                      <span className="knowledge-card__title">{card.title}</span>
                     </span>
-                    <span className="knowledge-card__title">{card.title}</span>
-                  </span>
-                  <StatusBadge status={card.status} compact />
-                </button>
+                    <StatusBadge status={card.status} compact />
+                  </button>
+                </h2>
 
-                {open ? (
-                  <div className="knowledge-card__body">
-                    <div className="text-block">
-                      <h4>1. Простыми словами</h4>
-                      <p>{card.plainExplanation}</p>
-                    </div>
-
-                    {card.officialWording ? (
-                      <div className="text-block text-block--official">
-                        <h4>2. Официальное правило</h4>
-                        <p>{card.officialWording}</p>
-                      </div>
-                    ) : (
-                      <div className="text-block text-block--official">
-                        <h4>2. Официальное правило</h4>
-                        <p className="muted">
-                          Точная формулировка ещё не вынесена - смотрите статус
-                          сверки и исходный PDF.
-                        </p>
-                      </div>
-                    )}
-
-                    {card.conditions && card.conditions.length > 0 ? (
-                      <div className="text-block">
-                        <h4>Условия</h4>
-                        <ul>
-                          {card.conditions.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
-
-                    <div className="text-block">
-                      <h4>3. Пример</h4>
-                      {card.examples && card.examples.length > 0 ? (
-                        <ul>
-                          {card.examples.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="muted">
-                          Отдельный числовой пример - в разделе «Разбор примеров».
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="text-block text-block--limits">
-                      <h4>4. Ограничения и осторожности</h4>
-                      {limitations.length > 0 ? (
-                        <ul>
-                          {limitations.map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="muted">
-                          Для этой карточки отдельных исключений в данных нет.
-                          Общие границы модели - в карточке «Ограничения учебной
-                          модели».
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="text-block">
-                      <h4>5. Источник</h4>
-                      <SourceLine card={card} />
-                    </div>
+                <div
+                  id={`concept-${card.id}-body`}
+                  className={`knowledge-card__body ${styles.collapsible}`}
+                  role="region"
+                  aria-labelledby={`concept-${card.id}-toggle`}
+                  hidden={!open}
+                >
+                  <div className="text-block">
+                    <h3>1. Простыми словами</h3>
+                    <p>{card.plainExplanation}</p>
                   </div>
-                ) : null}
+
+                  {card.officialWording ? (
+                    <div className="text-block text-block--official">
+                      <h3>2. Официальное правило</h3>
+                      <p>{card.officialWording}</p>
+                    </div>
+                  ) : (
+                    <div className="text-block text-block--official">
+                      <h3>2. Официальное правило</h3>
+                      <p className="muted">
+                        Точная формулировка ещё не вынесена - смотрите статус
+                        сверки и исходный PDF.
+                      </p>
+                    </div>
+                  )}
+
+                  {card.conditions && card.conditions.length > 0 ? (
+                    <div className="text-block">
+                      <h3>Условия</h3>
+                      <ul>
+                        {card.conditions.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  <div className="text-block">
+                    <h3>3. Пример</h3>
+                    {card.examples && card.examples.length > 0 ? (
+                      <ul>
+                        {card.examples.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="muted">
+                        Отдельный числовой пример - в разделе «Разбор примеров».
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="text-block text-block--limits">
+                    <h3>4. Ограничения и осторожности</h3>
+                    {limitations.length > 0 ? (
+                      <ul>
+                        {limitations.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="muted">
+                        Для этой карточки отдельных исключений в данных нет.
+                        Общие границы модели - в карточке «Ограничения учебной
+                        модели».
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="text-block">
+                    <h3>5. Источник</h3>
+                    <SourceLine card={card} />
+                  </div>
+                </div>
               </article>
             );
           })}

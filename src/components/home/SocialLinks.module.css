@@ -1,9 +1,9 @@
 .section {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 0.9rem;
+  gap: var(--space-4);
   min-width: 0;
-  padding-top: 1rem;
+  padding-top: var(--space-6);
   border-top: 1px solid color-mix(in srgb, var(--accent-strong) 24%, var(--line));
 }
 
@@ -16,8 +16,8 @@
 .title {
   margin: 0;
   color: var(--ink);
-  font-size: var(--text-md);
-  font-weight: 730;
+  font-size: var(--text-h3);
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.3;
 }
@@ -33,8 +33,8 @@
 .list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.45rem;
-  max-width: 24rem;
+  gap: var(--space-2);
+  max-width: 28rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -69,7 +69,7 @@
 }
 
 .link:focus-visible {
-  outline: 2px solid var(--accent-strong);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 2px;
 }
 
@@ -79,7 +79,7 @@
   width: 2.75rem;
   height: 2.75rem;
   border: 1px solid color-mix(in srgb, var(--accent-strong) 20%, var(--line));
-  border-radius: 13px;
+  border-radius: var(--radius);
   background: color-mix(in srgb, var(--info-soft) 52%, var(--surface));
   color: color-mix(in srgb, var(--accent-strong) 52%, var(--ink));
   transition:
@@ -124,15 +124,15 @@
 .label {
   display: grid;
   gap: 0.08rem;
-  font-size: 0.65rem;
-  font-weight: 650;
+  font-size: var(--text-caption);
+  font-weight: 600;
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
 .detail {
   color: var(--muted);
-  font-size: 0.6rem;
+  font-size: var(--text-caption);
   font-weight: 500;
 }
 
