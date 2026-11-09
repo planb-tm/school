@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import { AppHeader } from './AppHeader';
 import { BottomNav } from './BottomNav';
+import { AppUpdateNotice } from './AppUpdateNotice';
 
 function isVisible(element: HTMLElement): boolean {
   return element.isConnected
@@ -136,7 +137,9 @@ export function AppShell() {
           Материалы не заменяют официальный кабинет Oriflame и актуальные
           правила компании.
         </p>
+        <p className="app-version">planB · версия {__APP_VERSION__}</p>
       </footer>
+      <AppUpdateNotice />
       <BottomNav />
     </div>
   );

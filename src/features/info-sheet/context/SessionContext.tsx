@@ -5,8 +5,10 @@ import {
   useEffect,
   useMemo,
   useReducer,
+  useLayoutEffect,
   type ReactNode,
 } from 'react';
+import { setUpdateProtection } from '@/lib/appUpdate';
 import { parseWorkbookFile } from '../features/import/parseWorkbook';
 import { buildPartnerIndex } from '../features/partners/buildPartnerIndex';
 import type { PartnerIndex } from '../types/partner';
@@ -180,6 +182,11 @@ const SessionContext = createContext<SessionContextValue | null>(null);
 
 export function SessionProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useLayoutEffect(() => {
+    setUpdateProtection('info-sheet-session', state.isParsing || state.view !== 'upload');
+    return () => setUpdateProtection('info-sheet-session', false);
+  }, [state.isParsing, state.view]);
 
   const index = useMemo(() => {
     if (!state.report) return null;

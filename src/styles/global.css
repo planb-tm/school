@@ -804,6 +804,57 @@ code {
   margin-top: 0.35rem;
 }
 
+.app-footer .app-version {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  opacity: 0.8;
+}
+
+.app-update-notice {
+  position: fixed;
+  z-index: 70;
+  right: max(var(--page-pad), var(--safe-right));
+  bottom: calc(var(--nav-h) + var(--safe-bottom) + 0.65rem);
+  left: max(var(--page-pad), var(--safe-left));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: min(38rem, 100%);
+  margin-inline: auto;
+  padding: 0.65rem 0.75rem 0.65rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  font-size: var(--text-sm);
+}
+
+.app-update-notice button {
+  flex: 0 0 auto;
+  min-height: var(--control-size);
+  padding: 0.45rem 0.9rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.app-update-notice button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (min-width: 640px) {
+  .app-update-notice {
+    bottom: 1rem;
+  }
+}
+
 /* --- Type helpers --- */
 .eyebrow {
   text-transform: uppercase;

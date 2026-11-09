@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useLayoutEffect, useMemo, useState } from 'react';
 import {
   tryCalculateSuccessPlanScenario,
   type SuccessPlanScenarioInput,
@@ -15,6 +15,7 @@ import {
   type LearningProgress,
 } from '@/lib/progress';
 import styles from './SuccessPlan.module.css';
+import { setUpdateProtection } from '@/lib/appUpdate';
 
 type PresetId = 'example1' | 'example2' | 'custom';
 
@@ -85,6 +86,11 @@ export function TryYourselfSection({
   const [preset, setPreset] = useState<PresetId>('example1');
   const [form, setForm] = useState<FormState>(PRESETS.example1);
   const [showSteps, setShowSteps] = useState(true);
+
+  useLayoutEffect(() => {
+    setUpdateProtection('success-plan-form', preset === 'custom');
+    return () => setUpdateProtection('success-plan-form', false);
+  }, [preset]);
 
   const parsed = useMemo(() => buildInput(form), [form]);
 
